@@ -10,7 +10,7 @@ import SwiftUI
 @Observable
 class fieldOfInterestModel {
     
-    let fieldOfInterests: [FieldOfInterest] = [
+    private let fieldOfInterests: [FieldOfInterest] = [
     FieldOfInterest(
         name: "Web / Mobile",
         nameShort: "Web",
