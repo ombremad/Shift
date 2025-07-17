@@ -1,0 +1,18 @@
+//
+//  ForumView.swift
+//  Shift
+//
+//  Created by Samara Lima da Silva on 15/07/2025.
+//
+
+import SwiftUI
+
+struct ForumView: View {
+    var body: some View {
+        Text("Forum")
+    }
+}
+
+#Preview {
+    ForumView()
+}
