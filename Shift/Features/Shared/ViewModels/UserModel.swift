@@ -16,7 +16,7 @@ class UserModel {
         city: "Montreuil",
         interests: [FieldOfInterest(name: "UX / UI", nameShort: "UX", icon: .bezierCurve)]
     )
-    private let sampleUsers: [User] = []    // make a few sample profiles to use in the forum
+    private let sampleUsers: [User] = []    // TODO: insert here a few sample profiles to use in the forum
     
     func getAppUser() -> User {
         return appUser
