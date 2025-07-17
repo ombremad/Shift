@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class FieldOfInterest {
+struct FieldOfInterest {
     var name: String            // full name ie. "Cyber Security"
     var nameShort: String       // short name for some pages ie. "Cyber"
     var icon: ImageResource
