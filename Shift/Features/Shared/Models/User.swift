@@ -9,11 +9,11 @@ import SwiftUI
 
 struct User: Identifiable {
     var id = UUID()
-    var name: String
-    var nickname: String
+    var name: String                // full name ie. what's displayed privately on users' homepage
+    var nickname: String            // display name ie. how the user's called on the forum
     var picture: ImageResource
     var city: String
-    var interests: [FieldOfInterest]        // this is where we keep track of the user's registered Field of Interest(s)
+    var interests: [FieldOfInterest]
     
     init(name: String, nickname: String, picture: ImageResource, city: String, interests: [FieldOfInterest]) {
         self.name = name
