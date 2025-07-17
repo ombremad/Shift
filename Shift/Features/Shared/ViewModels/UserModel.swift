@@ -9,14 +9,14 @@ import SwiftUI
 
 @Observable
 class UserModel {
-    private var appUser: User = User(
+    private var appUser: User = User(       // default user for testing purposes
         name: "Julie",
         nickname: "julie_la_codeuse",
         picture: .profile,
         city: "Montreuil",
         interests: [FieldOfInterest(name: "UX / UI", nameShort: "UX", icon: .bezierCurve)]
     )
-    private let sampleUsers: [User] = []     // make a few sample profiles to use in the forum
+    private let sampleUsers: [User] = []    // make a few sample profiles to use in the forum
     
     func getAppUser() -> User {
         return appUser
