@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+let fieldOfInterests = fieldOfInterestModel()
+
 @Observable
 class UserModel {
     private var currentUser: User = User(       // default user for testing purposes
@@ -14,7 +16,7 @@ class UserModel {
         nickname: "julie_la_codeuse",
         picture: .profile,
         city: "Montreuil",
-        interests: [FieldOfInterest(name: "UX / UI", nameShort: "UX", icon: .bezierCurve)]
+        interests: [fieldOfInterests.uxui]
     )
     private let sampleUsers: [User] = []    // TODO: insert here a few sample profiles to use in the forum
     
