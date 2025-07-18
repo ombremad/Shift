@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ForumView: View {
     
+    @State var forumViewModel = ForumViewModel()
+    
     func header() -> some View {
         HStack {
             Text("Forum")
@@ -16,27 +18,71 @@ struct ForumView: View {
             Spacer()
             ZStack {
                 Circle()
-                    .fill(Color.neonGreen)
+                    .fill(.neonGreen)
                     .frame(width:44, height:44)
-                Image(systemName: "magnifyingglass")
-                    .foregroundStyle(.black)
+                Image(.magnifyingGlass)
+                    .resizable()
+                    .frame(width: 22, height: 22)
+                    .scaledToFit()
+                    .foregroundStyle(.noir)
             }
             ZStack {
                 Circle()
-                    .fill(Color.neonGreen)
+                    .fill(.neonGreen)
                     .frame(width:44, height:44)
-                Image(systemName: "plus")
-                    .foregroundColor(.black)
+                Image(.plus)
+                    .resizable()
+                    .frame(width: 22, height: 22)
+                    .scaledToFit()
+                    .foregroundStyle(.noir)
             }
         }
     }
-    
+    func categories() -> some View {
+        VStack {
+            HStack {
+                Text("Categories")
+                    .font(.custom("Safiro-SemiBold", size: 22))
+                Spacer()
+            }
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack {
+                    ForEach(forumViewModel.tags) { tag in
+                        ZStack {
+                            Rectangle()
+                                .fill(.violet)
+                                .cornerRadius(15)
+                                .frame(width: 80, height: 80)
+                            VStack {
+                                Image(tag.icon)
+                                Text(tag.name)
+                                    .font(.custom("HelveticaNeue", size: 13))
+                            }
+                            .foregroundStyle(.blanc)
+                        }
+                    }
+                }
+            }
+        }
+    }
     func latest() -> some View {
         VStack {
             HStack {
                 Text("Latest")
                     .font(.custom("Safiro-SemiBold", size: 22))
                 Spacer()
+            }
+            VStack {
+                ForEach (forumViewModel.posts) { post in
+                    ForumCard(
+                        title: post.title,
+                        content: post.content,
+                        numberOfComments: post.numberOfComments,
+                        numberOfLikes: post.numberOfLikes,
+                        isHot: post.isHot,
+                        tags: post.tags
+                    )
+                }
             }
         }
     }
@@ -49,9 +95,8 @@ struct ForumView: View {
                 ScrollView {
                     VStack(spacing: 15) {
                         header()
+                        categories()
                         latest()
-                        ForumCard()
-                        ForumCard()
                     }
                     .padding()
                 }

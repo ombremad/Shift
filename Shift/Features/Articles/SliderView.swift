@@ -14,7 +14,7 @@ struct SliderView: View {
         VStack {
             ZStack{
                 Rectangle()
-                    .foregroundColor(.white)
+                    .foregroundColor(.blanc)
                     .cornerRadius(15)
                     .frame(width: 241, height: 258)
                     .shadow(color: .gray, radius: 0.5, x: 0, y:1)
@@ -28,7 +28,7 @@ struct SliderView: View {
                             .clipped()
                         Text(article.tag)
                             .font(.custom("HelveticaNeue-Bold", size: 11))
-                            .foregroundColor(.white)
+                            .foregroundColor(.blanc)
                             .padding(.vertical,6)
                             .padding(.horizontal, 12)
                             .background(Color.violet)
