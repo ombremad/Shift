@@ -56,6 +56,8 @@ struct ForumView: View {
                     .padding()
                 }
             }
+            .navigationTitle("Forum")
+            .navigationBarHidden(true)
         }
     }
 }
