@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EventsView: View {
     
-    @State private var textInput: String = "";
+    @State private var searchEvent: String = "";
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -17,15 +17,26 @@ struct EventsView: View {
                 .font(.custom("Safiro-Bold", size: 36))
 
             HStack {
-                TextField("Search", text: $textInput)
-                    .frame(width: 316, height: 40)
-                    .background(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.gray, lineWidth: 1)
-                    )
-                Spacer()
-            }
 
+                ZStack(alignment: .leading) {
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color.gray, lineWidth: 1)
+                        .frame(width: 316, height: 40)
+
+                    Image(systemName: "magnifyingglass")
+                        .foregroundColor(.gray)
+                        .padding(.leading, 16)
+
+                    TextField("Search", text: $searchEvent)
+                        .padding(.leading, 50)
+                        .frame(width: 316, height: 40)
+                }
+
+                Image(systemName: "slider.horizontal.3")
+                    .foregroundColor(.gray)
+                    .padding(.leading, 8)
+            }
+            
             Spacer()
         }
         .padding()
