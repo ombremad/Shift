@@ -27,7 +27,7 @@ struct SliderView: View {
                             .frame(width: 211, height: 148)
                             .cornerRadius(5)
                             .clipped()
-                        Text(article.tag)
+                    Text(article.tag.name)
                             .font(.custom("HelveticaNeue-Bold", size: 11))
                             .foregroundColor(.blanc)
                             .padding(.vertical,6)
@@ -35,17 +35,14 @@ struct SliderView: View {
                             .background(Color.violet)
                             .cornerRadius(5)
                     Text(article.intro)
-                        .font(.custom("HelveticaNeue-Medium", size: 14))
+                        .font(.custom("HelveticaNeue-Bold", size: 14))
+                        .foregroundColor(.noir)
                 }
                 .padding([.leading, .trailing, .bottom], 15)
                 .padding(.top, 11)
                 .frame(width: 241, height: 258)
             }
         }
-
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-               .background(Color.background)
-               .ignoresSafeArea()
     }
 }
 

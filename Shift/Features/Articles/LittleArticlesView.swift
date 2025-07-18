@@ -31,9 +31,9 @@ struct LittleArticlesView: View {
                     
                     VStack (alignment: .leading, spacing: 10){
                         
-                        Text(article.tag)
+                        Text(article.tag.name)
                             .font(.custom("HelveticaNeue-Bold", size: 11))
-                            .foregroundColor(.white)
+                            .foregroundColor(.blanc)
                             .padding(.vertical,6)
                             .padding(.horizontal, 12)
                             .background(Color.violet)
@@ -41,7 +41,7 @@ struct LittleArticlesView: View {
                             .padding(.bottom, 10)
                         
                         Text(article.intro)
-                            .font(.custom("HelveticaNeue-Medium", size: 14))
+                            .font(.custom("HelveticaNeue-bold", size: 14))
                     }
                 }
                 .padding(15)
