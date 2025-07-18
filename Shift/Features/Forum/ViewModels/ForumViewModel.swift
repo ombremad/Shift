@@ -21,7 +21,7 @@ final class ForumViewModel {
     
     var posts : [Post] = [
         Post (
-        title: "Who else here is loving SwiftUI? 🚀",
+        title: "Who else is loving SwiftUI? 🚀",
         content: """
             Hey everyone!
             I've been working with SwiftUI for about 8 months now after years of struggling with UIKit, and I'm honestly having the best time coding I've had in ages. The declarative syntax just clicks with how I think about UI design, and being able to see live previews while I'm building components has been a game-changer for my workflow. I know there are still some limitations and quirks (don't get me started on navigation in complex apps 😅), but the rapid development cycle and how intuitive it feels has made me fall in love with iOS development all over again. Plus, the accessibility features are so much easier to implement properly!
@@ -29,9 +29,13 @@ final class ForumViewModel {
             Hope everyone's having a great week! 💙
             """,
         postedOn: Date(),
-        author: "Viviane",
-        authorCity: "Johannesburg",
-        authorProfilePicture: .viviane,
+        user: User(
+            name: "Viviane",
+            nickname: "vivi_a_ne",
+            picture: .viviane,
+            city: "Johannesburg",
+            interests: [fieldOfInterests.uxui]
+        ),
         numberOfComments: 12,
         numberOfLikes: 42,
         isHot: true,
@@ -49,9 +53,16 @@ final class ForumViewModel {
             Sarah
             """,
         postedOn: Date(),
-        author: "TechMentor Sarah",
-        authorCity: "Paris",
-        authorProfilePicture: .sarah,
+        user: User(
+            name: "Sarah",
+            nickname: "TechMentor Sarah",
+            picture: .sarah,
+            city: "Paris",
+            interests: [
+                fieldOfInterests.ai,
+                fieldOfInterests.cybersecurity
+            ]
+        ),
         numberOfComments: 4,
         numberOfLikes: 108,
         isHot: true,
@@ -69,9 +80,16 @@ final class ForumViewModel {
             xoxo 💋
             """,
         postedOn: Date(),
-        author: "AnitaCodeAndCocktails",
-        authorCity: "New York City",
-        authorProfilePicture: .anita,
+        user: User(
+            name: "Anita",
+            nickname: "AniCodeAndCocktails",
+            picture: .anita,
+            city: "New York City",
+            interests: [
+                fieldOfInterests.web,
+                fieldOfInterests.devops
+            ]
+        ),
         numberOfComments: 1,
         numberOfLikes: 8,
         isHot: false,

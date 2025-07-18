@@ -12,21 +12,17 @@ struct Post: Identifiable {
     var title: String
     var content: String
     var postedOn: Date
-    var author: String
-    var authorCity: String
-    var authorProfilePicture: ImageResource
+    var user: User
     var numberOfComments: UInt8
     var numberOfLikes: UInt8
     var isHot: Bool
     var tags: [String]
     
-    init(title: String, content: String, postedOn: Date, author: String, authorCity: String, authorProfilePicture: ImageResource, numberOfComments: UInt8, numberOfLikes: UInt8, isHot: Bool, tags: [String]) {
+    init(title: String, content: String, postedOn: Date, user: User, numberOfComments: UInt8, numberOfLikes: UInt8, isHot: Bool, tags: [String]) {
         self.title = title
         self.content = content
         self.postedOn = postedOn
-        self.author = author
-        self.authorCity = authorCity
-        self.authorProfilePicture = authorProfilePicture
+        self.user = user
         self.numberOfComments = numberOfComments
         self.numberOfLikes = numberOfLikes
         self.isHot = isHot
