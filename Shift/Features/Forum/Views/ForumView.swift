@@ -49,7 +49,7 @@ struct ForumView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
                     ForEach(forumViewModel.tags) { tag in
-                        ForumTagCard(name: tag.name, icon: tag.icon)
+                        ForumTagCard(tag: tag)
                     }
                 }
             }
@@ -62,17 +62,10 @@ struct ForumView: View {
                     .font(.custom("Safiro-SemiBold", size: 22))
                 Spacer()
             }
-            VStack {
+            VStack(spacing: 20) {
                 ForEach (forumViewModel.posts) { post in
                     NavigationLink(destination: ForumSingleView(post: post)) {
-                        ForumCard(
-                            title: post.title,
-                            content: post.content,
-                            numberOfComments: post.numberOfComments,
-                            numberOfLikes: post.numberOfLikes,
-                            isHot: post.isHot,
-                            tags: post.tags
-                        )
+                        ForumCard(post: post)
                     }
                 }
             }
@@ -85,7 +78,7 @@ struct ForumView: View {
                 Color.background
                     .ignoresSafeArea()
                 ScrollView {
-                    VStack(spacing: 15) {
+                    VStack(spacing: 20) {
                         header()
                         categories()
                         latest()

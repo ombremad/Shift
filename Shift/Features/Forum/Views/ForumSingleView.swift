@@ -27,9 +27,42 @@ struct ForumSingleView: View {
         .frame(height: 44)
     }
     func forumSingle() -> some View {
-        VStack {
-            Text(post.title)
-            Text("TODO ON MONDAY!")   // TODO: Continue here on Monday
+        ZStack {
+            Rectangle()
+                .fill(.blanc)
+                .cornerRadius(15)
+                .shadow(color: .noir.opacity(0.20), radius: 2, x: 0, y: 2)
+            VStack(alignment: .leading, spacing: 15) {
+                HStack {
+                    Image(post.authorProfilePicture)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 44, height: 44)
+                        .clipShape(.circle)
+                    VStack(alignment: .leading) {
+                        Text(post.author)
+                            .font(.custom("Safiro-SemiBold", size: 14))
+                        Text(post.authorCity)
+                            .font(.custom("Safiro-Regular", size: 12))
+                    }
+                }
+                Text(post.title)
+                    .font(.custom("Safiro-SemiBold", size: 22))
+                HStack {
+                    ForEach (post.tags, id: \.self) { tag in
+                        Text(tag).textCase(.lowercase)
+                            .font(.custom("Safiro-SemiBold", size: 12))
+                            .padding(.vertical, 2)
+                            .padding(.horizontal, 10)
+                            .frame(height: 24)
+                            .background(.neonGreen)
+                            .cornerRadius(5)
+                    }
+                }
+                Text(post.content)
+                    .font(.custom("HelveticaNeue", size: 14))
+            }
+            .padding()
         }
     }
 
@@ -43,11 +76,11 @@ struct ForumSingleView: View {
                     header()
                     forumSingle()
                 }
+                .padding()
             }
-            .padding()
+            .navigationTitle(post.title)
+            .navigationBarHidden(true)
         }
-        .navigationTitle(post.title)
-        .navigationBarHidden(true)
     }
 }
 

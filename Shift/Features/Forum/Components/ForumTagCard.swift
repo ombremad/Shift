@@ -9,8 +9,7 @@ import SwiftUI
 
 struct ForumTagCard : View {
     
-    var name: String
-    var icon: ImageResource
+    var tag: Tag
     
     var body: some View {
         ZStack {
@@ -19,9 +18,11 @@ struct ForumTagCard : View {
                 .cornerRadius(15)
                 .frame(width: 80, height: 80)
             VStack {
-                Image(icon)
-                Text(name)
+                Image(tag.icon)
+                Text(tag.name)
                     .font(.custom("HelveticaNeue", size: 13))
+                    .frame(width: 80)
+                    .allowsTightening(true)
             }
             .foregroundStyle(.blanc)
         }
@@ -29,8 +30,9 @@ struct ForumTagCard : View {
 }
 
 #Preview {
-    ForumTagCard(
+    ForumTagCard(tag: Tag(
         name: "Mentorship",
         icon: .usersThree
+        )
     )
 }
