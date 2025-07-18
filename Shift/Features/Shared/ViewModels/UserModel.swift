@@ -9,7 +9,7 @@ import SwiftUI
 
 @Observable
 class UserModel {
-    private var appUser: User = User(       // default user for testing purposes
+    private var currentUser: User = User(       // default user for testing purposes
         name: "Julie",
         nickname: "julie_la_codeuse",
         picture: .profile,
@@ -18,12 +18,12 @@ class UserModel {
     )
     private let sampleUsers: [User] = []    // TODO: insert here a few sample profiles to use in the forum
     
-    func getAppUser() -> User {
-        return appUser
+    func getCurrentUser() -> User {
+        return currentUser
     }
     
-    func setAppUser(name: String, nickname: String, picture: ImageResource, city: String, interests: [FieldOfInterest]) {
-        appUser = User(name: name, nickname: nickname, picture: picture, city: city, interests: interests)
+    func setCurrentUser(name: String, nickname: String, picture: ImageResource, city: String, interests: [FieldOfInterest]) {
+        currentUser = User(name: name, nickname: nickname, picture: picture, city: city, interests: interests)
     }
     
     func getSampleUsers() -> [User] {
