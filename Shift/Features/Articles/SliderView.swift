@@ -5,6 +5,7 @@
 //  Created by alize on 17/07/2025.
 //
 
+
 import SwiftUI
 
 struct SliderView: View {
@@ -16,8 +17,8 @@ struct SliderView: View {
                 Rectangle()
                     .foregroundColor(.blanc)
                     .cornerRadius(15)
-                    .frame(width: 241, height: 258)
-                    .shadow(color: .gray, radius: 0.5, x: 0, y:1)
+                    .frame(width: 241, height: 270)
+                    .shadow(color: .gray.opacity(0.5), radius: 0.5, x: 0, y:1)
                 VStack (alignment: .leading, spacing: 12){
                     
                         Image(article.imageCouv)

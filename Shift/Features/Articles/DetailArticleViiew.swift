@@ -1,0 +1,115 @@
+//
+//  DetailArticleViiew.swift
+//  test
+//
+//  Created by alize on 17/07/2025.
+//
+
+import SwiftUI
+
+struct DetailArticleView: View {
+    
+    let article : Article
+    
+    var body: some View {
+        ScrollView{
+            VStack (alignment: .leading , spacing: 15){
+                VStack (alignment: .leading , spacing: 3){
+                    Text(article.titre)
+                        .font(.custom("Safiro-Bold", size: 36))
+                    Text("Publié le \(article.datePublication)")
+                        .font(.custom("HelveticaNeue-Courant", size: 14))
+                }
+                ZStack (alignment: .bottomTrailing){
+                    Image(article.imageCouv)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .clipped()
+                        .frame(maxWidth: .infinity, maxHeight: 286)
+                    // .cornerRadius(15)
+                    
+                    HStack(){ //pictos
+                        ZStack{ //share
+                            Circle()
+                                .frame(width: 35)
+                                .foregroundColor(.neonGreen)
+                            Image("share")
+                                .resizable()
+                                .frame(width: 13, height: 15)
+                        }
+                        ZStack{ //like (favoris)
+                            Circle()
+                                .frame(width: 35)
+                                .foregroundColor(.neonGreen)
+                            Image("heart")
+                                .resizable()
+                                .frame(width: 15, height: 15)
+                        }
+                    }
+                    .padding(.trailing, 15)
+                    .padding(.bottom, 15)
+                }
+                
+                Text(article.tag)
+                    .foregroundColor(.white)
+                    .font(.custom("HelveticaNeue-Bold", size: 11))
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 5)
+                    .background(.violet)
+                    .cornerRadius(5)
+                Text(article.chapeau)
+                    .font(.custom("Safiro-Bold", size: 18))
+                //Logique pour afficher content personnalisé
+                ForEach(article.contentArticle, id: \.self) { content in
+                    switch content {
+                    case .subtitle1(let subtitle1):
+                        Text(subtitle1)
+                            .font(.custom("Safiro-Bold", size: 18))
+                            .foregroundColor(.noir)
+                    case .paragraph1(let paragraph1):
+                        Text(paragraph1)
+                            .font(.custom("HelveticaNeue-Courant", size: 14))
+                            .foregroundColor(.noir)
+                    case .image(let image):
+                        Image(image)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .clipped()
+                            .frame(maxWidth: .infinity, maxHeight: 286)
+                            .cornerRadius(15)
+                    case .subtitle2(let subtitle2) :
+                        Text(subtitle2)
+                            .font(.custom("Safiro-Bold", size: 18))
+                            .foregroundColor(.noir)
+                    case .paragraph2(let paragraph2):
+                        Text(paragraph2)
+                            .font(.custom("HelveticaNeue-Courant", size: 14))
+                    }
+                }
+                Text("Read also")
+                    .foregroundColor(.noir)
+                    .font(.custom("Safiro-Bold", size: 22))
+                HStack{
+                    ZStack{
+                        Rectangle()
+                            .foregroundColor(.blanc)
+                            .frame(width: 176, height: 246)
+                            .cornerRadius(15)
+                            .shadow(color: .gray.opacity(0.5), radius: 1, x: 0, y: 0.5)
+                        Image("Image8")
+                            .resizable()
+                            .clipped()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 151, height: 123)
+                            .cornerRadius(15)
+                        Text("")
+                    }
+                }
+            }
+            .padding(15)
+        }
+    }
+}
+#Preview {
+    DetailArticleView(article: articlesArray[0])
+}
