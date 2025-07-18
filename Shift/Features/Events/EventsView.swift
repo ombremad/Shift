@@ -23,17 +23,21 @@ struct EventsView: View {
                         .stroke(Color.gray, lineWidth: 1)
                         .frame(width: 316, height: 40)
 
-                    Image(systemName: "magnifyingglass")
-                        .foregroundColor(.gray)
-                        .padding(.leading, 16)
+                    Image("magnifying-glass")
+                        .frame(width: 40, height: 40)
+                        .background(Color("NeonGreen"))
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
 
                     TextField("Search", text: $searchEvent)
-                        .padding(.leading, 50)
+                        .font(.custom("Helvetica Neue", size: 14))
+                        .padding(.leading, 60)
                         .frame(width: 316, height: 40)
                 }
 
-                Image(systemName: "slider.horizontal.3")
-                    .foregroundColor(.gray)
+                Image("faders")
+                    .frame(width: 42, height: 40)
+                    .background(Color("NeonGreen"))
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
                     .padding(.leading, 8)
             }
             
