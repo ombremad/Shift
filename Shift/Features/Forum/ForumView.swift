@@ -48,18 +48,7 @@ struct ForumView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
                     ForEach(forumViewModel.tags) { tag in
-                        ZStack {
-                            Rectangle()
-                                .fill(.violet)
-                                .cornerRadius(15)
-                                .frame(width: 80, height: 80)
-                            VStack {
-                                Image(tag.icon)
-                                Text(tag.name)
-                                    .font(.custom("HelveticaNeue", size: 13))
-                            }
-                            .foregroundStyle(.blanc)
-                        }
+                        ForumTagCard(name: tag.name, icon: tag.icon)
                     }
                 }
             }
