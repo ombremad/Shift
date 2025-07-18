@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ForumView: View {
-    
+
     @State var forumViewModel = ForumViewModel()
     
     func header() -> some View {
@@ -37,6 +37,7 @@ struct ForumView: View {
                     .foregroundStyle(.noir)
             }
         }
+        .frame(height: 44)
     }
     func categories() -> some View {
         VStack {
@@ -63,14 +64,16 @@ struct ForumView: View {
             }
             VStack {
                 ForEach (forumViewModel.posts) { post in
-                    ForumCard(
-                        title: post.title,
-                        content: post.content,
-                        numberOfComments: post.numberOfComments,
-                        numberOfLikes: post.numberOfLikes,
-                        isHot: post.isHot,
-                        tags: post.tags
-                    )
+                    NavigationLink(destination: ForumSingleView(post: post)) {
+                        ForumCard(
+                            title: post.title,
+                            content: post.content,
+                            numberOfComments: post.numberOfComments,
+                            numberOfLikes: post.numberOfLikes,
+                            isHot: post.isHot,
+                            tags: post.tags
+                        )
+                    }
                 }
             }
         }
@@ -89,9 +92,9 @@ struct ForumView: View {
                     }
                     .padding()
                 }
+                .navigationTitle("Forum")
+                .navigationBarHidden(true)
             }
-            .navigationTitle("Forum")
-            .navigationBarHidden(true)
         }
     }
 }

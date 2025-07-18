@@ -14,8 +14,9 @@ final class ForumViewModel {
         Tag(name: "Mentorship", icon: .usersThree),
         Tag(name: "Support", icon: .lifebuoy),
         Tag(name: "Training", icon: .atom),
-        Tag(name: "Stories", icon: .chatDots),
-        Tag(name: "Networking", icon: .sparkle)
+        Tag(name: "Tech talk", icon: .circuitry),
+        Tag(name: "Networking", icon: .sparkle),
+        Tag(name: "Stories", icon: .chatDots)
     ]
     
     var posts : [Post] = [
@@ -29,12 +30,12 @@ final class ForumViewModel {
             """,
         postedOn: Date(),
         author: "Viviane",
-        authorCity: "New York City",
+        authorCity: "Johannesburg",
         authorProfilePicture: .viviane,
         numberOfComments: 12,
         numberOfLikes: 42,
         isHot: true,
-        tags: ["Stories"]
+        tags: ["Tech talk"]
     ),
         Post (
         title: "Offering mentorship for beginners",
@@ -48,13 +49,33 @@ final class ForumViewModel {
             Sarah
             """,
         postedOn: Date(),
-        author: "TechMentorSarah",
+        author: "TechMentor Sarah",
         authorCity: "Paris",
         authorProfilePicture: .sarah,
         numberOfComments: 4,
         numberOfLikes: 108,
         isHot: true,
         tags: ["Mentorship", "Support"]
+    ),
+        Post (
+        title: "NYC Tech Ladies Happy Hour? 🍹✨",
+        content: """
+            Hey gorgeous tech queens! 👑💻
+            So I've been thinking... wouldn't it be amazing to get together for some drinks and good vibes? 🥂 I'm thinking of organizing a casual happy hour somewhere in Manhattan - maybe next Friday evening? 🗽
+            Nothing too fancy, just us amazing women chatting about code, careers, and life over some well-deserved cocktails! 🍸💃 Whether you're a seasoned dev or just starting your tech journey, ALL are welcome! 🤗
+            I'm thinking we could meet at that cute rooftop bar in SoHo around 6pm? 🌆 Perfect for networking without the stuffiness of formal events! Plus they have amazing nachos 🧀😋
+            Drop a comment if you're interested and I'll create a group chat to sort out the details! Let's make this happen ladies! 💪✨
+            Can't wait to meet you all IRL! 🥳
+            xoxo 💋
+            """,
+        postedOn: Date(),
+        author: "AnitaCodeAndCocktails",
+        authorCity: "New York City",
+        authorProfilePicture: .anita,
+        numberOfComments: 1,
+        numberOfLikes: 8,
+        isHot: false,
+        tags: ["Networking"]
     )
     ]
 }

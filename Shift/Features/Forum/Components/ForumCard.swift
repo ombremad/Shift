@@ -32,7 +32,7 @@ var body: some View {
                     .multilineTextAlignment(.leading)
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 20) {
-                        HStack {
+                        HStack(spacing: 5) {
                             Image(.chatTeardrop)
                                 .resizable()
                                 .frame(width: 20, height: 20)
@@ -79,6 +79,7 @@ var body: some View {
             }
             .padding(.horizontal)
             .padding(.vertical, 0)
+            .foregroundStyle(.noir)
         }
         .frame(height: 140)
     }
