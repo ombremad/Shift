@@ -10,40 +10,43 @@ import SwiftUI
 @Observable
 class fieldOfInterestModel {
     
-    private let fieldOfInterests: [FieldOfInterest] = [
-    FieldOfInterest(
+    let web = FieldOfInterest(
         name: "Web / Mobile",
         nameShort: "Web",
         icon: .devices
-    ),
-    FieldOfInterest(
+        )
+    
+    let uxui = FieldOfInterest(
         name: "UX / UI",
         nameShort: "UX",
         icon: .bezierCurve
-    ),
-    FieldOfInterest(
+        )
+
+    let dataScience = FieldOfInterest(
         name: "Data Science",
         nameShort: "Data",
         icon: .chartBar
-    ),
-    FieldOfInterest(
+        )
+    
+    let ai = FieldOfInterest(
         name: "Artificial Intelligence",
         nameShort: "AI",
         icon: .headCircuit
-    ),
-    FieldOfInterest(
+        )
+    
+    let cybersecurity = FieldOfInterest(
         name: "Cyber Security",
         nameShort: "Cyber",
         icon: .shieldCheck
-    ),
-    FieldOfInterest(
-        name: "Devops",
-        nameShort: "Devops",
-        icon: .gear
     )
-    ]
     
-    func getFieldOfInterests() -> [FieldOfInterest] {
-        return fieldOfInterests
+    let devops = FieldOfInterest(
+            name: "Devops",
+            nameShort: "Devops",
+            icon: .gear
+        )
+    
+    func getFieldOfInterestList() -> [FieldOfInterest] {
+        return [web, uxui, dataScience, ai, cybersecurity, devops]
     }
 }

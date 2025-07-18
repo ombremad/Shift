@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-struct FieldOfInterest {
+class FieldOfInterest: Identifiable {
+    let id: UUID = UUID()
     var name: String            // full name ie. "Cyber Security"
     var nameShort: String       // short name for some pages ie. "Cyber"
     var icon: ImageResource
