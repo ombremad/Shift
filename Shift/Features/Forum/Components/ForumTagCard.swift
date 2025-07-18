@@ -9,8 +9,8 @@ import SwiftUI
 
 struct ForumTagCard : View {
     
-    var name: String = "Mentorship"
-    var icon: ImageResource = .usersThree
+    var name: String
+    var icon: ImageResource
     
     var body: some View {
         ZStack {
@@ -29,5 +29,8 @@ struct ForumTagCard : View {
 }
 
 #Preview {
-    ForumTagCard()
+    ForumTagCard(
+        name: "Mentorship",
+        icon: .usersThree
+    )
 }

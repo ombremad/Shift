@@ -9,19 +9,12 @@ import SwiftUI
 
 struct ForumCard: View {
     
-    var title: String = "Who else here is absolutely loving SwiftUI? 🚀"
-    var content: String = """
-            Hey everyone!
-            I've been working with SwiftUI for about 8 months now after years of struggling with UIKit, and I'm honestly having the best time coding I've had in ages. The declarative syntax just clicks with how I think about UI design, and being able to see live previews while I'm building components has been a game-changer for my workflow.
-            I know there are still some limitations and quirks (don't get me started on navigation in complex apps 😅), but the rapid development cycle and how intuitive it feels has made me fall in love with iOS development all over again. Plus, the accessibility features are so much easier to implement properly!
-            I'm curious - for those of you who've made the switch, what's been your favorite SwiftUI feature? And for anyone still on the fence, what's holding you back? I'd love to hear about your experiences, especially if you've had to convince your team or management to adopt it.
-            Currently working on a side project that's 100% SwiftUI and it's been such a joy compared to the mixed UIKit/SwiftUI codebase at my day job. Anyone else finding themselves reaching for SwiftUI by default now?
-            Hope everyone's having a great week! 💙
-            """
-    var numberOfComments: UInt8 = 12
-    var numberOfLikes: UInt8 = 42
-    var isHot: Bool = true
-    var tags: [String] = ["Support", "Stories"]
+    var title: String
+    var content: String
+    var numberOfComments: UInt8
+    var numberOfLikes: UInt8
+    var isHot: Bool
+    var tags: [String]
     
 var body: some View {
         ZStack {
@@ -92,5 +85,15 @@ var body: some View {
 }
 
 #Preview {
-    ForumCard()
+    ForumCard(
+        title: "Who else here is absolutely loving SwiftUI? 🚀",
+        content: """
+        Hey everyone!
+        I've been working with SwiftUI for about 8 months now after years of struggling with UIKit, and I'm honestly having the best time coding I've had in ages. The declarative syntax just clicks with how I think about UI design, and being able to see live previews while I'm building components has been a game-changer for my workflow.
+        """,
+        numberOfComments: 12,
+        numberOfLikes: 42,
+        isHot: true,
+        tags: ["Support", "Stories"]
+    )
 }
