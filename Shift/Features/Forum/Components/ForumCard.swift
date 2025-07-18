@@ -22,18 +22,22 @@ var body: some View {
                     .font(.custom("Safiro-SemiBold", size: 16))
                     .lineLimit(1)
                     .allowsTightening(true)
+                    .padding(.horizontal)
                 Text(post.content)
                     .font(.custom("HelveticaNeue", size: 14))
                     .lineLimit(3)
                     .multilineTextAlignment(.leading)
+                    .padding(.horizontal)
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 20) {
                         HStack(spacing: 5) {
                             Image(.chatTeardrop)
                                 .resizable()
                                 .frame(width: 20, height: 20)
+                                .foregroundStyle(.noir)
                                 .scaledToFit()
                             Text(post.numberOfComments.description)
+                                .foregroundStyle(.noir)
                         }
                         HStack {
                             Image(.thumbsUp)
@@ -56,6 +60,7 @@ var body: some View {
                                     .padding(.leading, 7)
                                     .padding(.trailing, 10)
                                     .frame(height: 24)
+                                    .foregroundStyle(.black)
                                     .background(.neonGreen)
                                     .cornerRadius(5)
                                 }
@@ -65,15 +70,16 @@ var body: some View {
                                         .padding(.vertical, 2)
                                         .padding(.horizontal, 10)
                                         .frame(height: 24)
+                                        .foregroundStyle(.black)
                                         .background(.neonGreen)
                                         .cornerRadius(5)
                                 }
                             }
                         }
+                    .padding(.horizontal)
                 }
                 .font(.custom("HelveticaNeue-Bold", size: 12))
             }
-            .padding(.horizontal)
             .padding(.vertical, 0)
             .foregroundStyle(.noir)
         }

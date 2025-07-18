@@ -24,7 +24,7 @@ struct ForumTagCard : View {
                     .frame(width: 80)
                     .allowsTightening(true)
             }
-            .foregroundStyle(.blanc)
+            .foregroundStyle(.white)
         }
     }
 }

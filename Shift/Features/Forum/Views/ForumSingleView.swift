@@ -16,15 +16,15 @@ struct ForumSingleView: View {
         HStack {
             HStack {
                 Image(systemName: "chevron.left")
-                Text("Forum")
+                Text("Back")
             }
-                .font(.custom("HelveticaNeue", size: 18))
+                .font(.custom("HelveticaNeue", size: 16))
+                .foregroundStyle(.violet)
                 .onTapGesture {
                     dismiss()
                 }
             Spacer()
         }
-        .frame(height: 44)
     }
     func forumSingle() -> some View {
         ZStack {
@@ -61,6 +61,31 @@ struct ForumSingleView: View {
                 }
                 Text(post.content)
                     .font(.custom("HelveticaNeue", size: 14))
+                HStack {
+                    HStack {
+                        Image(.arrowBendUpLeft)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                        Text("Reply")
+                    }
+                        .font(.custom("HelveticaNeue-Bold", size: 14))
+                        .foregroundStyle(.blanc)
+                        .padding(10)
+                        .frame(height: 40)
+                        .background(.violet)
+                        .cornerRadius(5)
+                    HStack {
+                        Image(.thumbsUp)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                    }
+                        .font(.custom("HelveticaNeue-Bold", size: 14))
+                        .foregroundStyle(.blanc)
+                        .padding(10)
+                        .frame(height: 40)
+                        .background(.violet)
+                        .cornerRadius(5)
+                }
             }
             .padding()
         }

@@ -38,31 +38,28 @@ struct ForumView: View {
             }
         }
         .frame(height: 44)
+        .padding(.horizontal)
     }
     func categories() -> some View {
-        VStack {
-            HStack {
-                Text("Categories")
-                    .font(.custom("Safiro-SemiBold", size: 22))
-                Spacer()
-            }
+        VStack(alignment: .leading) {
+            Text("Categories")
+                .font(.custom("Safiro-SemiBold", size: 22))
+                .padding(.horizontal)
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
                     ForEach(forumViewModel.tags) { tag in
                         ForumTagCard(tag: tag)
                     }
                 }
+                .padding(.horizontal)
             }
         }
     }
     func latest() -> some View {
-        VStack {
-            HStack {
-                Text("Latest")
-                    .font(.custom("Safiro-SemiBold", size: 22))
-                Spacer()
-            }
-            VStack(spacing: 20) {
+        VStack(alignment: .leading) {
+            Text("Latest")
+                .font(.custom("Safiro-SemiBold", size: 22))
+            VStack(spacing: 15) {
                 ForEach (forumViewModel.posts) { post in
                     NavigationLink(destination: ForumSingleView(post: post)) {
                         ForumCard(post: post)
@@ -70,6 +67,7 @@ struct ForumView: View {
                 }
             }
         }
+        .padding(.horizontal)
     }
     
     var body: some View {
@@ -78,16 +76,15 @@ struct ForumView: View {
                 Color.background
                     .ignoresSafeArea()
                 ScrollView {
-                    VStack(spacing: 20) {
+                    VStack(spacing: 25) {
                         header()
                         categories()
                         latest()
                     }
-                    .padding()
                 }
-                .navigationTitle("Forum")
-                .navigationBarHidden(true)
             }
+            .navigationTitle("Forum")
+            .navigationBarHidden(true)
         }
     }
 }
