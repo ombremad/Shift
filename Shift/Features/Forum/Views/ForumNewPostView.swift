@@ -27,7 +27,7 @@ struct ForumNewPostView: View {
             Spacer()
             Text("Send")
                 .font(.custom("HelveticaNeue-Bold", size: 14))
-                .foregroundStyle(.blanc)
+                .foregroundStyle(.white)
                 .padding(.horizontal, 20)
                 .padding(.vertical, 10)
                 .frame(height: 40)
@@ -60,6 +60,7 @@ struct ForumNewPostView: View {
                 Spacer()
             }
         }
+        .foregroundStyle(.noir)
         .padding(.horizontal)
     }
     func postTitle() -> some View {
@@ -71,9 +72,9 @@ struct ForumNewPostView: View {
                 .padding(.vertical, 8)
                 .padding(.horizontal, 12)
                 .background(.blanc)
-                .foregroundStyle(.noir)
                 .cornerRadius(10)
         }
+        .foregroundStyle(.noir)
         .padding(.horizontal)
     }
     func postCategories() -> some View {
@@ -90,6 +91,7 @@ struct ForumNewPostView: View {
                 .padding(.horizontal)
             }
         }
+        .foregroundStyle(.noir)
     }
     func postDescription() -> some View {
         VStack(alignment: .leading) {
@@ -104,6 +106,7 @@ struct ForumNewPostView: View {
                 .foregroundStyle(.noir)
                 .cornerRadius(10)
         }
+        .foregroundStyle(.noir)
         .padding(.horizontal)
     }
 
