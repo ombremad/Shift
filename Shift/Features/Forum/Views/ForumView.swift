@@ -15,6 +15,7 @@ struct ForumView: View {
         HStack {
             Text("Forum")
                 .font(.custom("Safiro-SemiBold", size: 36))
+                .foregroundStyle(.noir)
             Spacer()
             ZStack {
                 Circle()
@@ -22,9 +23,9 @@ struct ForumView: View {
                     .frame(width:44, height:44)
                 Image(.magnifyingGlass)
                     .resizable()
-                    .frame(width: 22, height: 22)
-                    .scaledToFit()
-                    .foregroundStyle(.noir)
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 26)
+                    .foregroundStyle(.black)
             }
             ZStack {
                 Circle()
@@ -32,9 +33,9 @@ struct ForumView: View {
                     .frame(width:44, height:44)
                 Image(.plus)
                     .resizable()
-                    .frame(width: 22, height: 22)
-                    .scaledToFit()
-                    .foregroundStyle(.noir)
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 26)
+                    .foregroundStyle(.black)
             }
         }
         .frame(height: 44)
@@ -44,6 +45,7 @@ struct ForumView: View {
         VStack(alignment: .leading) {
             Text("Categories")
                 .font(.custom("Safiro-SemiBold", size: 22))
+                .foregroundStyle(.noir)
                 .padding(.horizontal)
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
@@ -59,6 +61,7 @@ struct ForumView: View {
         VStack(alignment: .leading) {
             Text("Latest")
                 .font(.custom("Safiro-SemiBold", size: 22))
+                .foregroundStyle(.noir)
             VStack(spacing: 15) {
                 ForEach (forumViewModel.posts) { post in
                     NavigationLink(destination: ForumSingleView(post: post)) {

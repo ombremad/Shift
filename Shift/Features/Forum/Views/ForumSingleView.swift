@@ -50,11 +50,12 @@ struct ForumSingleView: View {
                     .font(.custom("Safiro-SemiBold", size: 22))
                 HStack {
                     ForEach (post.tags, id: \.self) { tag in
-                        Text(tag).textCase(.lowercase)
+                        Text(tag)
                             .font(.custom("Safiro-SemiBold", size: 12))
                             .padding(.vertical, 2)
                             .padding(.horizontal, 10)
                             .frame(height: 24)
+                            .foregroundStyle(.black)
                             .background(.neonGreen)
                             .cornerRadius(5)
                     }
@@ -90,7 +91,6 @@ struct ForumSingleView: View {
             .padding()
         }
     }
-
     
     var body: some View {
         ZStack {
