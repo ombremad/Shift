@@ -8,9 +8,20 @@
 import SwiftUI
 
 struct ArticlesView: View {
+    let articles = articlesArray
+
     var body: some View {
-        Text("Articles")
-            .font(.custom("Safiro-Bold", size: 36))
+        VStack (alignment: .leading){
+            Text("What's new ?")
+                .font(.custom("Safiro-Bold", size: 36))
+            Text("Latest")
+                .font(.custom("Safiro-Medium", size: 24))
+          
+        }
+        .padding()
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+               .background(Color.background)
+               .ignoresSafeArea()
     }
 }
 
