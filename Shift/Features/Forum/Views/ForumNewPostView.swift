@@ -10,8 +10,9 @@ import SwiftUI
 struct ForumNewPostView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(ForumViewModel.self) var forumViewModel
-    @State var title: String = ""
-    @State var description: String = ""
+    @State private var title: String = ""
+    @State private var description: String = ""
+    @State private var selectedTags: [String] = []
     
     func header() -> some View {
         HStack {
@@ -34,8 +35,10 @@ struct ForumNewPostView: View {
                 .background(.violet)
                 .cornerRadius(5)
                 .onTapGesture {
-                    forumViewModel.setNewPost(title: title, content: description, user: forumViewModel.user.getCurrentUser(), tags: ["test"])
-                    dismiss()
+                    if !selectedTags.isEmpty {
+                        forumViewModel.setNewPost(title: title, content: description, user: forumViewModel.user.getCurrentUser(), tags: selectedTags)
+                        dismiss()
+                    }
                 }
         }
         .frame(height: 44)
@@ -84,8 +87,12 @@ struct ForumNewPostView: View {
                 .padding(.horizontal)
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
+                    // TODO: Remove unselected tags and color them based on toggled
                     ForEach(forumViewModel.tags) { tag in
                         ForumTagCard(tag: tag)
+                            .onTapGesture {
+                                selectedTags.append(tag.name)
+                            }
                     }
                 }
                 .padding(.horizontal)
