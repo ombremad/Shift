@@ -5,7 +5,6 @@
 //  Created by alize on 17/07/2025.
 //
 
-
 import SwiftUI
 
 struct SliderView: View {
@@ -47,5 +46,5 @@ struct SliderView: View {
 }
 
 #Preview {
-    SliderView(article: articlesArray[0])
+    BigArticleView(article: FakeData.articles[0])
 }

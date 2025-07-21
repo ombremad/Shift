@@ -18,8 +18,8 @@ class FieldOfInterest: Identifiable, Equatable {
         self.nameShort = nameShort
         self.icon = icon
     }
-    
+    //Fonction pour utiliser comparateur == 
      static func == (lhs: FieldOfInterest, rhs: FieldOfInterest) -> Bool {
          return lhs.id == rhs.id
-     } //Fonction pour utiliser comparateur == 
+     }
 }

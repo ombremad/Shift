@@ -53,5 +53,5 @@ struct LittleArticlesView: View {
 }
 
 #Preview {
-    LittleArticlesView(article: articlesArray[0] )
+    LittleArticlesView(article: FakeData.articles[0])
 }

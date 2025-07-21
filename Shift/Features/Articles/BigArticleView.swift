@@ -50,5 +50,5 @@ struct BigArticleView: View {
 }
 
 #Preview {
-    BigArticleView(article: articlesArray[1])
+    BigArticleView(article: FakeData.articles[0])
 }

@@ -10,13 +10,11 @@ import SwiftUI
 struct DetailArticleView: View {
     
     let article : Article
-    var filteredArticles: [Article] {
-        articlesArray.filter { $0.tag == tagModel.web && $0.id != article.id}
-    }
+    @State private var viewModel = ArticlesViewModel()
     
     var body: some View {
         ScrollView{
-            VStack (alignment: .leading , spacing: 2){ //titre + date
+            VStack (alignment: .leading , spacing: 5){ //titre + date
                 Text(article.titre)
                     .font(.custom("Safiro-Bold", size: 36))
                 Text("Publié le \(article.datePublication)")
@@ -63,7 +61,8 @@ struct DetailArticleView: View {
                     .cornerRadius(5)
                 Text(article.chapeau)
                     .font(.custom("Safiro-Bold", size: 18))
-                //Logique pour afficher content personnalisé
+                
+                //Logique pour afficher content page personnalisé
                 ForEach(article.contentArticle, id: \.self) { content in
                     switch content {
                     case .subtitle1(let subtitle1):
@@ -90,17 +89,28 @@ struct DetailArticleView: View {
                             .font(.custom("HelveticaNeue-Courant", size: 14))
                     }
                 }
-                Text("Read also")
-                    .foregroundColor(.noir)
-                    .font(.custom("Safiro-Bold", size: 22))
-                
-                
+                VStack (alignment: .leading){
+                    Text("Read also")
+                        .foregroundColor(.noir)
+                        .font(.custom("Safiro-Bold", size: 22))
+                    
+                    HStack(spacing: 15) {
+                        ForEach(viewModel.FilteredArticles(currentArticle: article).prefix(2), id: \.id) { articleFiltered in
+                            NavigationLink(destination: DetailArticleView(article:  articleFiltered )) {
+                                ReadAlsoView(article: articleFiltered)
+                                    .contentShape(Rectangle())
+                            }
+                            .buttonStyle(PlainButtonStyle())
+                        }
+                    }
+                }
             }
+            .padding(15)
         }
-        .padding(15)
     }
 }
-
 #Preview {
-    DetailArticleView(article: articlesArray[0])
+    NavigationView {
+        DetailArticleView(article: ArticlesViewModel().articlesArray[0])
+    }
 }

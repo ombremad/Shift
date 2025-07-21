@@ -17,7 +17,6 @@ struct ReadAlsoView: View {
             ZStack{
                 Rectangle()
                     .foregroundColor(.blanc)
-                    .frame(width: 176, height: 246)
                     .cornerRadius(15)
                     .shadow(color: .gray.opacity(0.5), radius: 1, x: 0, y: 0.5)
                 VStack (alignment: .leading, spacing: 8){
@@ -25,8 +24,10 @@ struct ReadAlsoView: View {
                         .resizable()
                         .clipped()
                         .aspectRatio(contentMode: .fill)
-                        .frame(width: 151, height: 123)
+                        .frame(width: 151, height: 126)
                         .cornerRadius(10)
+//                        .frame(height: 123)
+//                        .frame(maxWidth: .infinity)
                     Text(article.tag.name)
                         .foregroundColor(.white)
                         .font(.custom("HelveticaNeue-Bold", size: 11))
@@ -40,10 +41,11 @@ struct ReadAlsoView: View {
                 }
                .padding(15)
             }
-            .frame(width: 151, height: 123)
+            .frame(width: 176, height: 246)
+            .contentShape(Rectangle()) // rend toute la carte interactive
         }
     }
 }
 #Preview {
-    ReadAlsoView(article: articlesArray[0])
+    BigArticleView(article: FakeData.articles[0])
 }
