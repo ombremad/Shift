@@ -27,15 +27,17 @@ struct ForumView: View {
                     .frame(width: 26)
                     .foregroundStyle(.black)
             }
-            ZStack {
-                Circle()
-                    .fill(.neonGreen)
-                    .frame(width:44, height:44)
-                Image(.plus)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 26)
-                    .foregroundStyle(.black)
+            NavigationLink(destination: ForumNewPostView().environment(forumViewModel)) {
+                ZStack {
+                    Circle()
+                        .fill(.neonGreen)
+                        .frame(width:44, height:44)
+                    Image(.plus)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 26)
+                        .foregroundStyle(.black)
+                }
             }
         }
         .frame(height: 44)

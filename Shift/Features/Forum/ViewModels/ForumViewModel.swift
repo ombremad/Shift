@@ -10,6 +10,8 @@ import SwiftUI
 @Observable
 final class ForumViewModel {
     
+    let user = UserModel()
+    
     let tags : [Tag] = [
         Tag(name: "Mentorship", icon: .usersThree),
         Tag(name: "Support", icon: .lifebuoy),
@@ -96,4 +98,8 @@ final class ForumViewModel {
         tags: ["Networking"]
     )
     ]
+    
+    func setNewPost(title: String, content: String, user: User, tags: [String]) {
+        posts.append(Post(title: title, content: content, postedOn: Date(), user: user, numberOfComments: 0, numberOfLikes: 0, isHot: false, tags: tags))
+    }
 }
