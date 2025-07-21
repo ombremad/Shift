@@ -12,7 +12,8 @@ struct Inspirations: Identifiable, Codable { // Identifiable -  uses the id prop
     var id : Int
     let name: String
     let field: String
-    let imageName: String
+    let imageWhite: String
+    let imageGreen: String
     let birth: String
     let death: String?      // Optional – can be nil if still alive
     let achievement: String
