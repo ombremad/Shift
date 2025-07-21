@@ -10,6 +10,7 @@ import SwiftUI
 struct EventsView: View {
     
     @State private var searchEvent: String = "";
+    @State private var showingFilterModal = false;
     
     @State private var selectedTab = 0;
     let tabs = ["All", "My Events", "Favorites"];
@@ -23,7 +24,7 @@ struct EventsView: View {
     init() {
         UISegmentedControl.appearance().selectedSegmentTintColor = .violet;
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected);
-        UISegmentedControl.appearance().backgroundColor = .blue
+        UISegmentedControl.appearance().backgroundColor = .white
     }
     
     var body: some View {
@@ -51,11 +52,16 @@ struct EventsView: View {
                         .frame(width: 316, height: 40)
                 }
 
-                Image("faders")
-                    .frame(width: 42, height: 40)
-                    .background(Color("NeonGreen"))
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .padding(.leading, 8)
+                Button(action: {
+                    showingFilterModal.toggle();
+                }) {
+                    Image("faders")
+                        .frame(width: 42, height: 40)
+                        .background(Color("NeonGreen"))
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .foregroundStyle(.black)
+                }
+                .padding(.leading, 10)
             }
             .padding(.leading, 10)
 
@@ -88,6 +94,9 @@ struct EventsView: View {
         }
         .padding()
         .background(Color("Background"))
+        .sheet(isPresented: $showingFilterModal) {
+            FilterModalView()
+        }
     }
 }
 
@@ -101,6 +110,18 @@ struct CardView: View {
             .background(Color.gray.opacity(0.2))
             .cornerRadius(15)
             .shadow(radius: 10)
+    }
+}
+
+struct FilterModalView: View {
+    var body: some View {
+        VStack {
+            Text("Filter Options")
+                .font(.title)
+                .padding()
+            
+            .padding()
+        }
     }
 }
 
