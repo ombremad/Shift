@@ -10,8 +10,18 @@ import SwiftUI
 struct EventsView: View {
     
     @State private var searchEvent: String = "";
-
+    
+    @State private var selectedTab = 0;
+    let tabs = ["All", "My Events", "Favorites"];
+    
+    init() {
+        UISegmentedControl.appearance().selectedSegmentTintColor = .violet;
+        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected);
+        UISegmentedControl.appearance().backgroundColor = .white;
+    }
+    
     var body: some View {
+        
         VStack(alignment: .leading) {
             Text("Events")
                 .font(.custom("Safiro-Bold", size: 36))
@@ -41,10 +51,35 @@ struct EventsView: View {
                     .padding(.leading, 8)
             }
             
+            HStack {
+                Spacer()
+                Picker("", selection: $selectedTab) {
+                    ForEach(0 ..< tabs.count, id: \.self) { index in
+                        Text(self.tabs[index])
+                            .tag(index)
+                    }
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                .frame(width: 370, height: 43)
+                .cornerRadius(10)
+                
+                Spacer()
+            }
+            .padding(.top, 28)
+            
+            if (selectedTab == 0) {
+                Text("Hello Page 1")
+            } else if (selectedTab == 1) {
+                Text("Hello Page 2")
+            } else {
+                Text("Hello Page 3")
+            }
+            
+            
             Spacer()
         }
         .padding()
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+        .background(Color("Background"))
     }
 }
 
