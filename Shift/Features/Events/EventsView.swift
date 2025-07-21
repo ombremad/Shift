@@ -14,10 +14,16 @@ struct EventsView: View {
     @State private var selectedTab = 0;
     let tabs = ["All", "My Events", "Favorites"];
     
+    let staticData = [
+        ["Card 1", "Card 2", "Card 3", "Card 4", "Card 5"],
+        ["Card A", "Card B", "Card C", "Card D"],
+        ["Card X", "Card Y", "Card Z"]
+    ];
+    
     init() {
         UISegmentedControl.appearance().selectedSegmentTintColor = .violet;
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected);
-        UISegmentedControl.appearance().backgroundColor = .white;
+        UISegmentedControl.appearance().backgroundColor = .blue
     }
     
     var body: some View {
@@ -25,6 +31,7 @@ struct EventsView: View {
         VStack(alignment: .leading) {
             Text("Events")
                 .font(.custom("Safiro-Bold", size: 36))
+                .padding(.leading, 10)
 
             HStack {
 
@@ -40,7 +47,7 @@ struct EventsView: View {
 
                     TextField("Search", text: $searchEvent)
                         .font(.custom("Helvetica Neue", size: 14))
-                        .padding(.leading, 60)
+                        .padding(.leading, 50)
                         .frame(width: 316, height: 40)
                 }
 
@@ -50,9 +57,9 @@ struct EventsView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .padding(.leading, 8)
             }
-            
+            .padding(.leading, 10)
+
             HStack {
-                Spacer()
                 Picker("", selection: $selectedTab) {
                     ForEach(0 ..< tabs.count, id: \.self) { index in
                         Text(self.tabs[index])
@@ -62,24 +69,38 @@ struct EventsView: View {
                 .pickerStyle(SegmentedPickerStyle())
                 .frame(width: 370, height: 43)
                 .cornerRadius(10)
-                
-                Spacer()
             }
             .padding(.top, 28)
+            .padding(.leading, 12)
             
-            if (selectedTab == 0) {
-                Text("Hello Page 1")
-            } else if (selectedTab == 1) {
-                Text("Hello Page 2")
-            } else {
-                Text("Hello Page 3")
+            ScrollView {
+                VStack {
+                    ForEach(staticData[selectedTab], id: \.self) { item in
+                        CardView(title: item)
+                    }
+                }
             }
+            .scrollIndicators(.hidden)
+            .padding()
+            .padding(.top, 19)
             
             
-            Spacer()
         }
         .padding()
         .background(Color("Background"))
+    }
+}
+
+
+struct CardView: View {
+    let title: String;
+    
+    var body: some View {
+        Text(title)
+            .frame(width: 368, height: 277)
+            .background(Color.gray.opacity(0.2))
+            .cornerRadius(15)
+            .shadow(radius: 10)
     }
 }
 
