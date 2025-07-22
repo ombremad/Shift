@@ -93,7 +93,7 @@ struct EventsView: View {
             
         }
         .padding()
-        .background(Color("Background"))
+        .background(Color.background)
         .sheet(isPresented: $showingFilterModal) {
             FilterModalView()
         }
