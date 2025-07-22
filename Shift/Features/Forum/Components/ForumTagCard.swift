@@ -10,12 +10,11 @@ import SwiftUI
 struct ForumTagCard : View {
     
     var tag: Tag
-    var isToggled: Bool = false
     
     var body: some View {
         ZStack {
             Rectangle()
-                .fill(isToggled ? .neonGreen : .violet)
+                .fill(tag.isToggled ? .neonGreen : .violet)
                 .cornerRadius(15)
                 .frame(width: 80, height: 80)
             VStack {
@@ -25,7 +24,7 @@ struct ForumTagCard : View {
                     .frame(width: 80)
                     .allowsTightening(true)
             }
-            .foregroundStyle(isToggled ? .black : .white)
+            .foregroundStyle(tag.isToggled ? .black : .white)
         }
     }
 }

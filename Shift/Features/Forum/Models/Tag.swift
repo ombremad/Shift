@@ -11,9 +11,15 @@ class Tag: Identifiable {
     var id: UUID = UUID()
     var name: String
     var icon: ImageResource
+    var isToggled: Bool
     
-    init(name: String, icon: ImageResource) {
+    init(name: String, icon: ImageResource, isToggled: Bool) {
         self.name = name
         self.icon = icon
+        self.isToggled = isToggled
+    }
+    
+    convenience init (name: String, icon: ImageResource) {
+        self.init(name: name, icon: icon, isToggled: false)
     }
 }

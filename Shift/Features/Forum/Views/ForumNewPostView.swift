@@ -12,7 +12,6 @@ struct ForumNewPostView: View {
     @Environment(ForumViewModel.self) var forumViewModel
     @State private var title: String = ""
     @State private var description: String = ""
-    @State private var selectedTags: [String] = []
     
     func header() -> some View {
         HStack {
@@ -35,10 +34,8 @@ struct ForumNewPostView: View {
                 .background(.violet)
                 .cornerRadius(5)
                 .onTapGesture {
-                    if !selectedTags.isEmpty {
-                        forumViewModel.setNewPost(title: title, content: description, user: forumViewModel.user.getCurrentUser(), tags: selectedTags)
-                        dismiss()
-                    }
+                    forumViewModel.setNewPost(title: title, content: description, user: forumViewModel.user.getCurrentUser(), tags: ["Test"])
+                    dismiss()
                 }
         }
         .frame(height: 44)
@@ -91,7 +88,6 @@ struct ForumNewPostView: View {
                     ForEach(forumViewModel.tags) { tag in
                         ForumTagCard(tag: tag)
                             .onTapGesture {
-                                selectedTags.append(tag.name)
                             }
                     }
                 }
