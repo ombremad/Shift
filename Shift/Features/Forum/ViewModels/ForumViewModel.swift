@@ -109,7 +109,9 @@ final class ForumViewModel {
         let toggledTags = tags.filter { tag in
             tag.isToggled
         }
-        return toggledTags.map { $0.name }
+        return toggledTags.map { tag in
+            tag.name
+        }
     }
     
     // Resets all tags isToggled properties to false, useful after getToggledTags() to go back to a clean state
