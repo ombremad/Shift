@@ -102,4 +102,17 @@ final class ForumViewModel {
     func setNewPost(title: String, content: String, user: User, tags: [String]) {
         posts.append(Post(title: title, content: content, postedOn: Date(), user: user, numberOfComments: 0, numberOfLikes: 0, isHot: false, tags: tags))
     }
+    
+    func getToggledTags() -> [String] {
+        let toggledTags = tags.filter { tag in
+            tag.isToggled
+        }
+        return toggledTags.map { $0.name }
+    }
+    
+    func resetToggledTags() {
+        for tag in tags {
+            tag.isToggled = false
+        }
+    }
 }

@@ -34,7 +34,8 @@ struct ForumNewPostView: View {
                 .background(.violet)
                 .cornerRadius(5)
                 .onTapGesture {
-                    forumViewModel.setNewPost(title: title, content: description, user: forumViewModel.user.getCurrentUser(), tags: ["Test"])
+                    forumViewModel.setNewPost(title: title, content: description, user: forumViewModel.user.getCurrentUser(), tags:                     forumViewModel.getToggledTags())
+                    forumViewModel.resetToggledTags()
                     dismiss()
                 }
         }
@@ -87,11 +88,7 @@ struct ForumNewPostView: View {
                     ForEach(forumViewModel.tags) { tag in
                         ForumTagCard(tag: tag)
                             .onTapGesture {
-                                if tag.isToggled {
-                                    dismiss()
-                                } else {
-                                    tag.isToggled.toggle()
-                                }
+                                tag.isToggled.toggle()
                             }
                     }
                 }
