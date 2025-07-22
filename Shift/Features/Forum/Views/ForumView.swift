@@ -65,7 +65,7 @@ struct ForumView: View {
                 .font(.custom("Safiro-SemiBold", size: 22))
                 .foregroundStyle(.noir)
             VStack(spacing: 15) {
-                ForEach (forumViewModel.posts) { post in
+                ForEach (forumViewModel.posts.reversed()) { post in
                     NavigationLink(destination: ForumSingleView(post: post)) {
                         ForumCard(post: post)
                     }

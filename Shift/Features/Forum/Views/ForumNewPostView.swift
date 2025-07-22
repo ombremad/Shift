@@ -86,7 +86,7 @@ struct ForumNewPostView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
                     ForEach(forumViewModel.tags) { tag in
-                        ForumTagCard(tag: tag)
+                        ForumTagCard(tag: tag)              // TODO: get the color toggle working
                             .onTapGesture {
                                 tag.isToggled.toggle()
                             }
