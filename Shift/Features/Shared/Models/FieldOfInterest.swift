@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class FieldOfInterest: Identifiable {
+class FieldOfInterest: Identifiable, Equatable {
     let id: UUID = UUID()
     var name: String            // full name ie. "Cyber Security"
     var nameShort: String       // short name for some pages ie. "Cyber"
@@ -18,4 +18,8 @@ class FieldOfInterest: Identifiable {
         self.nameShort = nameShort
         self.icon = icon
     }
+    //Fonction pour utiliser comparateur == 
+     static func == (lhs: FieldOfInterest, rhs: FieldOfInterest) -> Bool {
+         return lhs.id == rhs.id
+     }
 }
