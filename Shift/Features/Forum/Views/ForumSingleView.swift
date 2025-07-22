@@ -70,7 +70,7 @@ struct ForumSingleView: View {
                         Text("Reply")
                     }
                         .font(.custom("HelveticaNeue-Bold", size: 14))
-                        .foregroundStyle(.blanc)
+                        .foregroundStyle(.white)
                         .padding(10)
                         .frame(height: 40)
                         .background(.violet)
@@ -79,13 +79,23 @@ struct ForumSingleView: View {
                         Image(.thumbsUp)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
+                        Text(post.numberOfLikes.description)
                     }
                         .font(.custom("HelveticaNeue-Bold", size: 14))
-                        .foregroundStyle(.blanc)
+                        .foregroundStyle(post.likedByUser ? .black : .white)
                         .padding(10)
                         .frame(height: 40)
-                        .background(.violet)
+                        .background(post.likedByUser ? .neonGreen : .violet)
                         .cornerRadius(5)
+                        .onTapGesture {
+                            if !post.likedByUser {
+                                post.numberOfLikes += 1
+                                post.likedByUser = true
+                            } else {
+                                post.numberOfLikes -= 1
+                                post.likedByUser = false
+                            }
+                        }
                 }
             }
             .padding()
