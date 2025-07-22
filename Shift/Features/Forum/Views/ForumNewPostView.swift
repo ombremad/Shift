@@ -84,10 +84,14 @@ struct ForumNewPostView: View {
                 .padding(.horizontal)
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
-                    // TODO: Remove unselected tags and color them based on toggled
                     ForEach(forumViewModel.tags) { tag in
                         ForumTagCard(tag: tag)
                             .onTapGesture {
+                                if tag.isToggled {
+                                    dismiss()
+                                } else {
+                                    tag.isToggled.toggle()
+                                }
                             }
                     }
                 }

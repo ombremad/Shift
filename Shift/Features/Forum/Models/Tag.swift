@@ -8,7 +8,7 @@
 import SwiftUI
 
 class Tag: Identifiable {
-    var id: UUID = UUID()
+    var id = UUID()
     var name: String
     var icon: ImageResource
     var isToggled: Bool
