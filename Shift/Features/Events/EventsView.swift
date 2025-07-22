@@ -95,7 +95,7 @@ struct EventsView: View {
         .padding()
         .background(Color.background)
         .sheet(isPresented: $showingFilterModal) {
-            FilterModalView()
+            FilterModalView(showingFilterModal: $showingFilterModal)
         }
     }
 }
@@ -114,13 +114,27 @@ struct CardView: View {
 }
 
 struct FilterModalView: View {
+    @Binding var showingFilterModal: Bool;
+
     var body: some View {
-        VStack {
-            Text("Filter Options")
-                .font(.title)
-                .padding()
-            
+        VStack(alignment: .leading) {
+            HStack {
+                Text("Filters")
+                    .font(.custom("Safiro-Bold", size: 36))
+                    .padding(.leading, 10)
+                Spacer()
+                Button(action: {
+                    showingFilterModal = false;
+                }) {
+                    Image(systemName: "xmark")
+                        .frame(width: 43, height: 43)
+                        .foregroundColor(.black)
+                        .background(Color("NeonGreen"))
+                        .clipShape(Circle())
+                }
+            }
             .padding()
+            Spacer()
         }
     }
 }
