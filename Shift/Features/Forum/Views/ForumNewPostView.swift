@@ -88,7 +88,7 @@ struct ForumNewPostView: View {
                     ForEach(forumViewModel.tags) { tag in
                         ForumTagCard(tag: tag)              // TODO: get the color toggle working
                             .onTapGesture {
-                                tag.isToggled.toggle()
+                                tag.toggle()
                             }
                     }
                 }

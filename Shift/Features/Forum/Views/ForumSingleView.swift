@@ -88,13 +88,7 @@ struct ForumSingleView: View {
                         .background(post.likedByUser ? .neonGreen : .violet)
                         .cornerRadius(5)
                         .onTapGesture {
-                            if !post.likedByUser {
-                                post.numberOfLikes += 1
-                                post.likedByUser = true
-                            } else {
-                                post.numberOfLikes -= 1
-                                post.likedByUser = false
-                            }
+                            post.like()
                         }
                 }
             }

@@ -35,4 +35,13 @@ class Post: Identifiable {
     convenience init(title: String, content: String, postedOn: Date, user: User, numberOfComments: UInt8, numberOfLikes: UInt8, isHot: Bool, tags: [String]) {
         self.init(title: title, content: content, postedOn: postedOn, user: user, numberOfComments: numberOfComments, numberOfLikes: numberOfLikes, likedByUser: false, isHot: isHot, tags: tags)
     }
+    
+    func like() {
+        if likedByUser {
+            numberOfLikes -= 1
+        } else {
+            numberOfLikes += 1
+        }
+        likedByUser.toggle()
+    }
 }

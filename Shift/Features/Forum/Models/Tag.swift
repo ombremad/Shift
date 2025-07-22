@@ -23,4 +23,8 @@ class Tag: Identifiable {
     convenience init (name: String, icon: ImageResource) {
         self.init(name: name, icon: icon, isToggled: false)
     }
+    
+    func toggle() {
+        isToggled.toggle()
+    }
 }
