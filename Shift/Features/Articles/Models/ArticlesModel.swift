@@ -18,4 +18,5 @@ struct Article : Identifiable {
     var datePublication: String
     var imageCouv: String
     var contentArticle: [ElementsContent]
+    var isNew : Bool
 }

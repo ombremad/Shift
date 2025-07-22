@@ -29,8 +29,9 @@ class ArticlesViewModel {
                        .paragraph1("Lina’s journey into cybersecurity began when she discovered a flaw in a school network. She taught herself Linux and scripting and now leads secure infrastructure projects."),
                        .image("Image10"),
                        .subtitle1("Shaping Policy"),
-                       .paragraph2("Lina mentors young women in tech and advises organizations on cyber resilience. Her work is shaping national standards.")
-                   ]
+                       .paragraph2("Lina mentors young women in tech and advises organizations on cyber resilience. Her work is shaping national standards."),
+                   ],
+                   isNew : false
                ),
                Article(
                    titre: "How Zoé Builds Safer Networks",
@@ -45,7 +46,8 @@ class ArticlesViewModel {
                        .image("Image20"),
                        .subtitle1("Going Pro"),
                        .paragraph2("Now a penetration tester, she ensures companies follow the latest protocols and offers workshops for non-tech employees.")
-                   ]
+                   ],
+                   isNew : false
                ),
                Article(
                    titre: "Cybersecurity for All: Jamila's Vision",
@@ -60,7 +62,8 @@ class ArticlesViewModel {
                        .image("Image21"),
                        .subtitle1("Wider Impact"),
                        .paragraph2("She’s working with public libraries to create cybersecurity learning spaces accessible to everyone.")
-                   ]
+                   ],
+                   isNew : false
                ),
 
                // WEB / MOBILE
@@ -77,7 +80,8 @@ class ArticlesViewModel {
                        .image("Image12"),
                        .subtitle1("Modern Web"),
                        .paragraph2("She contributes to open-source projects focused on accessibility and responsive components.")
-                   ]
+                   ],
+                   isNew : true
                ),
                Article(
                    titre: "Fatima and the Future of Mobile",
@@ -92,7 +96,8 @@ class ArticlesViewModel {
                        .image("Image13"),
                        .subtitle1("Impact at Scale"),
                        .paragraph2("She consults NGOs to build mobile platforms for remote areas, with a strong UX focus.")
-                   ]
+                   ],
+                   isNew : true
                ),
                Article(
                    titre: "Leila Masters Progressive Web Apps",
@@ -107,7 +112,8 @@ class ArticlesViewModel {
                        .image("Image14"),
                        .subtitle1("Beyond Browsers"),
                        .paragraph2("Leila shares her knowledge in meetups, helping junior devs understand PWA potential.")
-                   ]
+                   ],
+                   isNew : true
                ),
 
                // UX / UI
@@ -124,8 +130,10 @@ class ArticlesViewModel {
                        .image("Image11"),
                        .subtitle1("Making an Impact"),
                        .paragraph2("She now leads user research initiatives and mentors design students worldwide.")
-                   ]
+                   ],
+                   isNew : true
                ),
+            
                Article(
                    titre: "Nadia Reinvents UI for Wearables",
                    intro: "Nadia crafts interfaces for devices on the move.",
@@ -139,7 +147,8 @@ class ArticlesViewModel {
                        .image("Image16"),
                        .subtitle1("User First"),
                        .paragraph2("She advocates for ethical design, ensuring privacy is respected at the interface level.")
-                   ]
+                   ],
+                   isNew : true
                ),
                Article(
                    titre: "UX That Moves with You: Farah’s Journey",
@@ -154,7 +163,8 @@ class ArticlesViewModel {
                        .image("Image18"),
                        .subtitle1("Beyond the Screen"),
                        .paragraph2("Farah explores multisensory design, adding subtle audio and haptic cues.")
-                   ]
+                   ],
+                   isNew : true
                ),
 
                // DATA SCIENCE
@@ -171,7 +181,8 @@ class ArticlesViewModel {
                        .image("Image8"),
                        .subtitle1("Solving with Inclusion"),
                        .paragraph2("Experts suggest new data governance models that include diverse voices from the start.")
-                   ]
+                   ],
+                   isNew : true
                ),
             Article(
                    titre: "Sana Predicts with Empathy",
@@ -186,7 +197,8 @@ class ArticlesViewModel {
                        .image("Image22"),
                        .subtitle1("Ethics First"),
                        .paragraph2("She collaborates with medical professionals to build fairer AI systems.")
-                   ]
+                   ],
+                   isNew : true
                ),
                Article(
                    titre: "Data for Change: Hiba’s Social Impact",
@@ -201,7 +213,8 @@ class ArticlesViewModel {
                        .image("Image23"),
                        .subtitle1("A Global Lens"),
                        .paragraph2("She advocates for open data and community-led insights.")
-                   ]
+                   ],
+                   isNew : true
                ),
 
                // ARTIFICIAL INTELLIGENCE
@@ -218,7 +231,8 @@ class ArticlesViewModel {
                        .image("Image25"),
                        .subtitle1("From Ethics to Action"),
                        .paragraph2("She leads workshops that blend tech and philosophy.")
-                   ]
+                   ],
+                   isNew : true
                ),
                Article(
                    titre: "When Machines Learn to Translate Feelings",
@@ -233,7 +247,8 @@ class ArticlesViewModel {
                        .image("Image27"),
                        .subtitle1("Tech with Heart"),
                        .paragraph2("She aims to make virtual assistants more empathetic and less robotic.")
-                   ]
+                   ],
+                   isNew : true
                ),
                Article(
                    titre: "Creative Code: Sarah and Generative AI",
@@ -248,7 +263,8 @@ class ArticlesViewModel {
                        .image("Image29"),
                        .subtitle1("A New Art Form"),
                        .paragraph2("She questions authorship and co-creation in the age of AI.")
-                   ]
+                   ],
+                   isNew : true
                ),
 
                // DEVOPS
@@ -265,7 +281,8 @@ class ArticlesViewModel {
                        .image("Image31"),
                        .subtitle1("Scale with Confidence"),
                        .paragraph2("Her infrastructure-as-code templates are used in multiple startups.")
-                   ]
+                   ],
+                   isNew : true
                ),
                Article(
                    titre: "Rania Bridges Dev and Ops",
@@ -280,7 +297,8 @@ class ArticlesViewModel {
                        .image("Image33"),
                        .subtitle1("Culture Shift"),
                        .paragraph2("She promotes DevSecOps values in large enterprises.")
-                   ]
+                   ],
+                   isNew : true
                ),
                Article(
                    titre: "Yasmine’s Infra from the Cloud Up",
@@ -295,7 +313,8 @@ class ArticlesViewModel {
                        .image("Image35"),
                        .subtitle1("Efficiency Wins"),
                        .paragraph2("She reduces costs and improves agility through automation.")
-                   ]
+                   ],
+                   isNew : true
                )
         ]
     }
