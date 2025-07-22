@@ -99,10 +99,12 @@ final class ForumViewModel {
     )
     ]
     
+    // Used in ForumNewPostView to post a new forum post
     func setNewPost(title: String, content: String, user: User, tags: [String]) {
         posts.append(Post(title: title, content: content, postedOn: Date(), user: user, numberOfComments: 0, numberOfLikes: 0, isHot: false, tags: tags))
     }
     
+    // Returns an array containing all the tags where isToggled = true
     func getToggledTags() -> [String] {
         let toggledTags = tags.filter { tag in
             tag.isToggled
@@ -110,6 +112,7 @@ final class ForumViewModel {
         return toggledTags.map { $0.name }
     }
     
+    // Resets all tags isToggled properties to false, useful after getToggledTags() to go back to a clean state
     func resetToggledTags() {
         for tag in tags {
             tag.isToggled = false
