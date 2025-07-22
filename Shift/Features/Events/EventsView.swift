@@ -20,11 +20,11 @@ struct EventsView: View {
         ["Card A", "Card B", "Card C", "Card D"],
         ["Card X", "Card Y", "Card Z"]
     ];
-    
+
     init() {
         UISegmentedControl.appearance().selectedSegmentTintColor = .violet;
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected);
-        UISegmentedControl.appearance().backgroundColor = .white
+        UISegmentedControl.appearance().backgroundColor = .white;
     }
     
     var body: some View {
@@ -93,10 +93,10 @@ struct EventsView: View {
             
         }
         .padding()
-        .background(Color.background)
         .sheet(isPresented: $showingFilterModal) {
             FilterModalView(showingFilterModal: $showingFilterModal)
         }
+        .background(Color.background)
     }
 }
 
@@ -113,18 +113,41 @@ struct CardView: View {
     }
 }
 
-struct FilterModalView: View {
-    @Binding var showingFilterModal: Bool;
+struct CityView: View {
+    let cities = ["Paris", "Berlin", "Madrid", "Rome", "Lisbonne"]
+    @State private var selectedCity = "Paris";
 
     var body: some View {
+        HStack {
+            Picker("Select a city", selection: $selectedCity) {
+                ForEach(cities, id: \.self) { city in
+                    Text(city).tag(city)
+                }
+            }
+            .pickerStyle(MenuPickerStyle())
+            .frame(width: 352, height: 40)
+            .background(Color.gray.opacity(0.2))
+            .cornerRadius(10)
+        }
+    }
+}
+
+
+
+struct FilterModalView: View {
+    @Binding var showingFilterModal: Bool
+    
+    var body: some View {
+        
         VStack(alignment: .leading) {
+            
             HStack {
                 Text("Filters")
                     .font(.custom("Safiro-Bold", size: 36))
-                    .padding(.leading, 10)
+                    .padding(.leading, 20)
                 Spacer()
                 Button(action: {
-                    showingFilterModal = false;
+                    showingFilterModal = false
                 }) {
                     Image(systemName: "xmark")
                         .frame(width: 43, height: 43)
@@ -132,10 +155,83 @@ struct FilterModalView: View {
                         .background(Color("NeonGreen"))
                         .clipShape(Circle())
                 }
+                .padding()
             }
-            .padding()
-            Spacer()
+            
+            
+            // Carte Date début
+            VStack(alignment: .leading, spacing: 10) {
+                Text("Date")
+                    .font(.custom("Safiro-Bold", size: 22))
+                    .padding(.leading, 20)
+                    .padding(.top, 10)
+                
+                HStack {
+                    RoundedRectangle(cornerRadius: 15)
+                        .fill(Color.gray.opacity(0.2))
+                        .frame(width: 353, height: 181)
+                        .padding(.leading, 20)
+                }
+            }
+            
+            // Carte Categories début
+            VStack(alignment: .leading, spacing: 10) {
+                Text("Categories")
+                    .font(.custom("Safiro-Bold", size: 22))
+                    .padding(.leading, 20)
+                    .padding(.top, 15)
+                
+                HStack {
+                    RoundedRectangle(cornerRadius: 15)
+                        .fill(Color.gray.opacity(0.2))
+                        .frame(width: 353, height: 181)
+                        .padding(.leading, 20)
+                }
+            }
+            
+            // City
+            VStack(alignment: .leading, spacing: 10) {
+                Text("City")
+                    .font(.custom("Safiro-Bold", size: 22))
+                    .padding(.leading, 20)
+                    .padding(.top, 15)
+                
+                HStack {
+                    CityView()
+                        .padding(.leading, 20)
+                }
+            }
+            
+            // Boutons Reset et Apply
+            VStack(alignment: .leading, spacing: 10) {
+                HStack(spacing: 20) {
+                    Spacer()
+                    Button(action: {
+                        
+                    }) {
+                        Text("Reset")
+                            .frame(width: 168, height: 40)
+                            .background(Color.violet)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                    }
+                    
+                    Button(action: {
+                        
+                    }) {
+                        Text("Apply")
+                            .frame(width: 168, height: 40)
+                            .background(Color.violet)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                    }
+                    Spacer()
+                }
+                .padding(.top, 60)
+            }
         }
+        // Fin
+        Spacer()
     }
 }
 
