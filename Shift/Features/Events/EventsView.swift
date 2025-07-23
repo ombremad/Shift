@@ -86,6 +86,7 @@ struct EventsView: View {
                         CardView(title: item)
                     }
                 }
+                .padding(.vertical, 10)
             }
             .scrollIndicators(.hidden)
             .padding()
@@ -139,11 +140,11 @@ struct CityView: View {
                 .frame(width: 360, height: 40)
                 .background(Color.white)
             }
+            .cornerRadius(10)
         }
         .padding(.leading, 25)
     }
 }
-
 
 struct FilterModalView: View {
     @Binding var showingFilterModal: Bool
