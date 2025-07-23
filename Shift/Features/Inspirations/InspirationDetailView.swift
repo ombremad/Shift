@@ -31,7 +31,7 @@ struct InspirationDetailView: View {
                     }
                     .padding(.top, 30)
                     .padding(.trailing)
-                    
+//                    
                     
                     //MARK: Image
                     ZStack() {
@@ -183,7 +183,9 @@ struct InspirationDetailView: View {
                     .font(.custom("Safiro-SemiBold", size: 16))
                 }
                 .padding()
+                .padding(.bottom, 55)
             }
+            
             .background(Color("Violet"))
             .edgesIgnoringSafeArea(.all)
             .navigationBarBackButtonHidden(true)

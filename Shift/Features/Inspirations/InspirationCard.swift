@@ -15,8 +15,6 @@ struct InspirationCard: View {
         HStack() {
             
             if isOpen {
-                
-                
                 ZStack() {
                     Circle()
                         .fill(Color("NeonGreen"))
@@ -36,6 +34,8 @@ struct InspirationCard: View {
                         .frame(width: 120, height: 120)
                 }
                 .frame(width: 174, height: 174)
+                .padding(.leading, 15)
+                .padding(.vertical, 15)
                 
                 VStack(alignment: .leading, spacing: 10) {
                     Text(woman.name)
@@ -61,6 +61,7 @@ struct InspirationCard: View {
                     
                 }
                 .padding(.leading, 22)
+                
                 Spacer()
                 
             }else {
@@ -78,10 +79,9 @@ struct InspirationCard: View {
                     Circle()
                         .fill(Color.white)
                         .frame(width: 30, height: 30)
-                       
-                    
-                    
                 }
+                .padding(.leading, 79)
+                .padding(.trailing, 85)
                 
              VStack {
                  Text(woman.name)
@@ -96,14 +96,15 @@ struct InspirationCard: View {
                      .background(Color("NeonGreen"))
                      .cornerRadius(25)
                 }
+             .padding(.trailing, 35)
+                .padding(.top, 50)
+                .padding(.bottom, 50)
                 
             }
             
             
         }
-        .padding(.vertical, 15)
-        .padding(.horizontal, 15)
-        .background(Color.pink)
+//        .background(Color.purple)
         
     }
 }
@@ -121,8 +122,8 @@ struct InspirationCard: View {
                     birth: "December 10, 1815, England",
                     death: "November 27, 1852, England",
                     achievement: "First computer programer",
-                    biography: "Ada Lovelace was a 19th-century visionary who worked on Charles Babbage’s Analytical Engine.",
-                    whyInspiring: "She saw a future where computers could create music, art, and more."
+                    biography: "Ada Lovelace ",
+                    whyInspiring: "She saw a future where"
                 )
         )
         InspirationCard(
