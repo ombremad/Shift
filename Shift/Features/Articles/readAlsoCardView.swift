@@ -30,11 +30,13 @@ struct ReadAlsoView: View {
                     //                        .frame(maxWidth: .infinity)
                     Text(article.tag.name)
                         .foregroundColor(.white)
-                        .font(.custom("HelveticaNeue-Bold", size: 11))
+                        .font(.custom("HelveticaNeue-Bold", size: 12))
                         .padding(.horizontal, 12)
                         .padding(.vertical, 5)
                         .background(.violet)
                         .cornerRadius(5)
+                    Spacer()
+
                     Text(article.intro)
                         .font(.custom("Helvetica-Bold", size: 14))
                         .foregroundColor(.noir)
@@ -47,14 +49,14 @@ struct ReadAlsoView: View {
     }
 }
 #Preview {
-    BigArticleView(article:
+    ReadAlsoView(article:
                     Article(
                         titre: "Article Title",
                         intro: "Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor.",
                         chapeau: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore. ",
                         tag: .init(name: "web", nameShort: "web", icon: .arrowBendUpLeft),
                         datePublication: "17 juillet 2025",
-                        imageCouv: "Image1",
+                        imageCouv: "big",
                         contentArticle :[
                             .subtitle1("Sous titre"),
                             .paragraph1("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
@@ -62,7 +64,8 @@ struct ReadAlsoView: View {
                             .subtitle1("Sous titre"),
                             .paragraph2("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
                         ],
-                        isNew: true
+                        isNew: true,
+                        isBig: false
                     )
                    
                    

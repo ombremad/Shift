@@ -11,49 +11,51 @@ struct SliderView: View {
     let article : Article
     
     var body: some View {
-        VStack {
+        VStack (alignment: .leading) {
             ZStack{
                 Rectangle()
                     .foregroundColor(.blanc)
                     .cornerRadius(15)
-                    .frame(width: 241, height: 270)
+                    .frame(width: 241, height: 280)
                     .shadow(color: .gray.opacity(0.5), radius: 0.5, x: 0, y:1)
                 VStack (alignment: .leading, spacing: 12){
                     
                     Image(article.imageCouv)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
-                        .frame(width: 211, height: 148)
+                        .frame(width: 211, height: 160)
                         .cornerRadius(5)
                         .clipped()
                     Text(article.tag.name)
-                        .font(.custom("HelveticaNeue-Bold", size: 11))
+                        .font(.custom("HelveticaNeue-Bold", size: 12))
                         .foregroundColor(.blanc)
                         .padding(.vertical,6)
                         .padding(.horizontal, 12)
                         .background(Color.violet)
                         .cornerRadius(5)
+                        .multilineTextAlignment(.leading) 
                     Text(article.intro)
                         .font(.custom("HelveticaNeue-Bold", size: 14))
                         .foregroundColor(.noir)
+                        .multilineTextAlignment(.leading)
                 }
-                .padding([.leading, .trailing, .bottom], 15)
-                .padding(.top, 11)
-                .frame(width: 241, height: 258)
+                .padding(15)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
             }
+            .frame(width: 241, height: 280)
         }
     }
 }
 
 #Preview {
-    BigArticleView(article:
+    SliderView(article:
                     Article(
                         titre: "Article Title",
-                        intro: "Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor.",
+                        intro: "Jamila works at the intersection of education and cyber defense.",
                         chapeau: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore. ",
                         tag: .init(name: "web", nameShort: "web", icon: .arrowBendUpLeft),
                         datePublication: "17 juillet 2025",
-                        imageCouv: "Image1",
+                        imageCouv: "webMobile-1",
                         contentArticle :[
                             .subtitle1("Sous titre"),
                             .paragraph1("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
@@ -61,9 +63,8 @@ struct SliderView: View {
                             .subtitle1("Sous titre"),
                             .paragraph2("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
                         ],
-                        isNew: true
+                        isNew: true,
+                        isBig: false
                     )
-                   
-                   
     )
 }

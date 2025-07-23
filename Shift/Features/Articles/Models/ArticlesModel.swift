@@ -19,4 +19,5 @@ struct Article : Identifiable {
     var imageCouv: String
     var contentArticle: [ElementsContent]
     var isNew : Bool
+    var isBig : Bool
 }

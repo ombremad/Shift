@@ -12,7 +12,7 @@ struct BigArticleView: View {
     var body: some View {
         VStack {
             ZStack(alignment: .bottomLeading){
-               
+                
                 Image(article.imageCouv)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
@@ -28,7 +28,7 @@ struct BigArticleView: View {
                     Spacer()
                     Text(article.tag.name)
                         .foregroundColor(.blanc)
-                        .font(.custom("HelveticaNeue-Bold", size: 11))
+                        .font(.custom("HelveticaNeue-Bold", size: 12))
                         .padding(.horizontal, 12)
                         .padding(.vertical, 5)
                         .background(.violet)
@@ -37,15 +37,15 @@ struct BigArticleView: View {
                     Text(article.intro)
                         .font(.custom("HelveticaNeue-Bold", size: 14))
                         .foregroundColor(.blanc)
+                        .multilineTextAlignment(.leading)
                         .frame(width: 162)
-                   
                 }
-                .padding(15)
+                .padding(.bottom, 20)
+                .padding(.leading, 15)
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
             }
         }
         .frame(width: 370 , height: 271)
-        .padding()
     }
 }
 
@@ -56,7 +56,7 @@ struct BigArticleView: View {
         chapeau: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore. ",
         tag: .init(name: "web", nameShort: "web", icon: .arrowBendUpLeft),
         datePublication: "17 juillet 2025",
-        imageCouv: "Image1",
+        imageCouv: "big",
         contentArticle :[
             .subtitle1("Sous titre"),
             .paragraph1("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
@@ -64,7 +64,8 @@ struct BigArticleView: View {
             .subtitle1("Sous titre"),
             .paragraph2("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
         ],
-        isNew: true
-)
-)
+        isNew: true,
+        isBig: true
+    )
+    )
 }

@@ -9,8 +9,8 @@ import SwiftUI
 
 struct DetailArticleView: View {
     
-    let article : Article
-    @State private var viewModel = ArticlesViewModel()
+   let article : Article
+    @Environment(ArticlesViewModel.self) var viewModel
     
     var body: some View {
         ScrollView{
@@ -54,7 +54,7 @@ struct DetailArticleView: View {
             VStack (alignment: .leading, spacing: 15){
                 Text(article.tag.name)
                     .foregroundColor(.white)
-                    .font(.custom("HelveticaNeue-Bold", size: 11))
+                    .font(.custom("HelveticaNeue-Bold", size: 12))
                     .padding(.horizontal, 12)
                     .padding(.vertical, 5)
                     .background(.violet)
@@ -96,7 +96,7 @@ struct DetailArticleView: View {
                     
                     HStack(spacing: 15) {
                         ForEach(viewModel.FilteredArticles(currentArticle: article).prefix(2), id: \.id) { articleFiltered in
-                            NavigationLink(destination: DetailArticleView(article:  articleFiltered )) {
+                            NavigationLink(destination: DetailArticleView(article:  articleFiltered).environment(viewModel)) {
                                 ReadAlsoView(article: articleFiltered)
                                     .contentShape(Rectangle())
                             }
@@ -118,7 +118,7 @@ struct DetailArticleView: View {
                                 chapeau: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore. ",
                                 tag: .init(name: "web", nameShort: "web", icon: .arrowBendUpLeft),
                                 datePublication: "17 juillet 2025",
-                                imageCouv: "Image1",
+                                imageCouv: "webMobile-1",
                                 contentArticle :[
                                     .subtitle1("Sous titre"),
                                     .paragraph1("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
@@ -126,8 +126,9 @@ struct DetailArticleView: View {
                                     .subtitle1("Sous titre"),
                                     .paragraph2("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
                                 ],
-                                isNew: true
+                                isNew: true,
+                                isBig: false
             )
-        )
+        ).environment(ArticlesViewModel())
     }
 }
