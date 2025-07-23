@@ -8,27 +8,30 @@
 import SwiftUI
 
 struct EventsView: View {
-    
-    @State private var searchEvent: String = "";
-    @State private var showingFilterModal = false;
-    
-    @State private var selectedTab = 0;
-    let tabs = ["All", "My Events", "Favorites"];
-    
+
+    @State private var searchEvent: String = ""
+    @State private var showingFilterModal = false
+
+    @State private var selectedTab = 0
+    let tabs = ["Filtered Events", "My Events", "Favorites"]
+
     let staticData = [
         ["Card 1", "Card 2", "Card 3", "Card 4", "Card 5"],
         ["Card A", "Card B", "Card C", "Card D"],
-        ["Card X", "Card Y", "Card Z"]
-    ];
+        ["Card X", "Card Y", "Card Z"],
+    ]
 
     init() {
-        UISegmentedControl.appearance().selectedSegmentTintColor = .violet;
-        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected);
-        UISegmentedControl.appearance().backgroundColor = UIColor.blanc;
+        UISegmentedControl.appearance().selectedSegmentTintColor = .violet
+        UISegmentedControl.appearance().setTitleTextAttributes(
+            [.foregroundColor: UIColor.white],
+            for: .selected
+        )
+        UISegmentedControl.appearance().backgroundColor = UIColor.blanc
     }
-    
+
     var body: some View {
-        
+
         VStack(alignment: .leading) {
             Text("Events")
                 .font(.custom("Safiro-Bold", size: 36))
@@ -53,7 +56,7 @@ struct EventsView: View {
                 }
 
                 Button(action: {
-                    showingFilterModal.toggle();
+                    showingFilterModal.toggle()
                 }) {
                     Image("faders")
                         .frame(width: 42, height: 40)
@@ -61,14 +64,13 @@ struct EventsView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                         .foregroundStyle(.black)
                 }
-                
+
             }
             .padding(.leading, 25)
 
-
             HStack {
                 Picker("", selection: $selectedTab) {
-                    ForEach(0 ..< tabs.count, id: \.self) { index in
+                    ForEach(0..<tabs.count, id: \.self) { index in
                         Text(self.tabs[index])
                             .tag(index)
                     }
@@ -79,7 +81,7 @@ struct EventsView: View {
             }
             .padding(.top, 28)
             .padding(.leading, 12)
-            
+
             ScrollView {
                 VStack(spacing: 15) {
                     ForEach(staticData[selectedTab], id: \.self) { item in
@@ -99,10 +101,9 @@ struct EventsView: View {
     }
 }
 
-
 struct CardView: View {
-    let title: String;
-    
+    let title: String
+
     var body: some View {
         Text(title)
             .frame(width: 368, height: 277)
@@ -113,8 +114,11 @@ struct CardView: View {
 }
 
 struct CityView: View {
-    let cities = ["Paris", "Berlin", "Madrid", "Rome", "Lisbonne", "Bruxelles", "Amsterdam"];
-    @State private var selectedCity = "Paris";
+    let cities = [
+        "Paris", "Berlin", "Madrid", "Rome", "Lisbonne", "Bruxelles",
+        "Amsterdam",
+    ]
+    @State private var selectedCity = "Paris"
 
     var body: some View {
         HStack {
@@ -147,19 +151,26 @@ struct CityView: View {
 }
 
 struct FilterModalView: View {
+
     @Binding var showingFilterModal: Bool
-    
+    @State private var selectedIndexDate: Int? = 0
+    let options = ["All", "Today", "Tomorrow", "This week", "This month"]
+    @State private var selectedIndexCategory: Int? = 0
+    let categories = [
+        "All", "Web / Mobile", "UX/UI", "Data Science & AI", "DevOps",
+    ]
+
     var body: some View {
-        
+
         VStack(alignment: .leading) {
-            
+
             HStack {
                 Text("Filters")
                     .font(.custom("Safiro-Bold", size: 36))
                     .padding(.leading, 25)
-                
+
                 Spacer()
-                
+
                 Button(action: {
                     showingFilterModal = false
                 }) {
@@ -172,8 +183,7 @@ struct FilterModalView: View {
             }
             .padding(.trailing, 25)
             .padding(.top, 17)
-            
-            
+
             // Carte Date début
             VStack(alignment: .leading, spacing: 10) {
                 Text("Date")
@@ -182,8 +192,36 @@ struct FilterModalView: View {
 
                 HStack {
                     RoundedRectangle(cornerRadius: 15)
-                        .fill(Color.blanc)
-                        .frame(width: 360, height: 181)
+                        .fill(Color.white)
+                        .frame(width: 360, height: 205)
+                        .overlay(
+                            VStack(spacing: 10) {
+                                ForEach(0..<options.count, id: \.self) {
+                                    index in
+                                    HStack {
+                                        Text(options[index])
+                                            .padding(.leading, 20)
+                                        Spacer()
+                                        Toggle(
+                                            "",
+                                            isOn: Binding(
+                                                get: {
+                                                    selectedIndexDate == index
+                                                },
+                                                set: { newValue in
+                                                    if newValue {
+                                                        selectedIndexDate =
+                                                            index
+                                                    }
+                                                }
+                                            )
+                                        )
+                                        .tint(Color.violet)
+                                        .padding(.trailing, 20)
+                                    }
+                                }
+                            }
+                        )
                 }
             }
             .padding(.horizontal, 25)
@@ -196,33 +234,60 @@ struct FilterModalView: View {
 
                 HStack {
                     RoundedRectangle(cornerRadius: 15)
-                        .fill(Color.blanc)
-                        .frame(width: 360, height: 181)
+                        .fill(Color.white)
+                        .frame(width: 360, height: 205)
+                        .overlay(
+                            VStack(spacing: 10) {
+                                ForEach(0..<categories.count, id: \.self) {
+                                    index in
+                                    HStack {
+                                        Text(categories[index])
+                                            .padding(.leading, 20)
+                                        Spacer()
+                                        Toggle(
+                                            "",
+                                            isOn: Binding(
+                                                get: {
+                                                    selectedIndexCategory
+                                                        == index
+                                                },
+                                                set: { newValue in
+                                                    if newValue {
+                                                        selectedIndexCategory =
+                                                            index
+                                                    }
+                                                }
+                                            )
+                                        )
+                                        .tint(Color.violet)
+                                        .padding(.trailing, 20)
+                                    }
+                                }
+                            }
+                        )
                 }
             }
             .padding(.horizontal, 25)
-            
-            
+
             // City
             VStack(alignment: .leading, spacing: 10) {
                 Text("City")
                     .font(.custom("Safiro-Bold", size: 22))
                     .padding(.leading, 25)
                     .padding(.top, 15)
-                
+
                 HStack {
                     CityView()
                 }
             }
             .padding(.trailing, 25)
-            
 
             // Boutons Reset et Apply
             VStack(alignment: .leading, spacing: 10) {
                 HStack(spacing: 20) {
                     Spacer()
                     Button(action: {
-                        
+
                     }) {
                         Text("Reset")
                             .frame(width: 168, height: 40)
@@ -230,9 +295,9 @@ struct FilterModalView: View {
                             .foregroundColor(.white)
                             .cornerRadius(10)
                     }
-                    
+
                     Button(action: {
-                        
+
                     }) {
                         Text("Apply")
                             .frame(width: 168, height: 40)
@@ -242,7 +307,7 @@ struct FilterModalView: View {
                     }
                     Spacer()
                 }
-                .padding(.top, 60)
+                .padding(.top, 30)
                 .padding(.bottom, 10)
             }
         }
