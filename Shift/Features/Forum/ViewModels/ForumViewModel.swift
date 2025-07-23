@@ -28,6 +28,15 @@ final class ForumViewModel {
         return Array(posts.reversed().lazy.filter { $0.isHot }.prefix(2))
     }
     
+    // Used in ForumView to return all posts based on a search
+    func getSearchedPosts(_ searchText: String) -> [Post] {
+        posts = posts.filter { post in
+            post.title.lowercased().contains(searchText.lowercased()) ||
+            post.content.lowercased().contains(searchText.lowercased())
+        }
+        return posts
+    }
+    
     // Used in ForumNewPostView to post a new forum post
     func setNewPost(title: String, content: String, user: User, tags: [String]) {
         posts.append(Post(title: title, content: content, postedOn: Date(), user: user, numberOfLikes: 0, isHot: false, tags: tags))
