@@ -39,8 +39,13 @@ final class ForumViewModel {
             interests: [fieldOfInterests.uxui]
         ),
         numberOfLikes: 42,
+        likedByUser: false,
         isHot: true,
-        tags: ["Tech talk"]
+        tags: ["Tech talk"],
+        comments: [
+            Comment(content: "I agree, wholeheartedly! My heart is with you, Viviane. My head hurts everytime I have to go back to UIKit 😭", postedOn: Date(), user: User(name: "Julie",nickname: "julie_la_codeuse",picture: .profile, city: "Montreuil",interests: [fieldOfInterests.uxui]), numberOfLikes: 3, nestedLevel: 0),
+            Comment(content: "UIKIT SUCKSSSSSSS", postedOn: Date(), user: User(name: "Julie",nickname: "julie_la_codeuse",picture: .profile, city: "Montreuil",interests: [fieldOfInterests.uxui]), numberOfLikes: 0, nestedLevel: 0),
+        ]
     ),
         Post (
         title: "Offering mentorship for beginners",
