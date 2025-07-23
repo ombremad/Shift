@@ -31,16 +31,16 @@ struct InspirationsView: View {
                         Rectangle()
                             .fill(Color.white.opacity(0.4))
                             .frame(width: 3)
-                            .frame(height: 4045)
+                            .frame(height: 3770)
                             .offset(x: 110.5, y: 150.0)
                     }
                    
-                    VStack(spacing: 0) {
+                    VStack(spacing: 17) {
         // MARK: Title
                         Text("Timeline")
                             .font(.custom("Safiro-SemiBold", size: 34))
                             .foregroundColor(.white)
-                            .padding(.top, 10)
+                            .padding(.vertical, 10)
                         
         // MARK: Cards list
                         ForEach(Array(viewModel.women.enumerated()), id: \.element.id) { index, woman in
@@ -59,8 +59,7 @@ struct InspirationsView: View {
                                         )
                                 )
                             }
-                            .frame(height: currentOpenIndex == index ? 230 : 250)
-                            .padding(.vertical, 20)
+                            .frame(height: 250)
                             .padding(.leading, 10)
                             .padding(.trailing, 10)
                         }
@@ -80,9 +79,9 @@ struct InspirationsView: View {
         }
     }
     
-        //MARK: When the card reaches the top 25% of the screen isOpen = true
+        //MARK: When the card reaches the top 30% of the screen isOpen = true
     private func updateCurrentOpenIndex() {
-        let targetY = UIScreen.main.bounds.height * 0.25
+        let targetY = UIScreen.main.bounds.height * 0.30
         let closest = cardOffsets.min { abs($0.value - targetY) < abs($1.value - targetY) }
         if let newIndex = closest?.key {
             withAnimation {

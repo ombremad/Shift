@@ -31,7 +31,7 @@ struct InspirationDetailView: View {
                     }
                     .padding(.top, 30)
                     .padding(.trailing)
-//                    
+                
                     
                     //MARK: Image
                     ZStack() {
@@ -158,6 +158,7 @@ struct InspirationDetailView: View {
                                 .cornerRadius(12)
                         }
                         .disabled(currentIndex == 0)
+                        .opacity(currentIndex == 0 ? 0.7 : 1.0)
                         
                         Spacer()
                         
@@ -177,6 +178,7 @@ struct InspirationDetailView: View {
                                 .cornerRadius(12)
                         }
                         .disabled(currentIndex == women.count - 1)
+                        .opacity(currentIndex == women.count - 1 ? 0.7 : 1.0)
                     }
                     .padding(.top, 35)
                     .padding(.bottom, 32)

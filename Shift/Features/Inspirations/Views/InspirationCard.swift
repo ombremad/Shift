@@ -13,7 +13,7 @@ struct InspirationCard: View {
     
     var body: some View {
         HStack() {
-            
+            //MARK: Opened card
             if isOpen {
                 ZStack() {
                     Circle()
@@ -60,10 +60,11 @@ struct InspirationCard: View {
                         .underline()
                     
                 }
-                .padding(.leading, 22)
+                .padding(.leading, 20)
                 
                 Spacer()
                 
+                //MARK: Closed card
             }else {
                 ZStack{
                     Circle()
@@ -80,10 +81,11 @@ struct InspirationCard: View {
                         .fill(Color.white)
                         .frame(width: 30, height: 30)
                 }
-                .padding(.leading, 79)
-                .padding(.trailing, 85)
+                .frame(width: 174, height: 174)
+                .padding(.leading, 15)
+                .padding(.vertical, 15)
                 
-             VStack {
+             VStack (alignment: .leading, spacing: 10) {
                  Text(woman.name)
                      .font(.custom("Safiro-SemiBold", size: 22))
                      .foregroundColor(.white)
@@ -96,16 +98,11 @@ struct InspirationCard: View {
                      .background(Color("NeonGreen"))
                      .cornerRadius(25)
                 }
+             .padding(.leading, 20)
              .padding(.trailing, 35)
-                .padding(.top, 50)
-                .padding(.bottom, 50)
-                
             }
-            
-            
         }
 //        .background(Color.purple)
-        
     }
 }
 
