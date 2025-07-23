@@ -129,6 +129,7 @@ struct CityView: View {
             .background(Color.gray.opacity(0.2))
             .cornerRadius(10)
         }
+        .padding(.leading, 25)
     }
 }
 
@@ -144,8 +145,10 @@ struct FilterModalView: View {
             HStack {
                 Text("Filters")
                     .font(.custom("Safiro-Bold", size: 36))
-                    .padding(.leading, 20)
+                    .padding(.leading, 25)
+                
                 Spacer()
+                
                 Button(action: {
                     showingFilterModal = false
                 }) {
@@ -155,53 +158,58 @@ struct FilterModalView: View {
                         .background(Color("NeonGreen"))
                         .clipShape(Circle())
                 }
-                .padding()
             }
+            .padding(.trailing, 25)
+            .padding(.top, 17)
             
             
             // Carte Date début
             VStack(alignment: .leading, spacing: 10) {
                 Text("Date")
                     .font(.custom("Safiro-Bold", size: 22))
-                    .padding(.leading, 20)
                     .padding(.top, 10)
-                
+                    .padding(.leading, 25)
+
                 HStack {
                     RoundedRectangle(cornerRadius: 15)
                         .fill(Color.gray.opacity(0.2))
                         .frame(width: 353, height: 181)
-                        .padding(.leading, 20)
+                        .padding(.leading, 25)
                 }
             }
+            .padding(.trailing, 25)
+            
             
             // Carte Categories début
             VStack(alignment: .leading, spacing: 10) {
                 Text("Categories")
                     .font(.custom("Safiro-Bold", size: 22))
-                    .padding(.leading, 20)
-                    .padding(.top, 15)
-                
+                    .padding(.top, 10)
+                    .padding(.leading, 25)
+
                 HStack {
                     RoundedRectangle(cornerRadius: 15)
                         .fill(Color.gray.opacity(0.2))
                         .frame(width: 353, height: 181)
-                        .padding(.leading, 20)
+                        .padding(.leading, 25)
                 }
             }
+            .padding(.trailing, 25)
+            
             
             // City
             VStack(alignment: .leading, spacing: 10) {
                 Text("City")
                     .font(.custom("Safiro-Bold", size: 22))
-                    .padding(.leading, 20)
+                    .padding(.leading, 25)
                     .padding(.top, 15)
-                
                 HStack {
                     CityView()
-                        .padding(.leading, 20)
                 }
             }
+            .padding(.trailing, 25)
             
+
             // Boutons Reset et Apply
             VStack(alignment: .leading, spacing: 10) {
                 HStack(spacing: 20) {
