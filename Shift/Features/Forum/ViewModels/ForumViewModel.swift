@@ -11,6 +11,43 @@ import SwiftUI
 final class ForumViewModel {
     
     let user = UserModel()
+        
+    // FUNCTIONS TIED TO THE POSTS:
+    
+    // Used in ForumNewPostView to post a new forum post
+    func setNewPost(title: String, content: String, user: User, tags: [String]) {
+        posts.append(Post(title: title, content: content, postedOn: Date(), user: user, numberOfLikes: 0, isHot: false, tags: tags))
+    }
+    
+    // Used in ForumView to display posts filtered by one of several categories
+    func getFilteredPosts(categories: [String]) -> [Post] {
+        return posts.filter { post in
+            post.tags.contains { tag in
+                categories.contains(tag)
+            }
+        }
+    }
+    
+    // FUNCTIONS TIED TO THE TAGS (AKA CATEGORIES):
+    
+    // Returns an array containing all the tags where isToggled = true
+    func getToggledTags() -> [String] {
+        let toggledTags = tags.filter { tag in
+            tag.isToggled
+        }
+        return toggledTags.map { tag in
+            tag.name
+        }
+    }
+    
+    // Resets all tags isToggled properties to false, useful after getToggledTags() to go back to a clean state
+    func resetToggledTags() {
+        for tag in tags {
+            tag.isToggled = false
+        }
+    }
+    
+    // DEFINITION OF TAGS (AKA CATEGORIES):
     
     let tags : [Tag] = [
         Tag(name: "Mentorship", icon: .usersThree),
@@ -20,6 +57,8 @@ final class ForumViewModel {
         Tag(name: "Networking", icon: .sparkle),
         Tag(name: "Stories", icon: .chatDots)
     ]
+    
+    // INJECTION OF SAMPLE POSTS AND COMMENTS DATA:
     
     var posts : [Post] = [
         Post (
@@ -100,26 +139,5 @@ final class ForumViewModel {
         ]
     ),
     ]
-    
-    // Used in ForumNewPostView to post a new forum post
-    func setNewPost(title: String, content: String, user: User, tags: [String]) {
-        posts.append(Post(title: title, content: content, postedOn: Date(), user: user, numberOfLikes: 0, isHot: false, tags: tags))
-    }
-    
-    // Returns an array containing all the tags where isToggled = true
-    func getToggledTags() -> [String] {
-        let toggledTags = tags.filter { tag in
-            tag.isToggled
-        }
-        return toggledTags.map { tag in
-            tag.name
-        }
-    }
-    
-    // Resets all tags isToggled properties to false, useful after getToggledTags() to go back to a clean state
-    func resetToggledTags() {
-        for tag in tags {
-            tag.isToggled = false
-        }
-    }
+
 }

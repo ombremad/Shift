@@ -82,12 +82,36 @@ struct ForumView: View {
         .padding(.horizontal)
     }
     func filtered() -> some View {
-        VStack {
-            Text("Filtered")
+        VStack(alignment: .leading) {
+            HStack {
+                Text("Filter results")
+                    .font(.custom("Safiro-SemiBold", size: 22))
+                    .foregroundStyle(.noir)
+                Spacer()
+                Text("Reset")
+                    .font(.custom("HelveticaNeue-Bold", size: 14))
+                    .foregroundStyle(.white)
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 10)
+                    .frame(height: 40)
+                    .background(.violet)
+                    .cornerRadius(5)
+                    .onTapGesture {
+                        forumViewModel.resetToggledTags()
+                        filteredTags = forumViewModel.getToggledTags()
+                    }
+            }
+            VStack(spacing: 15) {
+                ForEach (forumViewModel.getFilteredPosts(categories: filteredTags).reversed()) { post in
+                    NavigationLink(destination: ForumSingleView(currentUser: forumViewModel.user.getCurrentUser(), post: post)) {
+                        ForumCard(post: post)
+                    }
+                }
+            }
         }
+        .padding(.horizontal)
     }
 
-    
     var body: some View {
         NavigationStack {
             ZStack {
