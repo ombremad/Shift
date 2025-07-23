@@ -8,7 +8,7 @@
 import SwiftUI
 
 @Observable
-class Post: Identifiable {
+class Post: Identifiable, Message {
     var id = UUID()
     var title: String
     var content: String
