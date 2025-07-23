@@ -24,7 +24,7 @@ struct EventsView: View {
     init() {
         UISegmentedControl.appearance().selectedSegmentTintColor = .violet;
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected);
-        UISegmentedControl.appearance().backgroundColor = .white;
+        UISegmentedControl.appearance().backgroundColor = UIColor.blanc;
     }
     
     var body: some View {
@@ -81,7 +81,7 @@ struct EventsView: View {
             .padding(.leading, 12)
             
             ScrollView {
-                VStack {
+                VStack(spacing: 15) {
                     ForEach(staticData[selectedTab], id: \.self) { item in
                         CardView(title: item)
                     }
@@ -91,7 +91,6 @@ struct EventsView: View {
             .padding()
             .padding(.top, 19)
         }
-        .padding()
         .sheet(isPresented: $showingFilterModal) {
             FilterModalView(showingFilterModal: $showingFilterModal)
         }
@@ -106,14 +105,14 @@ struct CardView: View {
     var body: some View {
         Text(title)
             .frame(width: 368, height: 277)
-            .background(Color.gray.opacity(0.2))
+            .background(Color.blanc)
             .cornerRadius(15)
-            .shadow(radius: 10)
+            .shadow(color: .noir.opacity(0.20), radius: 2, x: 0, y: 2)
     }
 }
 
 struct CityView: View {
-    let cities = ["Paris", "Berlin", "Madrid", "Rome", "Lisbonne"]
+    let cities = ["Paris", "Berlin", "Madrid", "Rome", "Lisbonne", "Bruxelles", "Amsterdam"];
     @State private var selectedCity = "Paris";
 
     var body: some View {
@@ -125,7 +124,7 @@ struct CityView: View {
             }
             .pickerStyle(MenuPickerStyle())
             .frame(width: 360, height: 40)
-            .background(Color.gray.opacity(0.2))
+            .background(Color.blanc)
             .cornerRadius(10)
         }
         .padding(.leading, 25)
@@ -170,7 +169,7 @@ struct FilterModalView: View {
 
                 HStack {
                     RoundedRectangle(cornerRadius: 15)
-                        .fill(Color.gray.opacity(0.2))
+                        .fill(Color.blanc)
                         .frame(width: 360, height: 181)
                 }
             }
@@ -184,7 +183,7 @@ struct FilterModalView: View {
 
                 HStack {
                     RoundedRectangle(cornerRadius: 15)
-                        .fill(Color.gray.opacity(0.2))
+                        .fill(Color.blanc)
                         .frame(width: 360, height: 181)
                 }
             }
@@ -197,6 +196,7 @@ struct FilterModalView: View {
                     .font(.custom("Safiro-Bold", size: 22))
                     .padding(.leading, 25)
                     .padding(.top, 15)
+                
                 HStack {
                     CityView()
                 }
@@ -232,6 +232,7 @@ struct FilterModalView: View {
                 .padding(.top, 60)
             }
         }
+        .background(Color.background)
     }
 }
 
