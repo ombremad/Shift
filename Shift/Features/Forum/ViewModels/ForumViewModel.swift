@@ -38,7 +38,6 @@ final class ForumViewModel {
             city: "Johannesburg",
             interests: [fieldOfInterests.uxui]
         ),
-        numberOfComments: 12,
         numberOfLikes: 42,
         isHot: true,
         tags: ["Tech talk"]
@@ -65,7 +64,6 @@ final class ForumViewModel {
                 fieldOfInterests.cybersecurity
             ]
         ),
-        numberOfComments: 4,
         numberOfLikes: 108,
         isHot: true,
         tags: ["Mentorship", "Support"]
@@ -92,7 +90,6 @@ final class ForumViewModel {
                 fieldOfInterests.devops
             ]
         ),
-        numberOfComments: 1,
         numberOfLikes: 8,
         isHot: false,
         tags: ["Networking"]
@@ -101,7 +98,7 @@ final class ForumViewModel {
     
     // Used in ForumNewPostView to post a new forum post
     func setNewPost(title: String, content: String, user: User, tags: [String]) {
-        posts.append(Post(title: title, content: content, postedOn: Date(), user: user, numberOfComments: 0, numberOfLikes: 0, isHot: false, tags: tags))
+        posts.append(Post(title: title, content: content, postedOn: Date(), user: user, numberOfLikes: 0, isHot: false, tags: tags))
     }
     
     // Returns an array containing all the tags where isToggled = true

@@ -147,13 +147,12 @@ struct ForumSingleView: View {
             city: "Johannesburg",
             interests: [fieldOfInterests.uxui]
         ),
-        numberOfComments: 12,
         numberOfLikes: 42,
         likedByUser: false,
         isHot: true,
         tags: ["Tech talk"],
         comments: [
-            Comment(content: "I agree!", postedOn: Date(), user: User(name: "Julie",nickname: "julie_la_codeuse",picture: .profile,city: "Montreuil",interests: [fieldOfInterests.uxui]), numberOfComments: 0, numberOfLikes: 1, nestedLevel: 1)
+            Comment(content: "I agree!", postedOn: Date(), user: User(name: "Julie",nickname: "julie_la_codeuse",picture: .profile,city: "Montreuil",interests: [fieldOfInterests.uxui]), numberOfLikes: 1, nestedLevel: 1)
         ]
     ))
 }

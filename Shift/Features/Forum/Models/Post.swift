@@ -14,19 +14,17 @@ class Post: Identifiable, Message {
     var content: String
     var postedOn: Date
     var user: User
-    var numberOfComments: UInt8
     var numberOfLikes: UInt8
     var likedByUser: Bool
     var isHot: Bool
     var tags: [String]
     var comments: [Comment]
     
-    init(title: String, content: String, postedOn: Date, user: User, numberOfComments: UInt8, numberOfLikes: UInt8, likedByUser: Bool, isHot: Bool, tags: [String], comments: [Comment]) {
+    init(title: String, content: String, postedOn: Date, user: User, numberOfLikes: UInt8, likedByUser: Bool, isHot: Bool, tags: [String], comments: [Comment]) {
         self.title = title
         self.content = content
         self.postedOn = postedOn
         self.user = user
-        self.numberOfComments = numberOfComments
         self.numberOfLikes = numberOfLikes
         self.likedByUser = likedByUser
         self.isHot = isHot
@@ -34,8 +32,8 @@ class Post: Identifiable, Message {
         self.comments = comments
     }
     
-    convenience init(title: String, content: String, postedOn: Date, user: User, numberOfComments: UInt8, numberOfLikes: UInt8, isHot: Bool, tags: [String]) {
-        self.init(title: title, content: content, postedOn: postedOn, user: user, numberOfComments: numberOfComments, numberOfLikes: numberOfLikes, likedByUser: false, isHot: isHot, tags: tags, comments: [])
+    convenience init(title: String, content: String, postedOn: Date, user: User, numberOfLikes: UInt8, isHot: Bool, tags: [String]) {
+        self.init(title: title, content: content, postedOn: postedOn, user: user, numberOfLikes: numberOfLikes, likedByUser: false, isHot: isHot, tags: tags, comments: [])
     }
     
     func like() {

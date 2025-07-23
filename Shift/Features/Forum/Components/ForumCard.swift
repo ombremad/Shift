@@ -36,7 +36,7 @@ var body: some View {
                                 .frame(width: 20, height: 20)
                                 .foregroundStyle(.noir)
                                 .scaledToFit()
-                            Text(post.numberOfComments.description)
+                            Text(post.comments.count.description)
                                 .foregroundStyle(.noir)
                         }
                         HStack {
@@ -104,7 +104,6 @@ var body: some View {
             city: "Johannesburg",
             interests: [fieldOfInterests.uxui]
         ),
-        numberOfComments: 12,
         numberOfLikes: 42,
         isHot: true,
         tags: ["Tech talk"]
