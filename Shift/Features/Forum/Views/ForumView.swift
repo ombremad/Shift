@@ -71,6 +71,7 @@ struct ForumView: View {
             Text("Latest")
                 .font(.custom("Safiro-SemiBold", size: 22))
                 .foregroundStyle(.noir)
+                .frame(height: 40)
             VStack(spacing: 15) {
                 ForEach (forumViewModel.posts.reversed()) { post in
                     NavigationLink(destination: ForumSingleView(currentUser: forumViewModel.user.getCurrentUser(), post: post)) {
@@ -101,10 +102,17 @@ struct ForumView: View {
                         filteredTags = forumViewModel.getToggledTags()
                     }
             }
+            .frame(height: 40)
             VStack(spacing: 15) {
-                ForEach (forumViewModel.getFilteredPosts(categories: filteredTags).reversed()) { post in
-                    NavigationLink(destination: ForumSingleView(currentUser: forumViewModel.user.getCurrentUser(), post: post)) {
-                        ForumCard(post: post)
+                if forumViewModel.getFilteredPosts(categories: filteredTags).isEmpty {
+                    Text("No results found")
+                        .font(.custom("HelveticaNeue", size: 14))
+                        .foregroundStyle(.black)
+                } else {
+                    ForEach (forumViewModel.getFilteredPosts(categories: filteredTags).reversed()) { post in
+                        NavigationLink(destination: ForumSingleView(currentUser: forumViewModel.user.getCurrentUser(), post: post)) {
+                            ForumCard(post: post)
+                        }
                     }
                 }
             }
