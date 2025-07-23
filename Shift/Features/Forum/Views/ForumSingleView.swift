@@ -100,7 +100,7 @@ struct ForumSingleView: View {
         VStack(alignment: .leading) {
             if post.comments.isEmpty {
                 HStack {
-                    Text("No answers yet.")
+                    Text("No answers (yet). Will you be the first?")
                         .font(.custom("Safiro-SemiBold", size: 16))
                     Spacer()
                 }
@@ -131,18 +131,19 @@ struct ForumSingleView: View {
                             Text(comment.content)
                                 .font(.custom("HelveticaNeue", size: 14))
                             HStack {
-                                HStack {
-                                    Image(.arrowBendUpLeft)
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                    Text("Reply")
-                                }
-                                    .font(.custom("HelveticaNeue-Bold", size: 14))
-                                    .foregroundStyle(.white)
-                                    .padding(10)
-                                    .frame(height: 40)
-                                    .background(.violet)
-                                    .cornerRadius(5)
+//      TODO: Here. Threaded comments if we have the time.
+//                                HStack {
+//                                    Image(.arrowBendUpLeft)
+//                                        .resizable()
+//                                        .aspectRatio(contentMode: .fit)
+//                                    Text("Reply")
+//                                }
+//                                    .font(.custom("HelveticaNeue-Bold", size: 14))
+//                                    .foregroundStyle(.white)
+//                                    .padding(10)
+//                                    .frame(height: 40)
+//                                    .background(.violet)
+//                                    .cornerRadius(5)
                                 HStack {
                                     Image(.thumbsUp)
                                         .resizable()

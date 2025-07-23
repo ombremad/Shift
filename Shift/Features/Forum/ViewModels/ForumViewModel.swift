@@ -23,29 +23,30 @@ final class ForumViewModel {
     
     var posts : [Post] = [
         Post (
-        title: "Who else is loving SwiftUI? 🚀",
+        title: "NYC Tech Ladies Happy Hour? 🍹✨",
         content: """
-            Hey everyone!
-            I've been working with SwiftUI for about 8 months now after years of struggling with UIKit, and I'm honestly having the best time coding I've had in ages. The declarative syntax just clicks with how I think about UI design, and being able to see live previews while I'm building components has been a game-changer for my workflow. I know there are still some limitations and quirks (don't get me started on navigation in complex apps 😅), but the rapid development cycle and how intuitive it feels has made me fall in love with iOS development all over again. Plus, the accessibility features are so much easier to implement properly!
-            I'm curious - for those of you who've made the switch, what's been your favorite SwiftUI feature? And for anyone still on the fence, what's holding you back? I'd love to hear about your experiences, especially if you've had to convince your team or management to adopt it. Currently working on a side project that's 100% SwiftUI and it's been such a joy compared to the mixed UIKit/SwiftUI codebase at my day job. Anyone else finding themselves reaching for SwiftUI by default now?
-            Hope everyone's having a great week! 💙
+            Hey gorgeous tech queens! 👑💻
+            So I've been thinking... wouldn't it be amazing to get together for some drinks and good vibes? 🥂 I'm thinking of organizing a casual happy hour somewhere in Manhattan - maybe next Friday evening? 🗽
+            Nothing too fancy, just us amazing women chatting about code, careers, and life over some well-deserved cocktails! 🍸💃 Whether you're a seasoned dev or just starting your tech journey, ALL are welcome! 🤗
+            I'm thinking we could meet at that cute rooftop bar in SoHo around 6pm? 🌆 Perfect for networking without the stuffiness of formal events! Plus they have amazing nachos 🧀😋
+            Drop a comment if you're interested and I'll create a group chat to sort out the details! Let's make this happen ladies! 💪✨
+            Can't wait to meet you all IRL! 🥳
+            xoxo 💋
             """,
         postedOn: Date(),
         user: User(
-            name: "Viviane",
-            nickname: "vivi_a_ne",
-            picture: .viviane,
-            city: "Johannesburg",
-            interests: [fieldOfInterests.uxui]
+            name: "Anita",
+            nickname: "AniCodeAndCocktails",
+            picture: .anita,
+            city: "New York City",
+            interests: [
+                fieldOfInterests.web,
+                fieldOfInterests.devops
+            ]
         ),
-        numberOfLikes: 42,
-        likedByUser: false,
-        isHot: true,
-        tags: ["Tech talk"],
-        comments: [
-            Comment(content: "I agree, wholeheartedly! My heart is with you, Viviane. My head hurts everytime I have to go back to UIKit 😭", postedOn: Date(), user: User(name: "Julie",nickname: "julie_la_codeuse",picture: .profile, city: "Montreuil",interests: [fieldOfInterests.uxui]), numberOfLikes: 3, nestedLevel: 0),
-            Comment(content: "UIKIT SUCKSSSSSSS", postedOn: Date(), user: User(name: "Julie",nickname: "julie_la_codeuse",picture: .profile, city: "Montreuil",interests: [fieldOfInterests.uxui]), numberOfLikes: 0, nestedLevel: 0),
-        ]
+        numberOfLikes: 8,
+        isHot: false,
+        tags: ["Networking"]
     ),
         Post (
         title: "Offering mentorship for beginners",
@@ -74,31 +75,30 @@ final class ForumViewModel {
         tags: ["Mentorship", "Support"]
     ),
         Post (
-        title: "NYC Tech Ladies Happy Hour? 🍹✨",
+        title: "Who else is loving SwiftUI? 🚀",
         content: """
-            Hey gorgeous tech queens! 👑💻
-            So I've been thinking... wouldn't it be amazing to get together for some drinks and good vibes? 🥂 I'm thinking of organizing a casual happy hour somewhere in Manhattan - maybe next Friday evening? 🗽
-            Nothing too fancy, just us amazing women chatting about code, careers, and life over some well-deserved cocktails! 🍸💃 Whether you're a seasoned dev or just starting your tech journey, ALL are welcome! 🤗
-            I'm thinking we could meet at that cute rooftop bar in SoHo around 6pm? 🌆 Perfect for networking without the stuffiness of formal events! Plus they have amazing nachos 🧀😋
-            Drop a comment if you're interested and I'll create a group chat to sort out the details! Let's make this happen ladies! 💪✨
-            Can't wait to meet you all IRL! 🥳
-            xoxo 💋
+            Hey everyone!
+            I've been working with SwiftUI for about 8 months now after years of struggling with UIKit, and I'm honestly having the best time coding I've had in ages. The declarative syntax just clicks with how I think about UI design, and being able to see live previews while I'm building components has been a game-changer for my workflow. I know there are still some limitations and quirks (don't get me started on navigation in complex apps 😅), but the rapid development cycle and how intuitive it feels has made me fall in love with iOS development all over again. Plus, the accessibility features are so much easier to implement properly!
+            I'm curious - for those of you who've made the switch, what's been your favorite SwiftUI feature? And for anyone still on the fence, what's holding you back? I'd love to hear about your experiences, especially if you've had to convince your team or management to adopt it. Currently working on a side project that's 100% SwiftUI and it's been such a joy compared to the mixed UIKit/SwiftUI codebase at my day job. Anyone else finding themselves reaching for SwiftUI by default now?
+            Hope everyone's having a great week! 💙
             """,
         postedOn: Date(),
         user: User(
-            name: "Anita",
-            nickname: "AniCodeAndCocktails",
-            picture: .anita,
-            city: "New York City",
-            interests: [
-                fieldOfInterests.web,
-                fieldOfInterests.devops
-            ]
+            name: "Viviane",
+            nickname: "vivi_a_ne",
+            picture: .viviane,
+            city: "Johannesburg",
+            interests: [fieldOfInterests.uxui]
         ),
-        numberOfLikes: 8,
-        isHot: false,
-        tags: ["Networking"]
-    )
+        numberOfLikes: 42,
+        likedByUser: false,
+        isHot: true,
+        tags: ["Tech talk"],
+        comments: [
+            Comment(content: "I agree, wholeheartedly! My heart is with you, Viviane. My head hurts everytime I have to go back to UIKit 😭", postedOn: Date(), user: User(name: "Julie",nickname: "julie_la_codeuse",picture: .profile, city: "Montreuil",interests: [fieldOfInterests.uxui]), numberOfLikes: 3, nestedLevel: 0),
+            Comment(content: "UIKIT SUCKSSSSSSS", postedOn: Date(), user: User(name: "Julie",nickname: "julie_la_codeuse",picture: .profile, city: "Montreuil",interests: [fieldOfInterests.uxui]), numberOfLikes: 0, nestedLevel: 0),
+        ]
+    ),
     ]
     
     // Used in ForumNewPostView to post a new forum post
