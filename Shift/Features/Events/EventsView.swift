@@ -32,14 +32,14 @@ struct EventsView: View {
         VStack(alignment: .leading) {
             Text("Events")
                 .font(.custom("Safiro-Bold", size: 36))
-                .padding(.leading, 10)
+                .padding(.leading, 25)
 
             HStack {
 
                 ZStack(alignment: .leading) {
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(Color.gray, lineWidth: 1)
-                        .frame(width: 316, height: 40)
+                        .frame(width: 310, height: 40)
 
                     Image("magnifying-glass")
                         .frame(width: 40, height: 40)
@@ -61,9 +61,10 @@ struct EventsView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                         .foregroundStyle(.black)
                 }
-                .padding(.leading, 10)
+                
             }
-            .padding(.leading, 10)
+            .padding(.leading, 25)
+
 
             HStack {
                 Picker("", selection: $selectedTab) {
@@ -89,8 +90,6 @@ struct EventsView: View {
             .scrollIndicators(.hidden)
             .padding()
             .padding(.top, 19)
-            
-            
         }
         .padding()
         .sheet(isPresented: $showingFilterModal) {
@@ -125,7 +124,7 @@ struct CityView: View {
                 }
             }
             .pickerStyle(MenuPickerStyle())
-            .frame(width: 352, height: 40)
+            .frame(width: 360, height: 40)
             .background(Color.gray.opacity(0.2))
             .cornerRadius(10)
         }
@@ -168,33 +167,28 @@ struct FilterModalView: View {
                 Text("Date")
                     .font(.custom("Safiro-Bold", size: 22))
                     .padding(.top, 10)
-                    .padding(.leading, 25)
 
                 HStack {
                     RoundedRectangle(cornerRadius: 15)
                         .fill(Color.gray.opacity(0.2))
-                        .frame(width: 353, height: 181)
-                        .padding(.leading, 25)
+                        .frame(width: 360, height: 181)
                 }
             }
-            .padding(.trailing, 25)
-            
-            
+            .padding(.horizontal, 25)
+
             // Carte Categories début
             VStack(alignment: .leading, spacing: 10) {
                 Text("Categories")
                     .font(.custom("Safiro-Bold", size: 22))
                     .padding(.top, 10)
-                    .padding(.leading, 25)
 
                 HStack {
                     RoundedRectangle(cornerRadius: 15)
                         .fill(Color.gray.opacity(0.2))
-                        .frame(width: 353, height: 181)
-                        .padding(.leading, 25)
+                        .frame(width: 360, height: 181)
                 }
             }
-            .padding(.trailing, 25)
+            .padding(.horizontal, 25)
             
             
             // City
@@ -238,8 +232,6 @@ struct FilterModalView: View {
                 .padding(.top, 60)
             }
         }
-        // Fin
-        Spacer()
     }
 }
 
