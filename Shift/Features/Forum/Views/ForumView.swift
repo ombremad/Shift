@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ForumView: View {
     @State var forumViewModel = ForumViewModel()
+    @State var filteredTags : [String] = []
     
     func header() -> some View {
         HStack {
@@ -52,10 +53,17 @@ struct ForumView: View {
                 HStack {
                     ForEach(forumViewModel.tags) { tag in
                         ForumTagCard(tag: tag)
+                            .onTapGesture {
+                                tag.toggle()
+                                filteredTags = forumViewModel.getToggledTags()
+                            }
                     }
                 }
                 .padding(.horizontal)
             }
+        }
+        .onAppear {
+            forumViewModel.resetToggledTags()
         }
     }
     func latest() -> some View {
@@ -73,6 +81,12 @@ struct ForumView: View {
         }
         .padding(.horizontal)
     }
+    func filtered() -> some View {
+        VStack {
+            Text("Filtered")
+        }
+    }
+
     
     var body: some View {
         NavigationStack {
@@ -83,7 +97,11 @@ struct ForumView: View {
                     VStack(spacing: 25) {
                         header()
                         categories()
-                        latest()
+                        if filteredTags.isEmpty {
+                            latest()
+                        } else {
+                            filtered()
+                        }
                     }
                 }
             }

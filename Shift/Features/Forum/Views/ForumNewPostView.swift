@@ -107,6 +107,9 @@ struct ForumNewPostView: View {
             }
         }
         .foregroundStyle(.noir)
+        .onAppear {
+            forumViewModel.resetToggledTags()
+        }
     }
     func postDescription() -> some View {
         VStack(alignment: .leading) {
