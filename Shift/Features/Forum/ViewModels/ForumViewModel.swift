@@ -14,30 +14,34 @@ final class ForumViewModel {
         
     // FUNCTIONS TIED TO THE POSTS:
     
-    // Used in ForumView to return only posts filtered by one of several tags
-    func getFilteredPosts(categories: [String]) -> [Post] {
-        return posts.filter { post in
-            post.tags.contains { tag in
-                categories.contains(tag)
-            }
-        }
+    // Return the 10 most recent posts (used in ForumView)
+    func getLatestPosts() -> [Post] {
+        return Array(posts.reversed().prefix(10))
     }
     
-    // Used in ForumView to return only the 2 more recent posts marked as isHot
+    // Return the 10 most recent posts marked as isHot (used in ForumView)
     func getHotPosts() -> [Post] {
         return Array(posts.reversed().lazy.filter { $0.isHot }.prefix(2))
     }
     
-    // Used in ForumView to return all posts based on a search
-    func getSearchedPosts(_ searchText: String) -> [Post] {
-        posts = posts.filter { post in
+    // Return filtered posts tagged by at least one mentioned tag (used in ForumView)
+    func getFilteredPosts(categories: [String]) -> [Post] {
+        return Array(posts.reversed().filter { post in
+            post.tags.contains { tag in
+                categories.contains(tag)
+            }
+        })
+    }
+    
+    // Return all posts based on a text search (used in ForumView)
+    func getSearchResults(_ searchText: String) -> [Post] {
+        return posts.reversed().filter { post in
             post.title.lowercased().contains(searchText.lowercased()) ||
             post.content.lowercased().contains(searchText.lowercased())
         }
-        return posts
     }
     
-    // Used in ForumNewPostView to post a new forum post
+    // Posts a new forum post (used in ForumNewPostView)
     func setNewPost(title: String, content: String, user: User, tags: [String]) {
         posts.append(Post(title: title, content: content, postedOn: Date(), user: user, numberOfLikes: 0, isHot: false, tags: tags))
     }

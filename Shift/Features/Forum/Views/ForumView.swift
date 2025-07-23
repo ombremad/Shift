@@ -9,13 +9,15 @@ import SwiftUI
 
 struct ForumView: View {
     @State var forumViewModel = ForumViewModel()
-    @State private var filteredTags : [String] = []
-    @State private var showSearch : Bool = false
+    @State private var showSearchField : Bool = false
     @State private var searchField : String = ""
+    @State private var toggledTags : [String] = []
     @State private var searchResults : [Post] = []
     
     private func submitSearch(_ text: String) {
-        searchResults = forumViewModel.getSearchedPosts(searchField)
+        forumViewModel.resetToggledTags()
+        toggledTags = forumViewModel.getToggledTags()
+        searchResults = forumViewModel.getSearchResults(text)
     }
     
     func header() -> some View {
@@ -26,16 +28,16 @@ struct ForumView: View {
             Spacer()
             ZStack {
                 Circle()
-                    .fill(showSearch ? .violet : .neonGreen)
+                    .fill(showSearchField ? .violet : .neonGreen)
                     .frame(width:44, height:44)
                 Image(.magnifyingGlass)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 26)
-                    .foregroundStyle(showSearch ? .white :.black)
+                    .foregroundStyle(showSearchField ? .white :.black)
             }
             .onTapGesture {
-                showSearch.toggle()
+                showSearchField.toggle()
             }
             NavigationLink(destination: ForumNewPostView().environment(forumViewModel)) {
                 ZStack {
@@ -53,7 +55,7 @@ struct ForumView: View {
         .frame(height: 44)
         .padding(.horizontal)
     }
-    func search() -> some View {
+    func searchBar() -> some View {
         ZStack {
             Rectangle()
                 .fill(.blanc)
@@ -79,7 +81,7 @@ struct ForumView: View {
         .frame(height: 44)
         .padding(.horizontal)
     }
-    func categories() -> some View {
+    func categoriesSelector() -> some View {
         VStack(alignment: .leading) {
             Text("Categories")
                 .font(.custom("Safiro-SemiBold", size: 22))
@@ -90,11 +92,11 @@ struct ForumView: View {
                     ForEach(forumViewModel.tags) { tag in
                         ForumTagCard(tag: tag)
                             .onTapGesture {
-                                showSearch = false
+                                showSearchField = false
                                 searchField = ""
                                 searchResults = []
                                 tag.toggle()
-                                filteredTags = forumViewModel.getToggledTags()
+                                toggledTags = forumViewModel.getToggledTags()
                             }
                     }
                 }
@@ -105,7 +107,7 @@ struct ForumView: View {
             forumViewModel.resetToggledTags()
         }
     }
-    func hot() -> some View {
+    func hotPosts() -> some View {
         VStack(alignment: .leading) {
             Text("Hot posts")
                 .font(.custom("Safiro-SemiBold", size: 22))
@@ -121,14 +123,14 @@ struct ForumView: View {
         }
         .padding(.horizontal)
     }
-    func latest() -> some View {
+    func latestPosts() -> some View {
         VStack(alignment: .leading) {
             Text("Latest")
                 .font(.custom("Safiro-SemiBold", size: 22))
                 .foregroundStyle(.noir)
                 .frame(height: 40)
             VStack(spacing: 15) {
-                ForEach (forumViewModel.posts.reversed()) { post in
+                ForEach (forumViewModel.getLatestPosts()) { post in
                     NavigationLink(destination: ForumSingleView(currentUser: forumViewModel.user.getCurrentUser(), post: post)) {
                         ForumCard(post: post)
                     }
@@ -137,7 +139,7 @@ struct ForumView: View {
         }
         .padding(.horizontal)
     }
-    func filtered() -> some View {
+    func categoriesResultPosts() -> some View {
         VStack(alignment: .leading) {
             HStack {
                 Text("Filter results")
@@ -154,17 +156,17 @@ struct ForumView: View {
                     .cornerRadius(5)
                     .onTapGesture {
                         forumViewModel.resetToggledTags()
-                        filteredTags = forumViewModel.getToggledTags()
+                        toggledTags = forumViewModel.getToggledTags()
                     }
             }
             .frame(height: 40)
             VStack(spacing: 15) {
-                if forumViewModel.getFilteredPosts(categories: filteredTags).isEmpty {
+                if forumViewModel.getFilteredPosts(categories: toggledTags).isEmpty {
                     Text("No results found")
                         .font(.custom("HelveticaNeue", size: 14))
                         .foregroundStyle(.black)
                 } else {
-                    ForEach (forumViewModel.getFilteredPosts(categories: filteredTags).reversed()) { post in
+                    ForEach (forumViewModel.getFilteredPosts(categories: toggledTags).reversed()) { post in
                         NavigationLink(destination: ForumSingleView(currentUser: forumViewModel.user.getCurrentUser(), post: post)) {
                             ForumCard(post: post)
                         }
@@ -174,7 +176,7 @@ struct ForumView: View {
         }
         .padding(.horizontal)
     }
-    func searched() -> some View {
+    func searchResultPosts() -> some View {
         VStack(alignment: .leading) {
             HStack {
                 Text("Search results for " + searchField)
@@ -190,22 +192,17 @@ struct ForumView: View {
                     .background(.violet)
                     .cornerRadius(5)
                     .onTapGesture {
-                        searchField = ""
-                        searchResults = []
+                        forumViewModel.resetToggledTags()
+                        toggledTags = forumViewModel.getToggledTags()
+                        searchResults = forumViewModel.getSearchResults("")
                     }
             }
             .frame(height: 40)
             VStack(spacing: 15) {
-                if forumViewModel.getSearchedPosts(searchField).isEmpty {
-                    Text("No results found")
-                        .font(.custom("HelveticaNeue", size: 14))
-                        .foregroundStyle(.black)
-                } else {
-                    ForEach (forumViewModel.getSearchedPosts(searchField).reversed()) { post in
+                    ForEach (forumViewModel.getSearchResults(searchField).reversed()) { post in
                         NavigationLink(destination: ForumSingleView(currentUser: forumViewModel.user.getCurrentUser(), post: post)) {
                             ForumCard(post: post)
                         }
-                    }
                 }
             }
         }
@@ -220,17 +217,17 @@ struct ForumView: View {
                 ScrollView {
                     VStack(spacing: 25) {
                         header()
-                        if showSearch {
-                            search()
+                        if showSearchField {
+                            searchBar()
                         }
-                        categories()
-                        if filteredTags.isEmpty && searchResults.isEmpty {
-                            hot()
-                            latest()
-                        } else if !filteredTags.isEmpty {
-                            filtered()
+                        categoriesSelector()
+                        if toggledTags.isEmpty && searchResults.isEmpty {
+                            hotPosts()
+                            latestPosts()
+                        } else if !toggledTags.isEmpty {
+                            categoriesResultPosts()
                         } else if !searchResults.isEmpty {
-                            searched()
+                            searchResultPosts()
                         }
                     }
                 }
