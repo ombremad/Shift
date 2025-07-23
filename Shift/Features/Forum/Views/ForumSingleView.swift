@@ -96,6 +96,21 @@ struct ForumSingleView: View {
             .padding()
         }
     }
+    func forumAnswers() -> some View {
+        VStack(alignment: .leading) {
+            if post.comments.isEmpty {
+                HStack {
+                    Text("No answers yet.")
+                        .font(.custom("Safiro-SemiBold", size: 16))
+                    Spacer()
+                }
+            } else {
+                Text(post.comments.count == 1 ? "One answer" : "\(post.comments.count) answers")
+                    .font(.custom("Safiro-SemiBold", size: 16))
+            }
+        }
+        .padding(.horizontal)
+    }
     
     var body: some View {
         ZStack {
@@ -105,6 +120,7 @@ struct ForumSingleView: View {
                 VStack(spacing: 15) {
                     header()
                     forumSingle()
+                    forumAnswers()
                 }
                 .padding()
             }
@@ -133,7 +149,11 @@ struct ForumSingleView: View {
         ),
         numberOfComments: 12,
         numberOfLikes: 42,
+        likedByUser: false,
         isHot: true,
-        tags: ["Tech talk"]
+        tags: ["Tech talk"],
+        comments: [
+            Comment(content: "I agree!", postedOn: Date(), user: User(name: "Julie",nickname: "julie_la_codeuse",picture: .profile,city: "Montreuil",interests: [fieldOfInterests.uxui]), numberOfComments: 0, numberOfLikes: 1, nestedLevel: 1)
+        ]
     ))
 }
