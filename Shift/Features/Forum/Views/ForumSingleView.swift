@@ -9,7 +9,11 @@ import SwiftUI
 
 struct ForumSingleView: View {
     @Environment(\.dismiss) private var dismiss
-    
+
+    var currentUser : User
+    @State private var showReply : Bool = false
+    @State private var description: String = ""
+
     var post: Post
     
     func header() -> some View {
@@ -76,6 +80,9 @@ struct ForumSingleView: View {
                         .frame(height: 40)
                         .background(.violet)
                         .cornerRadius(5)
+                        .onTapGesture {
+                            showReply.toggle()
+                        }
                     HStack {
                         Image(.thumbsUp)
                             .resizable()
@@ -91,6 +98,9 @@ struct ForumSingleView: View {
                         .onTapGesture {
                             post.like()
                         }
+                }
+                if showReply {
+                    forumReply()
                 }
             }
             .padding()
@@ -167,6 +177,46 @@ struct ForumSingleView: View {
             }
         }
     }
+    func forumReply() -> some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 10)
+                .fill(.black.opacity(0.03))
+                .stroke(.noir.opacity(0.3))
+            VStack {
+                TextField("Your message", text: $description, axis: .vertical)
+                    .lineLimit(3, reservesSpace: true)
+                    .font(.custom("HelveticaNeue", size: 14))
+                HStack {
+                    Spacer()
+                    Text("Cancel")
+                        .font(.custom("HelveticaNeue-Bold", size: 14))
+                        .foregroundStyle(.white)
+                        .padding(10)
+                        .frame(width: 118, height: 40)
+                        .background(.gray.opacity(0.5))
+                        .cornerRadius(10)
+                        .onTapGesture {
+                            showReply.toggle()
+                        }
+                    Text("Send")
+                        .font(.custom("HelveticaNeue-Bold", size: 14))
+                        .foregroundStyle(.white)
+                        .padding(10)
+                        .frame(width: 118, height: 40)
+                        .background(.violet)
+                        .cornerRadius(10)
+                        .onTapGesture {
+                            post.comments.append(Comment(content: description, postedOn: Date(), user: currentUser, numberOfLikes: 0, nestedLevel: 0))
+                            description = ""
+                            showReply.toggle()
+                        }
+                }
+            }
+            .padding(.vertical, 8)
+            .padding(.horizontal, 12)
+        }
+        .frame(height: 120)
+    }
     
     var body: some View {
         ZStack {
@@ -187,7 +237,12 @@ struct ForumSingleView: View {
 }
 
 #Preview {
-    ForumSingleView(post: Post (
+    ForumSingleView(currentUser: User(name: "Julie",
+        nickname: "julie_la_codeuse",
+        picture: .profile,
+        city: "Montreuil",
+        interests: [fieldOfInterests.uxui]
+    ), post: Post (
         title: "Who else is loving SwiftUI? 🚀",
         content: """
             Hey everyone!

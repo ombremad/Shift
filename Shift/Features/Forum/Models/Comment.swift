@@ -31,7 +31,7 @@ class Comment: Identifiable, Message {
     convenience init(content: String, postedOn: Date, user: User, numberOfLikes: UInt8, nestedLevel: UInt8) {
         self.init(content: content, postedOn: postedOn, user: user, numberOfLikes: numberOfLikes, likedByUser: false, nestedLevel: nestedLevel, comments: [])
     }
-    
+        
     func like() {
         if likedByUser {
             numberOfLikes -= 1

@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ForumView: View {
-
     @State var forumViewModel = ForumViewModel()
     
     func header() -> some View {
@@ -66,7 +65,7 @@ struct ForumView: View {
                 .foregroundStyle(.noir)
             VStack(spacing: 15) {
                 ForEach (forumViewModel.posts.reversed()) { post in
-                    NavigationLink(destination: ForumSingleView(post: post)) {
+                    NavigationLink(destination: ForumSingleView(currentUser: forumViewModel.user.getCurrentUser(), post: post)) {
                         ForumCard(post: post)
                     }
                 }

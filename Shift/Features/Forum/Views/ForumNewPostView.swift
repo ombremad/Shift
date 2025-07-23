@@ -10,6 +10,7 @@ import SwiftUI
 struct ForumNewPostView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(ForumViewModel.self) var forumViewModel
+    
     @State private var title: String = ""
     @State private var description: String = ""
     @State private var noTagAlert: Bool = false
