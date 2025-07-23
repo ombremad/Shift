@@ -242,6 +242,7 @@ struct FilterModalView: View {
                     Spacer()
                 }
                 .padding(.top, 60)
+                .padding(.bottom, 10)
             }
         }
         .background(Color.background)
