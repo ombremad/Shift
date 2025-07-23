@@ -79,7 +79,7 @@ struct ForumView: View {
         NavigationStack {
             ZStack {
                 Color.background
-                    .safeAreaPadding(.all)
+                    .ignoresSafeArea()
                 ScrollView {
                     VStack(spacing: 25) {
                         header()

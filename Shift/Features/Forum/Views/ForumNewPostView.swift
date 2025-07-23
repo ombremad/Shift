@@ -12,6 +12,7 @@ struct ForumNewPostView: View {
     @Environment(ForumViewModel.self) var forumViewModel
     @State private var title: String = ""
     @State private var description: String = ""
+    @State private var noTagAlert: Bool = false
     
     func header() -> some View {
         HStack {
@@ -34,13 +35,22 @@ struct ForumNewPostView: View {
                 .background(.violet)
                 .cornerRadius(5)
                 .onTapGesture {
-                    forumViewModel.setNewPost(title: title, content: description, user: forumViewModel.user.getCurrentUser(), tags:                     forumViewModel.getToggledTags())
-                    forumViewModel.resetToggledTags()
-                    dismiss()
+                    if forumViewModel.getToggledTags().isEmpty {
+                        noTagAlert.toggle()
+                    } else {
+                        forumViewModel.setNewPost(title: title, content: description, user: forumViewModel.user.getCurrentUser(), tags:                     forumViewModel.getToggledTags())
+                        forumViewModel.resetToggledTags()
+                        dismiss()
+                    }
                 }
         }
         .frame(height: 44)
         .padding(.horizontal)
+        .alert("Please select at least one category.", isPresented: $noTagAlert) {
+            Button("OK", role: .cancel) {
+                noTagAlert.toggle()
+            }
+        }
     }
     func postHeader() -> some View {
         VStack(alignment: .leading) {

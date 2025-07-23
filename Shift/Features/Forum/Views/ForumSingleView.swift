@@ -45,6 +45,7 @@ struct ForumSingleView: View {
                         Text(post.user.city)
                             .font(.custom("Safiro-Regular", size: 12))
                     }
+                    Spacer()
                 }
                 Text(post.title)
                     .font(.custom("Safiro-SemiBold", size: 22))
