@@ -17,8 +17,9 @@ class Comment: Identifiable, Message {
     var numberOfLikes: UInt8
     var likedByUser: Bool
     var nestedLevel: UInt8
+    var comments: [Comment]
     
-    init(content: String, postedOn: Date, user: User, numberOfComments: UInt8, numberOfLikes: UInt8, likedByUser: Bool, nestedLevel: UInt8) {
+    init(content: String, postedOn: Date, user: User, numberOfComments: UInt8, numberOfLikes: UInt8, likedByUser: Bool, nestedLevel: UInt8, comments: [Comment]) {
         self.content = content
         self.postedOn = postedOn
         self.user = user
@@ -26,10 +27,11 @@ class Comment: Identifiable, Message {
         self.numberOfLikes = numberOfLikes
         self.likedByUser = likedByUser
         self.nestedLevel = nestedLevel
+        self.comments = comments
     }
     
     convenience init(content: String, postedOn: Date, user: User, numberOfComments: UInt8, numberOfLikes: UInt8, nestedLevel: UInt8) {
-        self.init(content: content, postedOn: postedOn, user: user, numberOfComments: numberOfComments, numberOfLikes: numberOfLikes, likedByUser: false, nestedLevel: nestedLevel)
+        self.init(content: content, postedOn: postedOn, user: user, numberOfComments: numberOfComments, numberOfLikes: numberOfLikes, likedByUser: false, nestedLevel: nestedLevel, comments: [])
     }
     
     func like() {

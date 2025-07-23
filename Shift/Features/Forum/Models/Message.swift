@@ -14,6 +14,7 @@ protocol Message {
     var numberOfComments: UInt8 {get set}
     var numberOfLikes: UInt8 {get set}
     var likedByUser: Bool {get set}
+    var comments: [Comment] {get set}
     
     func like()
 }
