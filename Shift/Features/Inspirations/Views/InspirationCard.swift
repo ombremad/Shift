@@ -60,7 +60,7 @@ struct InspirationCard: View {
                         .underline()
                     
                 }
-                .padding(.leading, 20)
+                .padding(.leading, 17)
                 
                 Spacer()
                 
@@ -98,8 +98,8 @@ struct InspirationCard: View {
                      .background(Color("NeonGreen"))
                      .cornerRadius(25)
                 }
-             .padding(.leading, 20)
-             .padding(.trailing, 35)
+             .frame(width: 174, height: 174, alignment: .leading)
+             .padding(.horizontal, 14)
             }
         }
 //        .background(Color.purple)
@@ -118,7 +118,7 @@ struct InspirationCard: View {
                     imageGreen: "ada_lovelace_g",
                     birth: "December 10, 1815, England",
                     death: "November 27, 1852, England",
-                    achievement: "First computer programer",
+                    achievement: "First computer programer First computer programer",
                     biography: "Ada Lovelace ",
                     whyInspiring: "She saw a future where"
                 )
