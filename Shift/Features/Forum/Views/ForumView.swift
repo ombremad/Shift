@@ -66,6 +66,22 @@ struct ForumView: View {
             forumViewModel.resetToggledTags()
         }
     }
+    func hot() -> some View {
+        VStack(alignment: .leading) {
+            Text("Hot posts")
+                .font(.custom("Safiro-SemiBold", size: 22))
+                .foregroundStyle(.noir)
+                .frame(height: 40)
+            VStack(spacing: 15) {
+                ForEach (forumViewModel.getHotPosts()) { post in
+                    NavigationLink(destination: ForumSingleView(currentUser: forumViewModel.user.getCurrentUser(), post: post)) {
+                        ForumCard(post: post)
+                    }
+                }
+            }
+        }
+        .padding(.horizontal)
+    }
     func latest() -> some View {
         VStack(alignment: .leading) {
             Text("Latest")
@@ -130,6 +146,7 @@ struct ForumView: View {
                         header()
                         categories()
                         if filteredTags.isEmpty {
+                            hot()
                             latest()
                         } else {
                             filtered()

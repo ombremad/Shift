@@ -14,18 +14,23 @@ final class ForumViewModel {
         
     // FUNCTIONS TIED TO THE POSTS:
     
-    // Used in ForumNewPostView to post a new forum post
-    func setNewPost(title: String, content: String, user: User, tags: [String]) {
-        posts.append(Post(title: title, content: content, postedOn: Date(), user: user, numberOfLikes: 0, isHot: false, tags: tags))
-    }
-    
-    // Used in ForumView to display posts filtered by one of several categories
+    // Used in ForumView to return only posts filtered by one of several tags
     func getFilteredPosts(categories: [String]) -> [Post] {
         return posts.filter { post in
             post.tags.contains { tag in
                 categories.contains(tag)
             }
         }
+    }
+    
+    // Used in ForumView to return only the 2 more recent posts marked as isHot
+    func getHotPosts() -> [Post] {
+        return Array(posts.reversed().lazy.filter { $0.isHot }.prefix(2))
+    }
+    
+    // Used in ForumNewPostView to post a new forum post
+    func setNewPost(title: String, content: String, user: User, tags: [String]) {
+        posts.append(Post(title: title, content: content, postedOn: Date(), user: user, numberOfLikes: 0, isHot: false, tags: tags))
     }
     
     // FUNCTIONS TIED TO THE TAGS (AKA CATEGORIES):
