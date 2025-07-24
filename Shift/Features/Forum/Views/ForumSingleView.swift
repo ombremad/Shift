@@ -9,7 +9,11 @@ import SwiftUI
 
 struct ForumSingleView: View {
     @Environment(\.dismiss) private var dismiss
-    
+
+    var currentUser : User
+    @State private var showReply : Bool = false
+    @State private var description: String = ""
+
     var post: Post
     
     func header() -> some View {
@@ -45,6 +49,7 @@ struct ForumSingleView: View {
                         Text(post.user.city)
                             .font(.custom("Safiro-Regular", size: 12))
                     }
+                    Spacer()
                 }
                 Text(post.title)
                     .font(.custom("Safiro-SemiBold", size: 22))
@@ -70,26 +75,147 @@ struct ForumSingleView: View {
                         Text("Reply")
                     }
                         .font(.custom("HelveticaNeue-Bold", size: 14))
-                        .foregroundStyle(.blanc)
+                        .foregroundStyle(.white)
                         .padding(10)
                         .frame(height: 40)
                         .background(.violet)
                         .cornerRadius(5)
+                        .onTapGesture {
+                            showReply.toggle()
+                        }
                     HStack {
                         Image(.thumbsUp)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
+                        Text(post.numberOfLikes.description)
                     }
                         .font(.custom("HelveticaNeue-Bold", size: 14))
-                        .foregroundStyle(.blanc)
+                        .foregroundStyle(post.likedByUser ? .black : .white)
                         .padding(10)
                         .frame(height: 40)
-                        .background(.violet)
+                        .background(post.likedByUser ? .neonGreen : .violet)
                         .cornerRadius(5)
+                        .onTapGesture {
+                            post.like()
+                        }
+                }
+                if showReply {
+                    forumReply()
                 }
             }
             .padding()
         }
+    }
+    func forumAnswers() -> some View {
+        VStack(alignment: .leading) {
+            if post.comments.isEmpty {
+                HStack {
+                    Text("No answers (yet). Will you be the first?")
+                        .font(.custom("Safiro-SemiBold", size: 16))
+                    Spacer()
+                }
+            } else {
+                Text(post.comments.count == 1 ? "One answer" : "\(post.comments.count) answers")
+                    .font(.custom("Safiro-SemiBold", size: 16))
+                ForEach(post.comments) { comment in
+                    ZStack {
+                        Rectangle()
+                            .fill(.blanc)
+                            .cornerRadius(15)
+                            .shadow(color: .noir.opacity(0.20), radius: 2, x: 0, y: 2)
+                        VStack(alignment: .leading, spacing: 15) {
+                            HStack {
+                                Image(comment.user.picture)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 44, height: 44)
+                                    .clipShape(.circle)
+                                VStack(alignment: .leading) {
+                                    Text(comment.user.nickname)
+                                        .font(.custom("Safiro-SemiBold", size: 14))
+                                    Text(comment.user.city)
+                                        .font(.custom("Safiro-Regular", size: 12))
+                                }
+                                Spacer()
+                            }
+                            Text(comment.content)
+                                .font(.custom("HelveticaNeue", size: 14))
+                            HStack {
+//      TODO: Here. Threaded comments if we have the time.
+//                                HStack {
+//                                    Image(.arrowBendUpLeft)
+//                                        .resizable()
+//                                        .aspectRatio(contentMode: .fit)
+//                                    Text("Reply")
+//                                }
+//                                    .font(.custom("HelveticaNeue-Bold", size: 14))
+//                                    .foregroundStyle(.white)
+//                                    .padding(10)
+//                                    .frame(height: 40)
+//                                    .background(.violet)
+//                                    .cornerRadius(5)
+                                HStack {
+                                    Image(.thumbsUp)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                    Text(comment.numberOfLikes.description)
+                                }
+                                    .font(.custom("HelveticaNeue-Bold", size: 14))
+                                    .foregroundStyle(comment.likedByUser ? .black : .white)
+                                    .padding(10)
+                                    .frame(height: 40)
+                                    .background(comment.likedByUser ? .neonGreen : .violet)
+                                    .cornerRadius(5)
+                                    .onTapGesture {
+                                        comment.like()
+                                    }
+                            }
+                        }
+                        .padding()
+                    }
+                }
+            }
+        }
+    }
+    func forumReply() -> some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 10)
+                .fill(.black.opacity(0.03))
+                .stroke(.noir.opacity(0.3))
+            VStack {
+                TextField("Your message", text: $description, axis: .vertical)
+                    .lineLimit(3, reservesSpace: true)
+                    .font(.custom("HelveticaNeue", size: 14))
+                HStack {
+                    Spacer()
+                    Text("Cancel")
+                        .font(.custom("HelveticaNeue-Bold", size: 14))
+                        .foregroundStyle(.white)
+                        .padding(10)
+                        .frame(width: 118, height: 40)
+                        .background(.gray.opacity(0.5))
+                        .cornerRadius(10)
+                        .onTapGesture {
+                            showReply.toggle()
+                        }
+                    Text("Send")
+                        .font(.custom("HelveticaNeue-Bold", size: 14))
+                        .foregroundStyle(.white)
+                        .padding(10)
+                        .frame(width: 118, height: 40)
+                        .background(.violet)
+                        .cornerRadius(10)
+                        .onTapGesture {
+                            post.comments.append(Comment(content: description, postedOn: Date(), user: currentUser, numberOfLikes: 0, nestedLevel: 0))
+                            description = ""
+                            showReply.toggle()
+                        }
+                }
+            }
+            .padding(.vertical, 8)
+            .padding(.horizontal, 12)
+        }
+        .frame(height: 120)
     }
     
     var body: some View {
@@ -97,9 +223,10 @@ struct ForumSingleView: View {
             Color.background
                 .ignoresSafeArea()
             ScrollView {
-                VStack(spacing: 15) {
+                VStack(spacing: 25) {
                     header()
                     forumSingle()
+                    forumAnswers()
                 }
                 .padding()
             }
@@ -110,7 +237,12 @@ struct ForumSingleView: View {
 }
 
 #Preview {
-    ForumSingleView(post: Post (
+    ForumSingleView(currentUser: User(name: "Julie",
+        nickname: "julie_la_codeuse",
+        picture: .profile,
+        city: "Montreuil",
+        interests: [fieldOfInterests.uxui]
+    ), post: Post (
         title: "Who else is loving SwiftUI? 🚀",
         content: """
             Hey everyone!
@@ -126,9 +258,13 @@ struct ForumSingleView: View {
             city: "Johannesburg",
             interests: [fieldOfInterests.uxui]
         ),
-        numberOfComments: 12,
         numberOfLikes: 42,
+        likedByUser: false,
         isHot: true,
-        tags: ["Tech talk"]
+        tags: ["Tech talk"],
+        comments: [
+            Comment(content: "I agree, wholeheartedly! My heart is with you, Viviane. My head hurts everytime I have to go back to UIKit 😭", postedOn: Date(), user: User(name: "Julie",nickname: "julie_la_codeuse",picture: .profile, city: "Montreuil",interests: [fieldOfInterests.uxui]), numberOfLikes: 3, nestedLevel: 0),
+            Comment(content: "UIKIT SUCKSSSSSSS", postedOn: Date(), user: User(name: "Julie",nickname: "julie_la_codeuse",picture: .profile, city: "Montreuil",interests: [fieldOfInterests.uxui]), numberOfLikes: 0, nestedLevel: 0),
+        ]
     ))
 }

@@ -10,9 +10,10 @@ import SwiftUI
 struct ForumNewPostView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(ForumViewModel.self) var forumViewModel
+    
     @State private var title: String = ""
     @State private var description: String = ""
-    @State private var selectedTags: [String] = []
+    @State private var noTagAlert: Bool = false
     
     func header() -> some View {
         HStack {
@@ -35,14 +36,22 @@ struct ForumNewPostView: View {
                 .background(.violet)
                 .cornerRadius(5)
                 .onTapGesture {
-                    if !selectedTags.isEmpty {
-                        forumViewModel.setNewPost(title: title, content: description, user: forumViewModel.user.getCurrentUser(), tags: selectedTags)
+                    if forumViewModel.getToggledTags().isEmpty {
+                        noTagAlert.toggle()
+                    } else {
+                        forumViewModel.setNewPost(title: title, content: description, user: forumViewModel.user.getCurrentUser(), tags:                     forumViewModel.getToggledTags())
+                        forumViewModel.resetToggledTags()
                         dismiss()
                     }
                 }
         }
         .frame(height: 44)
         .padding(.horizontal)
+        .alert("Please select at least one category.", isPresented: $noTagAlert) {
+            Button("OK", role: .cancel) {
+                noTagAlert.toggle()
+            }
+        }
     }
     func postHeader() -> some View {
         VStack(alignment: .leading) {
@@ -87,11 +96,10 @@ struct ForumNewPostView: View {
                 .padding(.horizontal)
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
-                    // TODO: Remove unselected tags and color them based on toggled
                     ForEach(forumViewModel.tags) { tag in
                         ForumTagCard(tag: tag)
                             .onTapGesture {
-                                selectedTags.append(tag.name)
+                                tag.toggle()
                             }
                     }
                 }
@@ -99,6 +107,9 @@ struct ForumNewPostView: View {
             }
         }
         .foregroundStyle(.noir)
+        .onAppear {
+            forumViewModel.resetToggledTags()
+        }
     }
     func postDescription() -> some View {
         VStack(alignment: .leading) {
