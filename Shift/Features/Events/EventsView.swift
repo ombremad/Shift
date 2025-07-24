@@ -116,18 +116,38 @@ struct CardView: View {
                     .shadow(color: .black.opacity(0.20), radius: 2, x: 0, y: 2)
 
                 VStack(spacing: 0) {
-                    // Image
-                    Image(.image9)
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 368, height: 193)
-                        .clipped()
-                        .clipShape(
-                            .rect(
-                                topLeadingRadius: 15,
-                                topTrailingRadius: 15
+                    ZStack(alignment: .topTrailing) {
+                        // Image
+                        Image(.image9)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 368, height: 193)
+                            .clipped()
+                            .clipShape(
+                                .rect(
+                                    topLeadingRadius: 15,
+                                    topTrailingRadius: 15
+                                )
                             )
-                        )
+                        
+                        // Icons section
+                        HStack {
+                            Image(systemName: "square.and.arrow.up")
+                                .foregroundColor(.noir)
+                                .padding(10)
+                                .background(Color.neonGreen)
+                                .clipShape(Circle())
+                                .padding([.top, .trailing], 10)
+                            
+                            Image(systemName: "heart")
+                                .foregroundColor(.noir)
+                                .padding(10)
+                                .background(Color.neonGreen)
+                                .clipShape(Circle())
+                                .padding([.top, .trailing], 10)
+                        }
+                    }
+                    .frame(width: 368, height: 193)
 
                     // Footer
                     HStack {
