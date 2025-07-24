@@ -13,23 +13,9 @@ struct ForumSingleView: View {
     var currentUser : User
     @State private var showReply : Bool = false
     @State private var description: String = ""
-
+    
     var post: Post
     
-    func header() -> some View {
-        HStack {
-            HStack {
-                Image(systemName: "chevron.left")
-                Text("Back")
-            }
-                .font(.custom("HelveticaNeue", size: 16))
-                .foregroundStyle(.violet)
-                .onTapGesture {
-                    dismiss()
-                }
-            Spacer()
-        }
-    }
     func forumSingle() -> some View {
         ZStack {
             Rectangle()
@@ -99,9 +85,11 @@ struct ForumSingleView: View {
                             post.like()
                         }
                 }
-                if showReply {
                     forumReply()
-                }
+                        .frame(height: showReply ? nil : 0)
+                        .clipped()
+                        .opacity(showReply ? 1 : 0)
+                        .animation(.easeInOut(duration: 0.3), value: showReply)
             }
             .padding()
         }
@@ -117,7 +105,7 @@ struct ForumSingleView: View {
             } else {
                 Text(post.comments.count == 1 ? "One answer" : "\(post.comments.count) answers")
                     .font(.custom("Safiro-SemiBold", size: 16))
-                ForEach(post.comments) { comment in
+                ForEach(post.comments.reversed()) { comment in
                     ZStack {
                         Rectangle()
                             .fill(.blanc)
@@ -224,14 +212,28 @@ struct ForumSingleView: View {
                 .ignoresSafeArea()
             ScrollView {
                 VStack(spacing: 25) {
-                    header()
+                    //                    header()
                     forumSingle()
                     forumAnswers()
                 }
                 .padding()
             }
-            .navigationTitle(post.title)
-            .navigationBarHidden(true)
+            .navigationTitle("")
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarBackButtonHidden()
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    HStack {
+                        Image(systemName: "chevron.left")
+                        Text("Back")
+                    }
+                        .font(.custom("HelveticaNeue-SemiBold", size: 16))
+                        .foregroundStyle(.violet)
+                        .onTapGesture {
+                            dismiss()
+                        }
+                }
+            }
         }
     }
 }
