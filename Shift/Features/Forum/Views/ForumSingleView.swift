@@ -26,20 +26,6 @@ struct ForumSingleView: View {
 
     var post: Post
     
-    func header() -> some View {
-        HStack {
-            HStack {
-                Image(systemName: "chevron.left")
-                Text("Back")
-            }
-                .font(.custom("HelveticaNeue", size: 16))
-                .foregroundStyle(.violet)
-                .onTapGesture {
-                    dismiss()
-                }
-            Spacer()
-        }
-    }
     func forumSingle() -> some View {
         ZStack {
             Rectangle()
@@ -252,14 +238,28 @@ struct ForumSingleView: View {
                 .ignoresSafeArea()
             ScrollView {
                 VStack(spacing: 25) {
-                    header()
+                    //                    header()
                     forumSingle()
                     forumAnswers()
                 }
                 .padding()
             }
-            .navigationTitle(post.title)
-            .navigationBarHidden(true)
+            .navigationTitle("")
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarBackButtonHidden()
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    HStack {
+                        Image(systemName: "chevron.left")
+                        Text("Back")
+                    }
+                        .font(.custom("HelveticaNeue-SemiBold", size: 16))
+                        .foregroundStyle(.violet)
+                        .onTapGesture {
+                            dismiss()
+                        }
+                }
+            }
         }
     }
 }

@@ -20,41 +20,6 @@ struct ForumView: View {
         searchResults = forumViewModel.getSearchResults(text)
     }
     
-    func header() -> some View {
-        HStack {
-            Text("Forum")
-                .font(.custom("Safiro-SemiBold", size: 36))
-                .foregroundStyle(.noir)
-            Spacer()
-            ZStack {
-                Circle()
-                    .fill(showSearchField ? .violet : .neonGreen)
-                    .frame(width:44, height:44)
-                Image(.magnifyingGlass)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 26)
-                    .foregroundStyle(showSearchField ? .white :.black)
-            }
-            .onTapGesture {
-                showSearchField.toggle()
-            }
-            NavigationLink(destination: ForumNewPostView().environment(forumViewModel)) {
-                ZStack {
-                    Circle()
-                        .fill(.neonGreen)
-                        .frame(width:44, height:44)
-                    Image(.plus)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 26)
-                        .foregroundStyle(.black)
-                }
-            }
-        }
-        .frame(height: 44)
-        .padding(.horizontal)
-    }
     func searchBar() -> some View {
         ZStack {
             Rectangle()
@@ -216,7 +181,6 @@ struct ForumView: View {
                     .ignoresSafeArea()
                 ScrollView {
                     VStack(spacing: 25) {
-                        header()
                         if showSearchField {
                             searchBar()
                         }
@@ -230,10 +194,50 @@ struct ForumView: View {
                             searchResultPosts()
                         }
                     }
+                    .padding(.top, 20)
                 }
+                .navigationTitle("")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .topBarLeading) {
+                        VStack {
+                            Text("Forum")
+                                .font(.custom("Safiro-SemiBold", size: 36))
+                                .foregroundStyle(.noir)
+                        }
+                    }
+                    ToolbarItem(placement: .topBarTrailing) {
+                        ZStack {
+                            Circle()
+                                .fill(showSearchField ? .violet : .neonGreen)
+                                .frame(width:44, height:44)
+                            Image(.magnifyingGlass)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 26)
+                                .foregroundStyle(showSearchField ? .white :.black)
+                        }
+                        .onTapGesture {
+                            showSearchField.toggle()
+                        }
+                    }
+                    ToolbarItem(placement: .topBarTrailing) {
+                        NavigationLink(destination: ForumNewPostView().environment(forumViewModel)) {
+                            ZStack {
+                                Circle()
+                                    .fill(.neonGreen)
+                                    .frame(width:44, height:44)
+                                Image(.plus)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 26)
+                                    .foregroundStyle(.black)
+                            }
+                        }
+                    }
+                }
+
             }
-            .navigationTitle("Forum")
-            .navigationBarHidden(true)
         }
     }
 }
