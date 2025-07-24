@@ -108,11 +108,31 @@ struct CardView: View {
     let title: String
 
     var body: some View {
-        Text(title)
-            .frame(width: 368, height: 277)
-            .background(Color.blanc)
-            .cornerRadius(15)
-            .shadow(color: .noir.opacity(0.20), radius: 2, x: 0, y: 2)
+        VStack(spacing: 0) {
+            ZStack(alignment: .top) {
+                Color.white
+                    .frame(width: 368, height: 277)
+                    .cornerRadius(15)
+                    .shadow(color: .black.opacity(0.20), radius: 2, x: 0, y: 2)
+
+                VStack(spacing: 0) {
+                    // Image
+                    Image(.image9)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 368, height: 193)
+                        .clipped()
+                        .clipShape(
+                            .rect(
+                                topLeadingRadius: 15,
+                                topTrailingRadius: 15
+                            )
+                        )
+
+                    // Footer
+                }
+            }
+        }
     }
 }
 
