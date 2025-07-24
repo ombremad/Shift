@@ -105,7 +105,7 @@ struct ForumSingleView: View {
             } else {
                 Text(post.comments.count == 1 ? "One answer" : "\(post.comments.count) answers")
                     .font(.custom("Safiro-SemiBold", size: 16))
-                ForEach(post.comments) { comment in
+                ForEach(post.comments.reversed()) { comment in
                     ZStack {
                         Rectangle()
                             .fill(.blanc)
