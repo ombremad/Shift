@@ -137,13 +137,12 @@ struct CardView: View {
                                 .foregroundColor(Color.noir)
 
                             HStack {
-                                Text("Date -")
-                                    .font(.custom("Safiro-regular", size: 16))
-                                    .foregroundColor(Color.noir)
+                                Text("Date")
+                                Text("-")
                                 Text("Location")
-                                    .font(.custom("Safiro-regular", size: 16))
-                                    .foregroundColor(Color.noir)
                             }
+                            .font(.custom("Safiro-regular", size: 14))
+                            .foregroundColor(Color.noir)
                         }
                         Spacer()
                     }
