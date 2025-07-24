@@ -85,7 +85,7 @@ class ArticlesViewModel {
                        .paragraph2("She contributes to open-source projects focused on accessibility and responsive components.")
                    ],
                    isNew : true,
-                   isBig: true
+                   isBig: false
                ),
                Article(
                    titre: "Fatima and the Future of Mobile",
@@ -102,7 +102,7 @@ class ArticlesViewModel {
                        .paragraph2("She consults NGOs to build mobile platforms for remote areas, with a strong UX focus.")
                    ],
                    isNew : true,
-                   isBig: false
+                   isBig: true
                ),
                Article(
                    titre: "Leila Masters Progressive Web Apps",
@@ -338,5 +338,11 @@ class ArticlesViewModel {
     }
     func FilteredArticles(currentArticle: Article) -> [Article] {
         return articlesArray.filter {$0.tag == currentArticle.tag && $0.id != currentArticle.id}.shuffled()  // shuffled() = Mélange aléatoirement les articles proposés
+    }
+    func filteredByCategory(tag: String) -> [Article] {
+        if tag.isEmpty {
+            return articlesArray
+        }
+        return articlesArray.filter { $0.tag.name == tag }
     }
 }
