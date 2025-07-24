@@ -129,27 +129,37 @@ struct CardView: View {
                                     topTrailingRadius: 15
                                 )
                             )
-                        
+
                         // Icons section
                         HStack {
-                            Image(systemName: "square.and.arrow.up")
-                                .foregroundColor(.noir)
-                                .padding(10)
-                                .background(Color.neonGreen)
-                                .clipShape(Circle())
-                                .padding([.top, .trailing], 10)
-                            
-                            Image(systemName: "heart")
-                                .foregroundColor(.noir)
-                                .padding(10)
-                                .background(Color.neonGreen)
-                                .clipShape(Circle())
-                                .padding([.top, .trailing], 10)
+
+                            Button(action: {
+                                print("Bouton cliqué, partagé l'événement")
+                            }) {
+                                Image(systemName: "square.and.arrow.up")
+                                    .foregroundColor(.noir)
+                                    .padding(10)
+                                    .background(Color.neonGreen)
+                                    .clipShape(Circle())
+                                    .padding([.top, .trailing], 10)
+                            }
+
+                            Button(action: {
+                                print("Bouton cliqué sur le coeur")
+                            }) {
+                                Image(systemName: "heart")
+                                    .foregroundColor(.noir)
+                                    .padding(10)
+                                    .background(Color.neonGreen)
+                                    .clipShape(Circle())
+                                    .padding([.top, .trailing], 10)
+                            }
                         }
+                        .padding(.top, 135)
                     }
                     .frame(width: 368, height: 193)
 
-                    // Footer
+                    // Footer card
                     HStack {
                         VStack(alignment: .leading, spacing: 10) {
                             Text("Title Event")
