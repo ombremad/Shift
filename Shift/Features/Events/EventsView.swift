@@ -130,6 +130,24 @@ struct CardView: View {
                         )
 
                     // Footer
+                    HStack {
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text("Title Event")
+                                .font(.custom("Safiro-Bold", size: 16))
+                                .foregroundColor(Color.noir)
+
+                            HStack {
+                                Text("Date -")
+                                    .font(.custom("Safiro-regular", size: 16))
+                                    .foregroundColor(Color.noir)
+                                Text("Location")
+                                    .font(.custom("Safiro-regular", size: 16))
+                                    .foregroundColor(Color.noir)
+                            }
+                        }
+                        Spacer()
+                    }
+                    .padding()
                 }
             }
         }
