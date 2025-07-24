@@ -15,7 +15,7 @@ struct Inspirations: Identifiable, Codable { // Identifiable -  uses the id prop
     let imageWhite: String
     let imageGreen: String
     let birth: String
-    let death: String?      // Optional – can be nil if still alive
+    let death: String? 
     let achievement: String
     let biography: String
     let whyInspiring: String

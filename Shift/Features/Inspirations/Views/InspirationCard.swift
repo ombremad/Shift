@@ -13,7 +13,7 @@ struct InspirationCard: View {
     
     var body: some View {
         HStack() {
-            //MARK: Opened card
+ //MARK: - Opened card
             if isOpen {
                 ZStack() {
                     Circle()
@@ -64,7 +64,7 @@ struct InspirationCard: View {
                 
                 Spacer()
                 
-                //MARK: Closed card
+ //MARK: - Closed card
             }else {
                 ZStack{
                     Circle()

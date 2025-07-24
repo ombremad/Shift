@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-//MARK: Track Y(vertical) position of each card
+//MARK: - Track Y(vertical) position of each card
 struct CardOffsetKey: PreferenceKey {
     static var defaultValue: [Int: CGFloat] = [:]
     
@@ -26,7 +26,7 @@ struct InspirationsView: View {
             ScrollViewReader { proxy in
                 ScrollView {
                     ZStack {
-                        // MARK: Vertical Line
+ // MARK: - Vertical Line
                         GeometryReader { geometry in
                             Rectangle()
                                 .fill(Color.white.opacity(0.4))
@@ -35,14 +35,14 @@ struct InspirationsView: View {
                                 .offset(x: 110.5, y: 150.0)
                         }
                         VStack(spacing: 17) {
-                            // MARK: Title
+ // MARK: - Title
                             Text("Timeline")
                                 .id("top")
                                 .font(.custom("Safiro-SemiBold", size: 34))
                                 .foregroundColor(.white)
                                 .padding(.vertical, 10)
                             
-                            // MARK: Cards list
+ // MARK: - Cards list
                             ForEach(Array(viewModel.women.enumerated()), id: \.element.id) { index, woman in
                                 GeometryReader { geo in
                                     NavigationLink(destination: InspirationDetailView(women: viewModel.women, currentIndex: index)) {
@@ -63,13 +63,14 @@ struct InspirationsView: View {
                                 .frame(width: UIScreen.main.bounds.width - 20)
                             }
                         }
-                        // MARK: Detects and updates changings in the cards positions
+ // MARK: - Detects and updates changings in the cards positions
                         .onPreferenceChange(CardOffsetKey.self) { value in
                             cardOffsets = value
                             updateCurrentOpenIndex()
                         }
                     }
-                    // MARK: Scroll to top button
+                    
+ // MARK: - Scroll to top button
                     Button(action: {
                         withAnimation {
                             proxy.scrollTo("top", anchor: .top)
@@ -85,7 +86,7 @@ struct InspirationsView: View {
                             .padding(.top, 60)
                             .padding(.horizontal)
                     }
-                    // MARK: Extra space so the last card can reach the top of the screen =)
+ // MARK: - Extra space so the last card can reach the top of the screen =)
                     Color.clear
                         .frame(height: 200)
                 }
