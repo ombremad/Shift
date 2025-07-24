@@ -44,4 +44,11 @@ class Post: Identifiable, Message {
         }
         likedByUser.toggle()
     }
+    
+//    func isAnimatingLike(_ animate : Bool) -> Bool {
+//        if animate { }
+//        else {
+//            return false
+//        }
+//    }
 }

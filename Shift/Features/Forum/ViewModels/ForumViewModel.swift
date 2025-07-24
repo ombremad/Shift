@@ -21,7 +21,9 @@ final class ForumViewModel {
     
     // Return the 10 most recent posts marked as isHot (used in ForumView)
     func getHotPosts() -> [Post] {
-        return Array(posts.reversed().lazy.filter { $0.isHot }.prefix(2))
+        return Array(posts.reversed().lazy.filter { post in
+                post.isHot
+        }.prefix(2))
     }
     
     // Return filtered posts tagged by at least one mentioned tag (used in ForumView)

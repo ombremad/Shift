@@ -13,6 +13,16 @@ struct ForumSingleView: View {
     var currentUser : User
     @State private var showReply : Bool = false
     @State private var description: String = ""
+    
+    //Animations
+    @State private var isAnimatingLike : Bool = false
+    private func triggerLikeAnimation() {
+            isAnimatingLike = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                isAnimatingLike = false
+            }
+        }
+    //
 
     var post: Post
     
@@ -95,13 +105,23 @@ struct ForumSingleView: View {
                         .frame(height: 40)
                         .background(post.likedByUser ? .neonGreen : .violet)
                         .cornerRadius(5)
+                        .scaleEffect(isAnimatingLike ? 1.1 : 1.0)
+                        .offset(y: isAnimatingLike ? -10 : 0)
+                                    .animation(.interpolatingSpring(
+                                        mass: 0.5,
+                                        stiffness: 300,
+                                        damping: 10,
+                                        initialVelocity: 0), value: isAnimatingLike)
                         .onTapGesture {
                             post.like()
+                            triggerLikeAnimation()
                         }
                 }
-                if showReply {
                     forumReply()
-                }
+                        .frame(height: showReply ? nil : 0)
+                        .clipped()
+                        .opacity(showReply ? 1 : 0)
+                        .animation(.easeInOut(duration: 0.3), value: showReply)
             }
             .padding()
         }
@@ -166,9 +186,17 @@ struct ForumSingleView: View {
                                     .frame(height: 40)
                                     .background(comment.likedByUser ? .neonGreen : .violet)
                                     .cornerRadius(5)
-                                    .onTapGesture {
-                                        comment.like()
-                                    }
+                                    .scaleEffect(isAnimatingLike ? 1.1 : 1.0)
+                                    .offset(y: isAnimatingLike ? -10 : 0)
+                                                .animation(.interpolatingSpring(
+                                                    mass: 0.5,
+                                                    stiffness: 300,
+                                                    damping: 10,
+                                                    initialVelocity: 0), value: isAnimatingLike)
+                                                .onTapGesture {
+                                                    comment.like()
+                                                    triggerLikeAnimation()
+                                                }
                             }
                         }
                         .padding()
