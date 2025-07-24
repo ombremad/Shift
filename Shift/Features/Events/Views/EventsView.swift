@@ -105,7 +105,8 @@ struct EventsView: View {
 }
 
 struct CardView: View {
-    let title: String
+    let title: String;
+    @State private var showAlert = false;
 
     var body: some View {
         VStack(spacing: 0) {
@@ -131,10 +132,10 @@ struct CardView: View {
                             )
 
                         // Icons section
-                        HStack {
+                        HStack(spacing: 2) {
 
                             Button(action: {
-                                print("Bouton cliqué, partagé l'événement")
+                                showAlert = true
                             }) {
                                 Image(systemName: "square.and.arrow.up")
                                     .foregroundColor(.noir)
@@ -142,6 +143,13 @@ struct CardView: View {
                                     .background(Color.neonGreen)
                                     .clipShape(Circle())
                                     .padding([.top, .trailing], 10)
+                            }
+                            .alert(isPresented: $showAlert) {
+                                Alert(
+                                    title: Text("Succès"),
+                                    message: Text("L'événement a été partagé avec succès."),
+                                    dismissButton: .default(Text("OK"))
+                                )
                             }
 
                             Button(action: {
@@ -223,12 +231,38 @@ struct CityView: View {
 struct FilterModalView: View {
 
     @Binding var showingFilterModal: Bool
-    @State private var selectedIndexDate: Int? = 0
+
     let options = ["All", "Today", "Tomorrow", "This week", "This month"]
-    @State private var selectedIndexCategory: Int? = 0
-    let categories = [
-        "All", "Web / Mobile", "UX/UI", "Data Science & AI", "DevOps",
-    ]
+    @State private var selectedIndexOption: Int = 0
+    let categories = ["All", "Web / Mobile", "UX/UI", "Data Science & AI", "DevOps"]
+    @State private var selectedIndexCategory: Int = 0
+    
+    private func resetToDefaults() {
+        selectedIndexOption = 0
+        selectedIndexCategory = 0
+    }
+    
+    private func bindingForOption(index: Int) -> Binding<Bool> {
+        Binding(
+            get: { self.selectedIndexOption == index },
+            set: { newValue in
+                if newValue {
+                    self.selectedIndexOption = index
+                }
+            }
+        )
+    }
+    
+    private func bindingForCategory(index: Int) -> Binding<Bool> {
+        Binding(
+            get: { self.selectedIndexCategory == index },
+            set: { newValue in
+                if newValue {
+                    self.selectedIndexCategory = index
+                }
+            }
+        )
+    }
 
     var body: some View {
 
@@ -263,7 +297,7 @@ struct FilterModalView: View {
                 HStack {
                     RoundedRectangle(cornerRadius: 15)
                         .fill(Color.white)
-                        .frame(width: 360, height: 205)
+                        .frame(width: 360, height: 210)
                         .overlay(
                             VStack(spacing: 10) {
                                 ForEach(0..<options.count, id: \.self) {
@@ -276,16 +310,19 @@ struct FilterModalView: View {
                                             "",
                                             isOn: Binding(
                                                 get: {
-                                                    selectedIndexDate == index
+                                                    selectedIndexOption == index
                                                 },
                                                 set: { newValue in
                                                     if newValue {
-                                                        selectedIndexDate =
+                                                        selectedIndexOption =
                                                             index
                                                     }
                                                 }
                                             )
                                         )
+                                        .fixedSize()
+                                        .scaleEffect(0.9)
+                                        .offset(x: 5)
                                         .tint(Color.violet)
                                         .padding(.trailing, 20)
                                     }
@@ -305,7 +342,7 @@ struct FilterModalView: View {
                 HStack {
                     RoundedRectangle(cornerRadius: 15)
                         .fill(Color.white)
-                        .frame(width: 360, height: 205)
+                        .frame(width: 360, height: 210)
                         .overlay(
                             VStack(spacing: 10) {
                                 ForEach(0..<categories.count, id: \.self) {
@@ -329,6 +366,9 @@ struct FilterModalView: View {
                                                 }
                                             )
                                         )
+                                        .fixedSize()
+                                        .scaleEffect(0.9)
+                                        .offset(x: 5)
                                         .tint(Color.violet)
                                         .padding(.trailing, 20)
                                     }
@@ -357,7 +397,7 @@ struct FilterModalView: View {
                 HStack(spacing: 20) {
                     Spacer()
                     Button(action: {
-
+                        resetToDefaults()
                     }) {
                         Text("Reset")
                             .frame(width: 168, height: 40)
@@ -384,6 +424,8 @@ struct FilterModalView: View {
         .background(Color.background)
     }
 }
+
+
 
 #Preview {
     EventsView()
