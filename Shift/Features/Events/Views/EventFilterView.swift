@@ -3,49 +3,17 @@
 //  Shift
 //
 //  Created by Mehdi Legoullon on 25/07/2025.
+//
 
 import SwiftUI
 
 struct EventFilterView: View {
     
-    @Binding var showingFilterModal: Bool
-    
-    let options = ["All", "Today", "Tomorrow", "This week", "This month"]
-    @State private var selectedIndexOption: Int = 0
-    let categories = ["All", "Web / Mobile", "UX/UI", "Data Science & AI", "DevOps"]
-    @State private var selectedIndexCategory: Int = 0
-    
-    private func resetToDefaults() {
-        selectedIndexOption = 0
-        selectedIndexCategory = 0
-    }
-    
-    private func bindingForOption(index: Int) -> Binding<Bool> {
-        Binding(
-            get: { self.selectedIndexOption == index },
-            set: { newValue in
-                if newValue {
-                    self.selectedIndexOption = index
-                }
-            }
-        )
-    }
-    
-    private func bindingForCategory(index: Int) -> Binding<Bool> {
-        Binding(
-            get: { self.selectedIndexCategory == index },
-            set: { newValue in
-                if newValue {
-                    self.selectedIndexCategory = index
-                }
-            }
-        )
-    }
-    
+    @Bindable var viewModel: EventsViewModel;
+    @Binding var showingFilterModal: Bool;
+
     var body: some View {
-        
         VStack(alignment: .leading) {
-            
             HStack {
                 Text("Filters")
                     .font(.custom("Safiro-Bold", size: 36))
@@ -66,93 +34,10 @@ struct EventFilterView: View {
             .padding(.trailing, 25)
             .padding(.top, 17)
             
-            // Carte Date début
-            VStack(alignment: .leading, spacing: 10) {
-                Text("Date")
-                    .font(.custom("Safiro-Bold", size: 22))
-                    .padding(.top, 10)
-                
-                HStack {
-                    RoundedRectangle(cornerRadius: 15)
-                        .fill(Color.white)
-                        .frame(width: 360, height: 210)
-                        .overlay(
-                            VStack(spacing: 10) {
-                                ForEach(0..<options.count, id: \.self) { index in
-                                    HStack {
-                                        Text(options[index])
-                                            .padding(.leading, 20)
-                                        Spacer()
-                                        Toggle(
-                                            "",
-                                            isOn: Binding(
-                                                get: {
-                                                    selectedIndexOption == index
-                                                },
-                                                set: { newValue in
-                                                    if newValue {
-                                                        selectedIndexOption = index
-                                                    }
-                                                }
-                                            )
-                                        )
-                                        .fixedSize()
-                                        .scaleEffect(0.9)
-                                        .offset(x: 5)
-                                        .tint(Color.violet)
-                                        .padding(.trailing, 20)
-                                    }
-                                }
-                            }
-                        )
-                }
-            }
-            .padding(.horizontal, 25)
+            DateOptionsView(viewModel: viewModel)
             
-            // Carte Categories début
-            VStack(alignment: .leading, spacing: 10) {
-                Text("Categories")
-                    .font(.custom("Safiro-Bold", size: 22))
-                    .padding(.top, 10)
-                
-                HStack {
-                    RoundedRectangle(cornerRadius: 15)
-                        .fill(Color.white)
-                        .frame(width: 360, height: 210)
-                        .overlay(
-                            VStack(spacing: 10) {
-                                ForEach(0..<categories.count, id: \.self) { index in
-                                    HStack {
-                                        Text(categories[index])
-                                            .padding(.leading, 20)
-                                        Spacer()
-                                        Toggle(
-                                            "",
-                                            isOn: Binding(
-                                                get: {
-                                                    selectedIndexCategory == index
-                                                },
-                                                set: { newValue in
-                                                    if newValue {
-                                                        selectedIndexCategory = index
-                                                    }
-                                                }
-                                            )
-                                        )
-                                        .fixedSize()
-                                        .scaleEffect(0.9)
-                                        .offset(x: 5)
-                                        .tint(Color.violet)
-                                        .padding(.trailing, 20)
-                                    }
-                                }
-                            }
-                        )
-                }
-            }
-            .padding(.horizontal, 25)
+            CategoryOptionsView(viewModel: viewModel)
             
-            // City
             VStack(alignment: .leading, spacing: 10) {
                 Text("City")
                     .font(.custom("Safiro-Bold", size: 22))
@@ -160,17 +45,16 @@ struct EventFilterView: View {
                     .padding(.top, 15)
                 
                 HStack {
-                    CityView()
+                    CityView(selectedCity: $viewModel.selectedCity, cities: viewModel.cities)
                 }
             }
             .padding(.trailing, 25)
             
-            // Boutons Reset et Apply
             VStack(alignment: .leading, spacing: 10) {
                 HStack(spacing: 20) {
                     Spacer()
                     Button(action: {
-                        resetToDefaults()
+                        viewModel.resetToDefaults()
                     }) {
                         Text("Reset")
                             .frame(width: 168, height: 40)
@@ -180,7 +64,10 @@ struct EventFilterView: View {
                     }
                     
                     Button(action: {
-                        
+                        viewModel.filterEvents(
+                            byCategory: viewModel.selectedIndexCategory == 0 ? nil : viewModel.categories[viewModel.selectedIndexCategory]
+                        )
+                        showingFilterModal = false
                     }) {
                         Text("Apply")
                             .frame(width: 168, height: 40)
@@ -188,6 +75,7 @@ struct EventFilterView: View {
                             .foregroundColor(.white)
                             .cornerRadius(10)
                     }
+
                     Spacer()
                 }
                 .padding(.top, 30)
@@ -198,44 +86,8 @@ struct EventFilterView: View {
     }
 }
 
-struct CityView: View {
-    let cities = [
-        "Paris", "Berlin", "Madrid", "Rome", "Lisbonne", "Bruxelles",
-        "Amsterdam",
-    ]
-    @State private var selectedCity = "Paris"
-    
-    var body: some View {
-        HStack {
-            Menu {
-                ForEach(cities, id: \.self) { city in
-                    Button(action: {
-                        selectedCity = city
-                    }) {
-                        Text(city)
-                    }
-                }
-            } label: {
-                HStack {
-                    Text(selectedCity)
-                        .foregroundColor(.black)
-                        .font(.custom("Safiro-Regular", size: 14))
-                        .padding(.leading, 15)
-                    Spacer()
-                    Image(systemName: "chevron.down")
-                        .foregroundColor(.black)
-                        .padding(.trailing, 15)
-                }
-                .frame(width: 360, height: 40)
-                .background(Color.white)
-            }
-            .cornerRadius(10)
-        }
-        .padding(.leading, 25)
+struct EventFilterView_Previews: PreviewProvider {
+    static var previews: some View {
+        EventFilterView(viewModel: EventsViewModel(), showingFilterModal: .constant(true))
     }
 }
-
-#Preview {
-    EventFilterView(showingFilterModal: .constant(true))
-}
-

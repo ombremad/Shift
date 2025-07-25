@@ -14,14 +14,16 @@ struct EventModel: Hashable {
     var title: String
     var date: Date
     var city: String
-    var location: String //  Pour la map 
+    var category: String
+    var location: String //  Pour la map
     
-    init(imageName: String, isLiked: Bool, title: String, date: Date, city: String, location: String) {
+    init(imageName: String, isLiked: Bool, title: String, date: Date, city: String, category: String, location: String) {
         self.imageName = imageName
         self.isLiked = isLiked
         self.title = title
         self.date = date
         self.city = city
+        self.category = category
         self.location = location
     }
     
