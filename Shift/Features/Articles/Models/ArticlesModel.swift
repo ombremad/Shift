@@ -9,7 +9,7 @@ enum ElementsContent : Hashable {
     case paragraph2(String)
 }
 
-struct Article : Identifiable {
+struct Article : Hashable, Identifiable {
     let id = UUID()
     var titre: String
     var intro: String
@@ -18,6 +18,6 @@ struct Article : Identifiable {
     var datePublication: String
     var imageCouv: String
     var contentArticle: [ElementsContent]
-    var isNew : Bool
-    var isBig : Bool
+    var isBig: Bool
+    var isOnSlider: Bool
 }
