@@ -31,8 +31,9 @@ struct ArticlesView: View {
                             .navigationBarBackButtonHidden(true)
                         }
                     }
+                    .padding(.horizontal)
                 }
-                .padding(.horizontal)
+               
                     
                 //Filtres par catégories
                 VStack(alignment: .leading, spacing: 12){
@@ -41,7 +42,7 @@ struct ArticlesView: View {
                             InterestCardView(filter: interest)
                         }
                     }
-                    
+                    .padding(.top, 10)
                     // Articles les plus récent
                     Text("Latest")
                         .font(.custom("Safiro-Bold", size: 24))
@@ -58,7 +59,7 @@ struct ArticlesView: View {
                         }
                     }
                 }
-                .padding(.horizontal, 15) // a mettre en partout
+                .padding(.horizontal, 15)
                 .padding(.top, 15)
                }
            

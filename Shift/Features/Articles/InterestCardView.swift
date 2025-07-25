@@ -11,29 +11,39 @@ import SwiftUI
 struct InterestCardView: View {
     
     var filter: FieldOfInterest
-   // var isSelected: Bool
+    var isSelected: Bool = false
+    
     var body: some View {
-        VStack{
+        VStack {
             ZStack {
                 Rectangle()
                     .frame(width: 49, height: 49)
-                    .foregroundColor(.neonGreen)
-                   
+                    .foregroundColor(isSelected ? .violet : .neonGreen)
                     .cornerRadius(10)
+                
                 Image(filter.icon)
                     .frame(width: 49, height: 49)
             }
+            
             Text(filter.nameShort)
-                .foregroundColor(.noir)
+                .foregroundColor(isSelected ? .blanc : .noir)
                 .font(.custom("Helvetica-Courant", size: 13))
         }
     }
 }
 
 #Preview {
-    InterestCardView(filter : FieldOfInterest(
-        name: "Web / Mobile",
-        nameShort: "Web",
-        icon: .devices
-        ))
+    HStack {
+        InterestCardView(filter: FieldOfInterest(
+            name: "Web / Mobile",
+            nameShort: "Web",
+            icon: .devices
+        ), isSelected: false)
+        
+        InterestCardView(filter: FieldOfInterest(
+            name: "Web / Mobile",
+            nameShort: "Web",
+            icon: .devices
+        ), isSelected: true)
+    }
 }
