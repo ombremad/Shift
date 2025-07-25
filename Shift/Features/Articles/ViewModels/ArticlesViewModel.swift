@@ -10,8 +10,23 @@ import SwiftUI
 @Observable
 class ArticlesViewModel {
     
-    let tagModel: fieldOfInterestModel //Objet qui contient toutes les instances des tag pour acceder à tous
-    var articlesArray: [Article]
+    var selectedFilter: FieldOfInterest? = nil
+    let tagModel: fieldOfInterestModel //Objet qui contient toutes les instances des tag afin de pour pouvoir y acceder
+  var articlesArray: [Article]
+
+    //propriété calculée
+    //filtrage (si un tag est sélectionné),
+   // tri par date (du plus récent au plus ancien)
+    var filteredArticles: [Article]
+    {
+        let selected = selectedFilter
+        if selected != nil {
+            return articlesArray.filter {$0.tag == selected}.sorted{ $0.datePublication > $1.datePublication }
+        } else {
+            return articlesArray.sorted{ $0.datePublication > $1.datePublication }
+        }
+    }
+    
     
     init() {
         self.tagModel = fieldOfInterestModel()

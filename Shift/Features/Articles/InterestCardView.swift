@@ -22,11 +22,12 @@ struct InterestCardView: View {
                     .cornerRadius(10)
                 
                 Image(filter.icon)
+                    .foregroundColor(isSelected ? .blanc : .noir)
                     .frame(width: 49, height: 49)
             }
             
             Text(filter.nameShort)
-                .foregroundColor(isSelected ? .blanc : .noir)
+                .foregroundColor(.noir)
                 .font(.custom("Helvetica-Courant", size: 13))
         }
     }
@@ -34,12 +35,14 @@ struct InterestCardView: View {
 
 #Preview {
     HStack {
+        //non selectionné
         InterestCardView(filter: FieldOfInterest(
             name: "Web / Mobile",
             nameShort: "Web",
             icon: .devices
         ), isSelected: false)
         
+        //selectionné
         InterestCardView(filter: FieldOfInterest(
             name: "Web / Mobile",
             nameShort: "Web",

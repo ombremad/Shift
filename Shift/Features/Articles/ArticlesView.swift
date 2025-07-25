@@ -34,12 +34,17 @@ struct ArticlesView: View {
                     .padding(.horizontal)
                 }
                
-                    
                 //Filtres par catégories
                 VStack(alignment: .leading, spacing: 12){
                     HStack (spacing: 15){
-                        ForEach(viewModel.tagModel.getFieldOfInterestList()) {interest in
-                            InterestCardView(filter: interest)
+                        ForEach(viewModel.tagModel.getFieldOfInterestList()) { interest in
+                                  Button(action: {
+                                      viewModel.selectedFilter = (viewModel.selectedFilter == interest ? nil : interest)
+                                  }) {
+                                      InterestCardView(
+                                        filter: interest,
+                                        isSelected: viewModel.selectedFilter == interest
+                                      )}
                         }
                     }
                     .padding(.top, 10)
@@ -47,7 +52,7 @@ struct ArticlesView: View {
                     Text("Latest")
                         .font(.custom("Safiro-Bold", size: 24))
                         .padding([.top, .bottom], 10)
-                    ForEach(viewModel.articlesArray.sorted { $0.datePublication > $1.datePublication }.prefix(8)) { article in
+                    ForEach(viewModel.filteredArticles.prefix(8)) { article in
                         NavigationLink(destination : DetailArticleView(
                             article: article
                         ).environment(viewModel)) {
