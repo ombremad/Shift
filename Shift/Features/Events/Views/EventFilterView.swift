@@ -198,6 +198,43 @@ struct EventFilterView: View {
     }
 }
 
+struct CityView: View {
+    let cities = [
+        "Paris", "Berlin", "Madrid", "Rome", "Lisbonne", "Bruxelles",
+        "Amsterdam",
+    ]
+    @State private var selectedCity = "Paris"
+    
+    var body: some View {
+        HStack {
+            Menu {
+                ForEach(cities, id: \.self) { city in
+                    Button(action: {
+                        selectedCity = city
+                    }) {
+                        Text(city)
+                    }
+                }
+            } label: {
+                HStack {
+                    Text(selectedCity)
+                        .foregroundColor(.black)
+                        .font(.custom("Safiro-Regular", size: 14))
+                        .padding(.leading, 15)
+                    Spacer()
+                    Image(systemName: "chevron.down")
+                        .foregroundColor(.black)
+                        .padding(.trailing, 15)
+                }
+                .frame(width: 360, height: 40)
+                .background(Color.white)
+            }
+            .cornerRadius(10)
+        }
+        .padding(.leading, 25)
+    }
+}
+
 #Preview {
     EventFilterView(showingFilterModal: .constant(true))
 }

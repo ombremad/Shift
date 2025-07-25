@@ -8,21 +8,22 @@
 import SwiftUI
 
 struct CardView: View {
-    let title: String;
+    
+    let event: EventModel
     @State private var showAlert = false;
     
     var body: some View {
         VStack(spacing: 0) {
             ZStack(alignment: .top) {
                 Color.white
-                    .frame(width: 368, height: 277)
+                    .frame(width: 368, height: 285)
                     .cornerRadius(15)
                     .shadow(color: .black.opacity(0.20), radius: 2, x: 0, y: 2)
                 
                 VStack(spacing: 0) {
                     ZStack(alignment: .topTrailing) {
                         // Image
-                        Image(.image9)
+                        Image(event.imageName)
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .frame(width: 368, height: 193)
@@ -73,14 +74,16 @@ struct CardView: View {
                     // Footer card
                     HStack {
                         VStack(alignment: .leading, spacing: 10) {
-                            Text("Title Event")
+                            Text(event.title)
                                 .font(.custom("Safiro-Bold", size: 16))
                                 .foregroundColor(Color.noir)
+                                .multilineTextAlignment(.leading)
+                                .lineLimit(2)
                             
                             HStack {
-                                Text("Date")
+                                Text(event.date.formatted(date: .abbreviated, time: .omitted))
                                 Text("-")
-                                Text("Location")
+                                Text(event.city)
                             }
                             .font(.custom("Safiro-regular", size: 14))
                             .foregroundColor(Color.noir)
@@ -95,5 +98,15 @@ struct CardView: View {
 }
 
 #Preview {
-    CardView(title: "Sample Title")
+    // For the preview
+    let sampleEvent = EventModel(
+        imageName: "Image1",
+        isLiked: false,
+        title: "Sample Title",
+        date: Date(),
+        city: "Sample City",
+        location: "Sample Location"
+    )
+    
+    CardView(event: sampleEvent)
 }
