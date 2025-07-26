@@ -12,7 +12,7 @@ class EventsViewModel {
     var events: [EventModel] = []
     var filteredEvents: [EventModel] = []
     var selectedIndexOption: Int = 0
-    var selectedIndexCategory: [Int] = [] // Utilisez un tableau pour stocker plusieurs index de catégories
+    var selectedIndexCategory: [Int] = [0]
     var selectedCity: String = "All"
     
     let categories = ["All", "Web / Mobile", "UX/UI", "Data Science & AI", "DevOps"]
@@ -75,7 +75,7 @@ class EventsViewModel {
     
     func resetToDefaults() {
         selectedIndexOption = 0
-        selectedIndexCategory = []
+        selectedIndexCategory = [0]
         selectedCity = "All"
     }
     

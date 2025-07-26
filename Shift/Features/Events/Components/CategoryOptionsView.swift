@@ -12,14 +12,23 @@ struct CategoryOptionsView: View {
     
     private func bindingForCategory(index: Int) -> Binding<Bool> {
         Binding(
-            get: { viewModel.selectedIndexCategory.contains(index) },
+            get: {
+                viewModel.selectedIndexCategory.contains(index)
+            },
             set: { newValue in
-                if newValue {
-                    if !viewModel.selectedIndexCategory.contains(index) {
-                        viewModel.selectedIndexCategory.append(index)
+                if index == 0 {
+                    if newValue {
+                        viewModel.selectedIndexCategory = [0]
+                    } else {
+                        viewModel.selectedIndexCategory = []
                     }
                 } else {
-                    viewModel.selectedIndexCategory.removeAll { $0 == index }
+                    if newValue {
+                        viewModel.selectedIndexCategory.append(index)
+                        viewModel.selectedIndexCategory.removeAll { $0 == 0 }
+                    } else {
+                        viewModel.selectedIndexCategory.removeAll { $0 == index }
+                    }
                 }
             }
         )
