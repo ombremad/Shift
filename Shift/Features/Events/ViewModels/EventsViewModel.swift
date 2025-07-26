@@ -9,18 +9,18 @@ import Foundation
 
 @Observable
 class EventsViewModel {
-    var events: [EventModel] = [];
-    var selectedIndexOption: Int = 0;
-    var selectedIndexCategory: Int = 0;
-    var selectedCity: String = "All";
+    var events: [EventModel] = []
+    var filteredEvents: [EventModel] = []
+    var selectedIndexOption: Int = 0
+    var selectedIndexCategory: Int = 0
+    var selectedCity: String = "All"
     
-    let categories = ["All", "Web / Mobile", "UX/UI", "Data Science & AI", "DevOps"];
-    let options = ["All", "Today", "Tomorrow", "This week", "This month"];
-    let cities = ["All", "Paris", "Berlin", "Madrid", "Rome", "Lisbonne", "Bruxelles", "Amsterdam"];
-    var filteredEvents: [EventModel] = [];
+    let categories = ["All", "Web / Mobile", "UX/UI", "Data Science & AI", "DevOps"]
+    let options = ["All", "Today", "Tomorrow", "This week", "This month"]
+    let cities = ["All", "Paris", "Berlin", "Madrid", "Rome", "Lisbonne", "Bruxelles", "Amsterdam"]
     
     init() {
-        loadFakeData();
+        loadFakeData()
     }
     
     private func loadFakeData() {
@@ -32,7 +32,7 @@ class EventsViewModel {
         let date3 = dateFormatter.date(from: "2025-12-10 19:00") ?? Date()
         let date4 = dateFormatter.date(from: "2025-09-15 10:00") ?? Date()
         
-        events = [
+        let fakeEvents = [
             EventModel(
                 imageName: "Image1",
                 isLiked: false,
@@ -69,30 +69,23 @@ class EventsViewModel {
                 category: "UX/UI",
                 location: ""
             )
-        ];
-    }
-
-    func resetToDefaults() {
-        selectedIndexOption = 0;
-        selectedIndexCategory = 0;
-        selectedCity = "All";
-    }
-    
-    
-    func filterEvents(byDate date: Date? = nil, byCity city: String? = nil, byCategory category: String? = nil) {
+        ]
         
+        self.events = fakeEvents
+        self.filteredEvents = fakeEvents
+    }
+    
+    func resetToDefaults() {
+        self.selectedIndexOption = 0
+        self.selectedIndexCategory = 0
+        self.selectedCity = "All"
+    }
+    
+    func filterEvents(byCategory category: String? = nil, byCity city: String? = nil) {
         filteredEvents = events.filter { event in
             let matchesCategory = category == nil || category == "All" || event.category == category
             let matchesCity = city == nil || city == "All" || event.city == city
-            
-            let matchesDate: Bool
-            if let date = date {
-                matchesDate = event.date >= date
-            } else {
-                matchesDate = true
-            }
-            
-            return matchesCategory && matchesCity && matchesDate
+            return matchesCategory && matchesCity
         }
     }
 }

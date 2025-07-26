@@ -82,7 +82,7 @@ struct EventsView: View {
                 
                 ScrollView {
                     VStack(spacing: 15) {
-                        ForEach(viewModel.events, id: \.title) { event in
+                        ForEach(viewModel.filteredEvents, id: \.title) { event in
                             NavigationLink(destination: EventDetailView()) {
                                 CardView(event: event)
                             }
