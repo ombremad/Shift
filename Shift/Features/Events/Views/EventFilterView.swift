@@ -64,8 +64,13 @@ struct EventFilterView: View {
                     }
                     
                     Button(action: {
+                        let selectedCategories = viewModel.selectedIndexCategory.isEmpty ?
+                        nil :
+                        viewModel.selectedIndexCategory.map { viewModel.categories[$0] }
+                        
                         viewModel.filterEvents(
-                            byCategory: viewModel.selectedIndexCategory == 0 ? nil : viewModel.categories[viewModel.selectedIndexCategory]
+                            byCategories: selectedCategories,
+                            byCity: viewModel.selectedCity == "All" ? nil : viewModel.selectedCity
                         )
                         showingFilterModal = false
                     }) {

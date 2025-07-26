@@ -12,7 +12,7 @@ class EventsViewModel {
     var events: [EventModel] = []
     var filteredEvents: [EventModel] = []
     var selectedIndexOption: Int = 0
-    var selectedIndexCategory: Int = 0
+    var selectedIndexCategory: [Int] = [] // Utilisez un tableau pour stocker plusieurs index de catégories
     var selectedCity: String = "All"
     
     let categories = ["All", "Web / Mobile", "UX/UI", "Data Science & AI", "DevOps"]
@@ -32,7 +32,7 @@ class EventsViewModel {
         let date3 = dateFormatter.date(from: "2025-12-10 19:00") ?? Date()
         let date4 = dateFormatter.date(from: "2025-09-15 10:00") ?? Date()
         
-        let fakeEvents = [
+        events = [
             EventModel(
                 imageName: "Image1",
                 isLiked: false,
@@ -70,20 +70,18 @@ class EventsViewModel {
                 location: ""
             )
         ]
-        
-        self.events = fakeEvents
-        self.filteredEvents = fakeEvents
+        filteredEvents = events
     }
     
     func resetToDefaults() {
-        self.selectedIndexOption = 0
-        self.selectedIndexCategory = 0
-        self.selectedCity = "All"
+        selectedIndexOption = 0
+        selectedIndexCategory = []
+        selectedCity = "All"
     }
     
-    func filterEvents(byCategory category: String? = nil, byCity city: String? = nil) {
+    func filterEvents(byCategories categories: [String]? = nil, byCity city: String? = nil) {
         filteredEvents = events.filter { event in
-            let matchesCategory = category == nil || category == "All" || event.category == category
+            let matchesCategory = categories == nil || categories!.contains("All") || categories!.contains(event.category)
             let matchesCity = city == nil || city == "All" || event.city == city
             return matchesCategory && matchesCity
         }
