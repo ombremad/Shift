@@ -106,6 +106,7 @@ struct CardView: View {
         date: Date(),
         city: "Sample City",
         category: "Web / Mobile",
+        isMyEvent: true,
         location: "Sample Location"
     )
     

@@ -9,18 +9,19 @@ import Foundation
 
 @Observable
 class EventsViewModel {
-    var events: [EventModel] = []
-    var filteredEvents: [EventModel] = []
-    var selectedIndexOption: Int = 0
-    var selectedIndexCategory: [Int] = [0]
-    var selectedCity: String = "All"
     
-    let categories = ["All", "Web / Mobile", "UX/UI", "Data Science & AI", "DevOps"]
-    let options = ["All", "Today", "Tomorrow", "This week", "This month"]
-    let cities = ["All", "Paris", "Berlin", "Madrid", "Rome", "Lisbonne", "Bruxelles", "Amsterdam"]
+    var events: [EventModel] = [];
+    var filteredEvents: [EventModel] = [];
+    var selectedIndexOption: Int = 0;
+    var selectedIndexCategory: [Int] = [0];
+    var selectedCity: String = "All";
+    
+    let categories = ["All", "Web / Mobile", "UX/UI", "Data Science & AI", "DevOps"];
+    let options = ["All", "Today", "Tomorrow", "This week", "This month"];
+    let cities = ["All", "Paris", "Berlin", "Madrid", "Rome", "Lisbonne", "Bruxelles", "Amsterdam"];
     
     init() {
-        loadFakeData()
+        loadFakeData();
     }
     
     private func loadFakeData() {
@@ -40,6 +41,7 @@ class EventsViewModel {
                 date: date1,
                 city: "Paris",
                 category: "Data Science & AI",
+                isMyEvent: false,
                 location: ""
             ),
             EventModel(
@@ -49,6 +51,7 @@ class EventsViewModel {
                 date: date2,
                 city: "Berlin",
                 category: "DevOps",
+                isMyEvent: false,
                 location: ""
             ),
             EventModel(
@@ -58,6 +61,7 @@ class EventsViewModel {
                 date: date3,
                 city: "Amsterdam",
                 category: "Web / Mobile",
+                isMyEvent: true,
                 location: ""
             ),
             EventModel(
@@ -67,23 +71,25 @@ class EventsViewModel {
                 date: date4,
                 city: "Lisbonne",
                 category: "UX/UI",
+                isMyEvent: false,
                 location: ""
             )
-        ]
-        filteredEvents = events
+        ];
+        filteredEvents = events;
     }
     
     func resetToDefaults() {
-        selectedIndexOption = 0
-        selectedIndexCategory = [0]
-        selectedCity = "All"
+        selectedIndexOption = 0;
+        selectedIndexCategory = [0];
+        selectedCity = "All";
     }
     
-    func filterEvents(byCategories categories: [String]? = nil, byCity city: String? = nil) {
+    func filterEvents(byCategories categories: [String]? = nil, byCity city: String? = nil, favoritesOnly: Bool = false) {
         filteredEvents = events.filter { event in
+            let isFavorite = !favoritesOnly || event.isLiked
             let matchesCategory = categories == nil || categories!.contains("All") || categories!.contains(event.category)
             let matchesCity = city == nil || city == "All" || event.city == city
-            return matchesCategory && matchesCity
+            return isFavorite && matchesCategory && matchesCity
         }
     }
 }

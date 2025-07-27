@@ -11,6 +11,7 @@ struct EventFilterView: View {
     
     @Bindable var viewModel: EventsViewModel;
     @Binding var showingFilterModal: Bool;
+    var selectedTab: Int;
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -70,7 +71,8 @@ struct EventFilterView: View {
                         
                         viewModel.filterEvents(
                             byCategories: selectedCategories,
-                            byCity: viewModel.selectedCity == "All" ? nil : viewModel.selectedCity
+                            byCity: viewModel.selectedCity == "All" ? nil : viewModel.selectedCity,
+                            favoritesOnly: selectedTab == 2
                         )
                         showingFilterModal = false
                     }) {
@@ -80,7 +82,6 @@ struct EventFilterView: View {
                             .foregroundColor(.white)
                             .cornerRadius(10)
                     }
-
                     Spacer()
                 }
                 .padding(.top, 30)
@@ -93,6 +94,10 @@ struct EventFilterView: View {
 
 struct EventFilterView_Previews: PreviewProvider {
     static var previews: some View {
-        EventFilterView(viewModel: EventsViewModel(), showingFilterModal: .constant(true))
+        EventFilterView(
+            viewModel: EventsViewModel(),
+            showingFilterModal: .constant(true),
+            selectedTab: 0
+        )
     }
 }

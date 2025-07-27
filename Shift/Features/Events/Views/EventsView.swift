@@ -11,10 +11,8 @@ struct EventsView: View {
     
     @State private var searchEvent: String = ""
     @State private var showingFilterModal = false
-    
     @State private var selectedTab = 0
     let tabs = ["Filtered Events", "My Events", "Favorites"]
-    
     @State private var viewModel = EventsViewModel()
     
     init() {
@@ -66,6 +64,7 @@ struct EventsView: View {
                 }
                 .padding(.leading, 25)
                 
+                // Picker
                 HStack {
                     Picker("", selection: $selectedTab) {
                         ForEach(0..<tabs.count, id: \.self) { index in
@@ -76,7 +75,9 @@ struct EventsView: View {
                     .pickerStyle(SegmentedPickerStyle())
                     .frame(width: 370, height: 43)
                     .cornerRadius(10)
-                }
+                    .onChange(of: selectedTab) {
+                        filterEventsForSelectedTab(selectedTab)
+                    }                }
                 .padding(.top, 28)
                 .padding(.leading, 12)
                 
@@ -95,13 +96,33 @@ struct EventsView: View {
                 .padding(.top, 19)
             }
             .sheet(isPresented: $showingFilterModal) {
-                EventFilterView(viewModel: viewModel, showingFilterModal: $showingFilterModal)
+                EventFilterView(
+                    viewModel: viewModel,
+                    showingFilterModal: $showingFilterModal,
+                    selectedTab: selectedTab
+                )
             }
             .background(Color.background)
             
         }
     }
     
+    private func filterEventsForSelectedTab(_ tabIndex: Int) {
+        switch tabIndex {
+        case 0: // Filtered Events
+            viewModel.filterEvents()
+            
+        case 1: // My Events
+            viewModel.filteredEvents = viewModel.events.filter { $0.isMyEvent }
+            
+        case 2: // Favorites
+            viewModel.filteredEvents = viewModel.events.filter { $0.isLiked }
+            
+        default:
+            break
+        }
+    }
+
     #Preview {
         EventsView()
     }
