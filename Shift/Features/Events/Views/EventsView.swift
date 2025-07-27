@@ -9,11 +9,10 @@ import SwiftUI
 
 struct EventsView: View {
     
-    @State private var searchEvent: String = ""
-    @State private var showingFilterModal = false
-    @State private var selectedTab = 0
-    let tabs = ["Filtered Events", "My Events", "Favorites"]
-    @State private var viewModel = EventsViewModel()
+    @State private var searchEvent: String = "";
+    @State private var showingFilterModal = false;
+    @State private var selectedTab = 0;
+    @State private var viewModel = EventsViewModel();
     
     init() {
         UISegmentedControl.appearance().selectedSegmentTintColor = .violet
@@ -63,21 +62,8 @@ struct EventsView: View {
                     
                 }
                 .padding(.leading, 25)
-                
-                // Picker
-                HStack {
-                    Picker("", selection: $selectedTab) {
-                        ForEach(0..<tabs.count, id: \.self) { index in
-                            Text(self.tabs[index])
-                                .tag(index)
-                        }
-                    }
-                    .pickerStyle(SegmentedPickerStyle())
-                    .frame(width: 370, height: 43)
-                    .cornerRadius(10)
-                    .onChange(of: selectedTab) {
-                        filterEventsForSelectedTab(selectedTab)
-                    }                }
+            
+                TabPickerView(selectedTab: $selectedTab, tabs: viewModel.tabs, viewModel: viewModel)
                 .padding(.top, 28)
                 .padding(.leading, 12)
                 
@@ -104,22 +90,6 @@ struct EventsView: View {
             }
             .background(Color.background)
             
-        }
-    }
-    
-    private func filterEventsForSelectedTab(_ tabIndex: Int) {
-        switch tabIndex {
-        case 0: // Filtered Events
-            viewModel.filterEvents()
-            
-        case 1: // My Events
-            viewModel.filteredEvents = viewModel.events.filter { $0.isMyEvent }
-            
-        case 2: // Favorites
-            viewModel.filteredEvents = viewModel.events.filter { $0.isLiked }
-            
-        default:
-            break
         }
     }
 

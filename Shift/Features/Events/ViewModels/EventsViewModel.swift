@@ -10,18 +10,19 @@ import Foundation
 @Observable
 class EventsViewModel {
     
-    var events: [EventModel] = [];
-    var filteredEvents: [EventModel] = [];
-    var selectedIndexOption: Int = 0;
-    var selectedIndexCategory: [Int] = [0];
-    var selectedCity: String = "All";
+    var events: [EventModel] = []
+    var filteredEvents: [EventModel] = []
+    var selectedIndexOption: Int = 0
+    var selectedIndexCategory: [Int] = [0]
+    var selectedCity: String = "All"
     
-    let categories = ["All", "Web / Mobile", "UX/UI", "Data Science & AI", "DevOps"];
-    let options = ["All", "Today", "Tomorrow", "This week", "This month"];
-    let cities = ["All", "Paris", "Berlin", "Madrid", "Rome", "Lisbonne", "Bruxelles", "Amsterdam"];
+    let categories = ["All", "Web / Mobile", "UX/UI", "Data Science & AI", "DevOps"]
+    let options = ["All", "Today", "Tomorrow", "This week", "This month"]
+    let cities = ["All", "Paris", "Berlin", "Madrid", "Rome", "Lisbonne", "Bruxelles", "Amsterdam"]
+    let tabs = ["Filtered Events", "My Events", "Favorites"]
     
     init() {
-        loadFakeData();
+        loadFakeData()
     }
     
     private func loadFakeData() {
@@ -74,22 +75,48 @@ class EventsViewModel {
                 isMyEvent: false,
                 location: ""
             )
-        ];
-        filteredEvents = events;
+        ]
+        filteredEvents = events
     }
     
     func resetToDefaults() {
-        selectedIndexOption = 0;
-        selectedIndexCategory = [0];
-        selectedCity = "All";
+        selectedIndexOption = 0
+        selectedIndexCategory = [0]
+        selectedCity = "All"
     }
     
-    func filterEvents(byCategories categories: [String]? = nil, byCity city: String? = nil, favoritesOnly: Bool = false) {
+    private func applyAdditionalFilters(categories: [String]?, city: String?) {
+        if let categories = categories, !categories.isEmpty, !categories.contains("All") {
+            filteredEvents = filteredEvents.filter { categories.contains($0.category) }
+        }
+        if let city = city, city != "All" {
+            filteredEvents = filteredEvents.filter { $0.city == city }
+        }
+    }
+    
+    func filterEventsForTab(selectedTab: Int, byCategories categories: [String]? = nil, byCity city: String? = nil) {
+        switch selectedTab {
+        case 0: // Filtered Events
+            filterEvents(byCategories: categories, byCity: city)
+            
+        case 1: // My Events
+            filteredEvents = events.filter { $0.isMyEvent }
+            applyAdditionalFilters(categories: categories, city: city)
+            
+        case 2: // Favorites
+            filteredEvents = events.filter { $0.isLiked }
+            applyAdditionalFilters(categories: categories, city: city)
+            
+        default:
+            break
+        }
+    }
+    
+    func filterEvents(byCategories categories: [String]? = nil, byCity city: String? = nil) {
         filteredEvents = events.filter { event in
-            let isFavorite = !favoritesOnly || event.isLiked
             let matchesCategory = categories == nil || categories!.contains("All") || categories!.contains(event.category)
             let matchesCity = city == nil || city == "All" || event.city == city
-            return isFavorite && matchesCategory && matchesCity
+            return matchesCategory && matchesCity
         }
     }
 }
