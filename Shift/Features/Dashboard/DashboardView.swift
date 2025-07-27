@@ -11,7 +11,7 @@ struct DashboardView: View {
     @StateObject private var viewModel = InspirationsViewModel()
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ScrollView {
                 VStack(alignment: .leading) {
                     
@@ -19,7 +19,7 @@ struct DashboardView: View {
                     
                // TODO: - Add logic to recover current user's image and name
                     HStack(spacing: 12) {
-                        Image("ada_lovelace_g")
+                        Image("ProfileImage")
                             .resizable()
                             .scaledToFill()
                             .frame(width: 52, height: 52)
@@ -40,12 +40,13 @@ struct DashboardView: View {
                             .cornerRadius(10)
                     }
                     .frame(maxWidth: .infinity)
-                    .padding(.bottom, 33)
+                    .padding(.bottom, 23)
+                    .padding(.top, -10)
                     
                     // MARK: - Daily Inspiration
                     Text("Daily Inspiration")
                         .font(.custom("Safiro-SemiBold", size: 24))
-                        .padding(.bottom, 15)
+                        .padding(.bottom, 13)
                     
                     
                     if let woman = viewModel.selectedWoman,
@@ -83,7 +84,9 @@ struct DashboardView: View {
             }
             .background(Color("Background")
             .ignoresSafeArea())
+           
         }
+        .tint(.white)
     }
 }
 

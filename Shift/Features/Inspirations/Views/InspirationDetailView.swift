@@ -10,30 +10,19 @@ import SwiftUI
 struct InspirationDetailView: View {
     let women: [Inspirations]
     @State var currentIndex: Int
-    @Environment(\.dismiss) private var dismiss
-
+    
     var body: some View {
         let woman = women[currentIndex]
-
+        
         ScrollViewReader { proxy in
             ScrollView {
                 VStack(alignment: .leading) {
-                    //MARK: Anchor to the top of the page for the navigation Buttons
+                    //MARK: - Anchor to the top of the page for the navigation Buttons
                     Color.clear
                         .frame(height: 0)
                         .id("top")
                     
-                    //MARK: Custom back button
-                    Button(action: { dismiss() }) {
-                        Text("< Timeline")
-                            .font(.custom("HelveticaNeue", size: 17))
-                            .foregroundColor(.white)
-                    }
-                    .padding(.top, 30)
-                    .padding(.trailing)
-                
-                    
-                    //MARK: Image
+                    //MARK: - Image
                     ZStack() {
                         Circle()
                             .fill(Color("NeonGreen"))
@@ -53,9 +42,9 @@ struct InspirationDetailView: View {
                             .frame(width: 207, height: 207)
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .padding(.top)
+//                    .padding(.top)
                     
-                    //MARK: Name + Field
+                    //MARK: - Name + Field
                     Text(woman.name)
                         .font(.custom("Safiro-SemiBold", size: 34))
                         .foregroundColor(.white)
@@ -69,7 +58,7 @@ struct InspirationDetailView: View {
                         .frame(width: 372, height: 1)
                         .background(Color("NeonGreen"))
                     
-                    //MARK: Birth – Death - Achievement
+                    //MARK: - Birth/ Death/ Achievement
                     HStack{
                         Image("baby")
                             .renderingMode(.template)
@@ -118,7 +107,7 @@ struct InspirationDetailView: View {
                         .frame(width: 372, height: 1)
                         .background(Color("NeonGreen"))
                     
-                    //MARK: Biography
+                    //MARK: - Biography
                     Text("Biography")
                         .font(.custom("Safiro-SemiBold", size: 24))
                         .foregroundColor(.white)
@@ -129,7 +118,7 @@ struct InspirationDetailView: View {
                         .font(.custom("HelveticaNeue", size: 14))
                         .foregroundColor(.white)
                     
-                    //MARK: Why Inspiring
+                    //MARK: - Why Inspiring
                     Text("Why She's Inspiring")
                         .font(.custom("Safiro-SemiBold", size: 24))
                         .foregroundColor(.white)
@@ -140,7 +129,7 @@ struct InspirationDetailView: View {
                         .font(.custom("HelveticaNeue", size: 14))
                         .foregroundColor(.white)
                     
-                    // MARK: Navigation Buttons
+                    // MARK: - Navigation Buttons
                     HStack {
                         Button(action: {
                             if currentIndex > 0 {
@@ -181,20 +170,19 @@ struct InspirationDetailView: View {
                         .opacity(currentIndex == women.count - 1 ? 0.7 : 1.0)
                     }
                     .padding(.top, 35)
-                    .padding(.bottom, 32)
+                    .padding(.bottom, 35)
                     .font(.custom("Safiro-SemiBold", size: 16))
                 }
                 .padding()
-                .padding(.bottom, 55)
             }
-            
             .background(Color("Violet"))
-            .edgesIgnoringSafeArea(.all)
-            .navigationBarBackButtonHidden(true)
+            .toolbarBackground(Color("Violet"), for: .navigationBar)
+            .tint(.white)
+            
         }
-
-       }
-   }
+        
+    }
+}
 
 #Preview {
     InspirationDetailView(
