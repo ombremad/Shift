@@ -65,7 +65,6 @@ struct EventsView: View {
             
                 TabPickerView(selectedTab: $selectedTab, tabs: viewModel.tabs, viewModel: viewModel)
                 .padding(.top, 28)
-                .padding(.leading, 12)
                 
                 ScrollView {
                     VStack(spacing: 15) {

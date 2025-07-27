@@ -16,6 +16,7 @@ struct TabPickerView: View {
     
     var body: some View {
         HStack {
+            Spacer()
             Picker("", selection: $selectedTab) {
                 ForEach(0..<tabs.count, id: \.self) { index in
                     Text(tabs[index])
@@ -28,9 +29,8 @@ struct TabPickerView: View {
             .onChange(of: selectedTab) { oldValue, newValue in
                 viewModel.filterEventsForTab(selectedTab: newValue)
             }
+            Spacer()
         }
-        .padding(.top, 28)
-        .padding(.leading, 12)
     }
 }
 
