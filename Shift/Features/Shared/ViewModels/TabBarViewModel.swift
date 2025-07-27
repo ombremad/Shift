@@ -8,7 +8,7 @@
 import Foundation
 
 class TabBarViewModel: ObservableObject {
-    @Published var selectedTab: Tab = .events
+    @Published var selectedTab: Tab = .dashboard
 
     let tabs: [TabItem] = [
         TabItem(tab: .inspirations, icon: "shooting-star", title: "Inspirations"),
