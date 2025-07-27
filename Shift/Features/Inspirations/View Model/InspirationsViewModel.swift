@@ -9,6 +9,8 @@ import Foundation
 
 class InspirationsViewModel: ObservableObject { //ObservableObject: Makes the ViewModel “watchable” by views
     @Published var women: [Inspirations] = []   //@Published: Notifies the view when women is updated → triggers UI refresh
+    @Published var selectedWoman: Inspirations?
+
     
     init() {
         loadJSON()                              //Automatically loads the data when the ViewModel is created.
@@ -25,6 +27,7 @@ class InspirationsViewModel: ObservableObject { //ObservableObject: Makes the Vi
             let decodedWomen = try JSONDecoder().decode([Inspirations].self, from: data)
             DispatchQueue.main.async {
                 self.women = decodedWomen
+                self.selectedWoman = decodedWomen.randomElement() // for random female inspiration on dashboard
             }
         } catch {
             print("Failed to load or decode JSON: \(error.localizedDescription)")
