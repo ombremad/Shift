@@ -85,38 +85,29 @@ class EventsViewModel {
         selectedCity = "All"
     }
     
-    private func applyAdditionalFilters(categories: [String]?, city: String?) {
-        if let categories = categories, !categories.isEmpty, !categories.contains("All") {
-            filteredEvents = filteredEvents.filter { categories.contains($0.category) }
-        }
-        if let city = city, city != "All" {
-            filteredEvents = filteredEvents.filter { $0.city == city }
-        }
-    }
-    
-    func filterEventsForTab(selectedTab: Int, byCategories categories: [String]? = nil, byCity city: String? = nil) {
-        switch selectedTab {
-        case 0: // Filtered Events
-            filterEvents(byCategories: categories, byCity: city)
-            
-        case 1: // My Events
-            filteredEvents = events.filter { $0.isMyEvent }
-            applyAdditionalFilters(categories: categories, city: city)
-            
-        case 2: // Favorites
-            filteredEvents = events.filter { $0.isLiked }
-            applyAdditionalFilters(categories: categories, city: city)
-            
-        default:
-            break
-        }
-    }
-    
-    func filterEvents(byCategories categories: [String]? = nil, byCity city: String? = nil) {
+    private func applyFilters(categories: [String]?, city: String?, isMyEvent: Bool? = nil, isLiked: Bool? = nil) {
         filteredEvents = events.filter { event in
             let matchesCategory = categories == nil || categories!.contains("All") || categories!.contains(event.category)
             let matchesCity = city == nil || city == "All" || event.city == city
-            return matchesCategory && matchesCity
+            let matchesMyEvent = isMyEvent == nil || event.isMyEvent == isMyEvent
+            let matchesLiked = isLiked == nil || event.isLiked == isLiked
+            return matchesCategory && matchesCity && matchesMyEvent && matchesLiked
+        }
+    }
+    
+    func applyFilters(selectedTab: Int) {
+        let selectedCategories = selectedIndexCategory.isEmpty ? nil : selectedIndexCategory.map { categories[$0] }
+        let selectedCity = selectedCity == "All" ? nil : selectedCity
+        
+        switch selectedTab {
+        case 0: // Filtered Events
+            applyFilters(categories: selectedCategories, city: selectedCity)
+        case 1: // My Events
+            applyFilters(categories: selectedCategories, city: selectedCity, isMyEvent: true)
+        case 2: // Favorites
+            applyFilters(categories: selectedCategories, city: selectedCity, isLiked: true)
+        default:
+            break
         }
     }
 }

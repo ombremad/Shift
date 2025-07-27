@@ -88,7 +88,6 @@ struct EventsView: View {
                 )
             }
             .background(Color.background)
-            
         }
     }
 

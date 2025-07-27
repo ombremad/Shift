@@ -65,16 +65,9 @@ struct EventFilterView: View {
                     }
                     
                     Button(action: {
-                        let selectedCategories = viewModel.selectedIndexCategory.isEmpty ? nil : viewModel.selectedIndexCategory.map { viewModel.categories[$0] }
-                        let selectedCity = viewModel.selectedCity == "All" ? nil : viewModel.selectedCity
-                        
-                        viewModel.filterEventsForTab(
-                            selectedTab: selectedTab,
-                            byCategories: selectedCategories,
-                            byCity: selectedCity
-                        )
-                        
-                        showingFilterModal = false                    }) {
+                        viewModel.applyFilters(selectedTab: selectedTab)
+                        showingFilterModal = false
+                    }) {
                         Text("Apply")
                             .frame(width: 168, height: 40)
                             .background(Color.violet)

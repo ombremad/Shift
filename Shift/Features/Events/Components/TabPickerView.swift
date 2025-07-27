@@ -27,7 +27,7 @@ struct TabPickerView: View {
             .frame(width: 370, height: 43)
             .cornerRadius(10)
             .onChange(of: selectedTab) { oldValue, newValue in
-                viewModel.filterEventsForTab(selectedTab: newValue)
+                viewModel.applyFilters(selectedTab: newValue)
             }
             Spacer()
         }
