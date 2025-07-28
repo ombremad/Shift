@@ -64,6 +64,25 @@ struct EventDetailView: View {
                             .multilineTextAlignment(.leading)
                     }
                     .padding(.top, 25)
+                    
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text("Location")
+                            .font(.custom("Safiro-semiBold", size: 16))
+                            .foregroundColor(Color.noir)
+                            .padding(.leading)
+                        
+                        HStack {
+                            Image(systemName: "mappin.and.ellipse")
+                                .resizable()
+                                .frame(width: 20, height: 20)
+                                .foregroundColor(Color.noir)
+                            Text("\(event.location), \(event.city)")
+                                .font(.custom("Safiro-Regular", size: 14))
+                                .foregroundColor(Color.noir)
+                        }
+                        .padding(.leading)
+                    }
+                    .padding(.top, 25)
 
 
 
