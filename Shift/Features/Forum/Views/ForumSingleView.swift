@@ -126,7 +126,7 @@ struct ForumSingleView: View {
             city: "Johannesburg",
             interests: [fieldOfInterests.uxui]
         ),
-        numberOfComments: 12,
+        // numberOfComments: 12,
         numberOfLikes: 42,
         isHot: true,
         tags: ["Tech talk"]

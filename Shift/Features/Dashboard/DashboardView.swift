@@ -71,7 +71,8 @@ struct DashboardView: View {
                         .font(.custom("Safiro-SemiBold", size: 24))
                         .padding(.top, 40)
                     
-                    // MARK: - Hot Topics
+                    /*
+                     // MARK: - Hot Topics
                     Text("Hot Topics")
                         .font(.custom("Safiro-SemiBold", size: 24))
                     
@@ -90,6 +91,7 @@ struct DashboardView: View {
                     .padding(.bottom, 40)
                     .padding(.top, 15)
                     
+                      */
                     // MARK: - Events
                     Text("Popular events")
                         .font(.custom("Safiro-SemiBold", size: 24))
