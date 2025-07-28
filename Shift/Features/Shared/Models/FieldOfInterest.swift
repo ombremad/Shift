@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class FieldOfInterest: Identifiable, Equatable {
+class FieldOfInterest: Hashable, Identifiable, Equatable {
     let id: UUID = UUID()
     var name: String            // full name ie. "Cyber Security"
     var nameShort: String       // short name for some pages ie. "Cyber"
@@ -22,4 +22,8 @@ class FieldOfInterest: Identifiable, Equatable {
      static func == (lhs: FieldOfInterest, rhs: FieldOfInterest) -> Bool {
          return lhs.id == rhs.id
      }
+    // Pour Hashable
+        func hash(into hasher: inout Hasher) {
+            hasher.combine(id)
+        }
 }

@@ -10,11 +10,40 @@ import SwiftUI
 struct ForumNewPostView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(ForumViewModel.self) var forumViewModel
-    
     @State private var title: String = ""
     @State private var description: String = ""
-    @State private var noTagAlert: Bool = false
+    @State private var selectedTags: [String] = []
     
+    func header() -> some View {
+        HStack {
+            HStack {
+                Image(systemName: "chevron.left")
+                Text("Back")
+            }
+                .font(.custom("HelveticaNeue", size: 16))
+                .foregroundStyle(.violet)
+                .onTapGesture {
+                    dismiss()
+                }
+            Spacer()
+            Text("Send")
+                .font(.custom("HelveticaNeue-Bold", size: 14))
+                .foregroundStyle(.white)
+                .padding(.horizontal, 20)
+                .padding(.vertical, 10)
+                .frame(height: 40)
+                .background(.violet)
+                .cornerRadius(5)
+                .onTapGesture {
+                    if !selectedTags.isEmpty {
+                        forumViewModel.setNewPost(title: title, content: description, user: forumViewModel.user.getCurrentUser(), tags: selectedTags)
+                        dismiss()
+                    }
+                }
+        }
+        .frame(height: 44)
+        .padding(.horizontal)
+    }
     func postHeader() -> some View {
         VStack(alignment: .leading) {
             Text("New Post")
@@ -58,10 +87,11 @@ struct ForumNewPostView: View {
                 .padding(.horizontal)
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
+                    // TODO: Remove unselected tags and color them based on toggled
                     ForEach(forumViewModel.tags) { tag in
                         ForumTagCard(tag: tag)
                             .onTapGesture {
-                                tag.toggle()
+                                selectedTags.append(tag.name)
                             }
                     }
                 }
@@ -69,9 +99,6 @@ struct ForumNewPostView: View {
             }
         }
         .foregroundStyle(.noir)
-        .onAppear {
-            forumViewModel.resetToggledTags()
-        }
     }
     func postDescription() -> some View {
         VStack(alignment: .leading) {
@@ -91,12 +118,13 @@ struct ForumNewPostView: View {
     }
 
     var body: some View {
-        ZStack {
-            Color.background
-                .ignoresSafeArea()
-            NavigationStack {
+        NavigationStack {
+            ZStack {
+                Color.background
+                    .ignoresSafeArea()
                 ScrollView {
                     VStack(alignment: .leading, spacing: 25) {
+                        header()
                         postHeader()
                         postTitle()
                         postCategories()
@@ -104,50 +132,8 @@ struct ForumNewPostView: View {
                     }
                 }
             }
-            .navigationTitle("")
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationBarBackButtonHidden()
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    HStack {
-                        Image(systemName: "chevron.left")
-                        Text("Back")
-                    }
-                        .font(.custom("HelveticaNeue-SemiBold", size: 16))
-                        .foregroundStyle(.violet)
-                        .onTapGesture {
-                            dismiss()
-                        }
-                }
-                ToolbarItem(placement: .topBarTrailing) {
-                    HStack {
-                        Text("Send")
-                            .font(.custom("HelveticaNeue-Bold", size: 14))
-                            .foregroundStyle(.white)
-                            .padding(.horizontal, 20)
-                            .padding(.vertical, 10)
-                            .frame(height: 40)
-                            .background(.violet)
-                            .cornerRadius(5)
-                            .onTapGesture {
-                                if forumViewModel.getToggledTags().isEmpty {
-                                    noTagAlert.toggle()
-                                } else {
-                                    forumViewModel.setNewPost(title: title, content: description, user: forumViewModel.user.getCurrentUser(), tags:                     forumViewModel.getToggledTags())
-                                    forumViewModel.resetToggledTags()
-                                    dismiss()
-                                }
-                            }
-                    }
-                    .frame(height: 44)
-                    .padding(.horizontal)
-                    .alert("Please select at least one category.", isPresented: $noTagAlert) {
-                        Button("OK", role: .cancel) {
-                            noTagAlert.toggle()
-                        }
-                    }
-                }
-            }
+            .navigationTitle("New post")
+            .navigationBarHidden(true)
         }
     }
 }
