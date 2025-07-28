@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EventDetailView: View {
     let event: EventModel
-    
+
     var body: some View {
         ScrollView {
             VStack(spacing: 0) {
@@ -18,7 +18,7 @@ struct EventDetailView: View {
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 402, height: 276)
                     .clipped()
-                
+
                 // Main content
                 VStack(alignment: .leading, spacing: 15) {
                     VStack(alignment: .leading, spacing: 10) {
@@ -29,9 +29,13 @@ struct EventDetailView: View {
                             .multilineTextAlignment(.leading)
                             .lineLimit(2)
 
-                        
                         HStack {
-                            Text(event.date.formatted(date: .abbreviated, time: .omitted))
+                            Text(
+                                event.date.formatted(
+                                    date: .abbreviated,
+                                    time: .omitted
+                                )
+                            )
                             Text(event.city)
                         }
                         .font(.custom("Safiro-semiBold", size: 16))
@@ -41,8 +45,7 @@ struct EventDetailView: View {
                     }
                     .padding(.horizontal)
                     .padding(.top, 20)
-                    
-                    
+
                     HStack {
                         Text("Participants")
                             .font(.custom("Safiro-semiBold", size: 16))
@@ -50,13 +53,13 @@ struct EventDetailView: View {
                             .padding(.top, 25)
                             .padding(.leading)
                     }
-                    
+
                     VStack(alignment: .leading, spacing: 10) {
                         Text("Overview")
                             .font(.custom("Safiro-semiBold", size: 16))
                             .foregroundColor(Color.noir)
                             .padding(.leading)
-                        
+
                         Text(event.overview ?? "No overview available")
                             .font(.custom("Safiro-Regular", size: 14))
                             .foregroundColor(Color.noir)
@@ -64,14 +67,13 @@ struct EventDetailView: View {
                             .multilineTextAlignment(.leading)
                     }
                     .padding(.top, 25)
-                    
-                    
+
                     VStack(alignment: .leading, spacing: 10) {
                         Text("Location")
                             .font(.custom("Safiro-semiBold", size: 16))
                             .foregroundColor(Color.noir)
                             .padding(.leading)
-                        
+
                         HStack(spacing: 10) {
                             Image(systemName: "mappin.and.ellipse")
                                 .resizable()
@@ -83,27 +85,42 @@ struct EventDetailView: View {
                         }
                         .padding(.leading)
                         .padding(.top, 10)
-                        
-                        
-                        // Map view here
-                        if let coordinate = event.coordinate {
-                            MapView(coordinate: coordinate)
-                                .padding(.leading)
-                                .padding(.top, 10)
-                        } else {
-                            Text("No location data available")
-                                .padding(.leading)
-                                .padding(.top, 10)
-                        }
-                    }
-                    .padding(.top, 25)
-                    .padding(.bottom, 20)
 
-                    
+                        VStack {
+                            HStack {
+                                Spacer()
+
+                                if let coordinate = event.coordinate {
+                                    MapView(coordinate: coordinate)
+                                        .padding(.top, 10)
+                                } else {
+                                    Text("No location data available")
+                                        .padding(.top, 10)
+                                }
+
+                                Spacer()
+                            }
+
+                            Button(action: {
+
+                            }) {
+                                Text("Participate")
+                                    .frame(width: 167, height: 40)
+                                    .background(.violet)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(8)
+                            }
+                            .padding(.top, 20)
+
+                        }
+                        .padding(.bottom, 20)
+
+                    }
+
                     Divider()
                         .padding(.horizontal)
                 }
-                
+
                 .frame(maxWidth: .infinity)
                 .background(Color.background)
                 .clipShape(
@@ -122,7 +139,6 @@ struct EventDetailView: View {
     }
 }
 
-
 struct EventDetailView_Previews: PreviewProvider {
     static var previews: some View {
         let sampleEvent = EventModel(
@@ -133,10 +149,11 @@ struct EventDetailView_Previews: PreviewProvider {
             city: "Paris",
             category: "Technologie",
             isMyEvent: true,
-            overview: "Explore the latest trends and innovations in AI and Machine Learning. This conference brings together leading experts and practitioners to share insights and advancements.",
+            overview:
+                "Explore the latest trends and innovations in AI and Machine Learning. This conference brings together leading experts and practitioners to share insights and advancements.",
             location: "Grand Palais"
         )
-        
+
         NavigationView {
             EventDetailView(event: sampleEvent)
         }
