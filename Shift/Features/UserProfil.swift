@@ -8,6 +8,8 @@
 import UIKit
 
 class ViewController: UIViewController {
+    var userModel = UserModel()
+    
     private let titlePage: UILabel = {
         var label = UILabel()
         label.text = "Profile settings"
@@ -50,12 +52,13 @@ class ViewController: UIViewController {
     
     private let nameTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Your name"
+        textField.placeholder = ""
         textField.borderStyle = .roundedRect
         textField.textColor = .grisForm
         textField.backgroundColor = .blanc
         textField.font = UIFont(name: "helveticaNeue-Courant", size: 14)
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.isEnabled = false // pour que le champs ne soit pas modifiable
         return textField
     }()
     
@@ -132,6 +135,16 @@ class ViewController: UIViewController {
         return button
     }()
     
+    private let message: UILabel = {
+        let label = UILabel()
+        label.text = ""
+        label.textColor = .noir
+        label.textAlignment = .left
+        label.font = UIFont(name: "helveticaNeue-Courant", size: 14)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .background
@@ -147,6 +160,7 @@ class ViewController: UIViewController {
         view.addSubview(city)
         view.addSubview(cityTextField)
         view.addSubview(saveButton)
+        view.addSubview(message)
 
         NSLayoutConstraint.activate([
                    titlePage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
@@ -198,13 +212,38 @@ class ViewController: UIViewController {
                    saveButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                    saveButton.widthAnchor.constraint(equalToConstant: 167),
                    saveButton.heightAnchor.constraint(equalToConstant: 40),
+                   
+                   message.topAnchor.constraint(equalTo: saveButton.bottomAnchor, constant: 10),
+                   message.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                ])
-       
+        // Pour recuperer le nom enregistrer dans UserViewModel
+        let currentUser = userModel.getCurrentUser()
+            nameTextField.text = currentUser.name
     }
     //pour mettre image en rond après ajout layout
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         userImage.layer.cornerRadius = userImage.frame.size.width / 2
+        saveButton.addTarget(self, action: #selector(saveButtonAction), for: .touchUpInside)
+
+        
+    }
+    //Fonction pour récupérer les champs de textField (sauf name deja enregistré) dans le userViewModel - currentUser
+    @objc func saveButtonAction(){
+        let name = userModel.getCurrentUser().name
+        let nickname = nicknameTextField.text ?? ""
+        let country = countryTextField.text ?? ""
+        let city = cityTextField.text ?? ""
+        
+        if !nickname.isEmpty && !country.isEmpty && !city.isEmpty {
+        userModel.setCurrentUser(name: name, nickname: nickname, city: city)
+            message.text = "Profil sauvegardé"
+            message.textColor = .noir
+    print(userModel.getCurrentUser())
+      } else {
+          message.text = "Erreur: un des champs est vide."
+          message.textColor = .red
+      }
     }
 }
 
