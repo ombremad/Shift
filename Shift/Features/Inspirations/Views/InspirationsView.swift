@@ -22,7 +22,7 @@ struct InspirationsView: View {
     @State private var currentOpenIndex: Int = 0
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ScrollViewReader { proxy in
                 ScrollView {
                     ZStack {
@@ -91,11 +91,12 @@ struct InspirationsView: View {
                 }
                 .background(Image("background"))
                 .background(Color("Violet"))
+               
             }
-        }
+        } .tint(.white)
     }
     
-    //MARK: When the card reaches the top 30% of the screen isOpen = true
+    //MARK: - When the card reaches the top 30% of the screen isOpen = true
     private func updateCurrentOpenIndex() {
         let targetY = UIScreen.main.bounds.height * 0.30
         let closest = cardOffsets.min { abs($0.value - targetY) < abs($1.value - targetY) }
