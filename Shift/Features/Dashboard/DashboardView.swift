@@ -9,6 +9,8 @@ import SwiftUI
 
 struct DashboardView: View {
     @StateObject private var viewModel = InspirationsViewModel()
+    @State var forumViewModel = ForumViewModel()
+    
     
     var body: some View {
         NavigationStack {
@@ -17,7 +19,7 @@ struct DashboardView: View {
                     
                     // MARK: - Welcome User
                     
-               // TODO: - Add logic to recover current user's image and name
+                    // TODO: - Add logic to recover current user's image and name
                     HStack(spacing: 12) {
                         Image("ProfileImage")
                             .resizable()
@@ -62,7 +64,7 @@ struct DashboardView: View {
                         }
                         .buttonStyle(PlainButtonStyle())
                     }
-                        
+                    
                     
                     // MARK: - Latest Articles
                     Text("Latest Articles")
@@ -73,18 +75,33 @@ struct DashboardView: View {
                     Text("Hot Topics")
                         .font(.custom("Safiro-SemiBold", size: 24))
                     
+                    VStack (spacing: 30){
+                        ForEach(forumViewModel.getHotPosts()) { post in
+                            NavigationLink(destination: ForumSingleView(currentUser: forumViewModel.user.getCurrentUser(), post: post)) {
+                                ForumCard(
+                                    post: post,
+                                    backgroundColor: Color("Violet"),
+                                    textColor: .white
+                                )
+                                .frame(width: 371, height: 122)
+                            }
+                        }
+                    }
+                    .padding(.bottom, 40)
+                    .padding(.top, 15)
+                    
                     // MARK: - Events
                     Text("Popular events")
                         .font(.custom("Safiro-SemiBold", size: 24))
                     
                 }
                 .padding(.top)
-                .padding(.horizontal, 20)
+                .padding(.leading, 20)
                 
             }
             .background(Color("Background")
-            .ignoresSafeArea())
-           
+                .ignoresSafeArea())
+            
         }
         .tint(.white)
     }
