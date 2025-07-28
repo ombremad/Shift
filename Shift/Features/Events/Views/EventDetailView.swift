@@ -21,12 +21,60 @@ struct EventDetailView: View {
                 
                 // Main content
                 VStack(alignment: .leading, spacing: 15) {
-                    Text(event.title)
-                        .font(.title)
-                        .fontWeight(.bold)
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text(event.title)
+                            .font(.title)
+                            .font(.custom("Safiro-semiBold", size: 22))
+                            .foregroundColor(Color.noir)
+                            .multilineTextAlignment(.leading)
+                            .lineLimit(2)
+
+                        
+                        HStack {
+                            Text(event.date.formatted(date: .abbreviated, time: .omitted))
+                            Text(event.city)
+                        }
+                        .font(.custom("Safiro-semiBold", size: 16))
+                        .foregroundColor(Color.noir)
+                        .multilineTextAlignment(.leading)
+                        .lineLimit(2)
+                    }
+                    .padding(.horizontal)
+                    .padding(.top, 20)
+                    
+                    
+                    HStack {
+                        Text("Participants")
+                            .font(.custom("Safiro-semiBold", size: 16))
+                            .foregroundColor(Color.noir)
+                            .padding(.top, 25)
+                            .padding(.leading)
+                    }
+                    
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text("Overview")
+                            .font(.custom("Safiro-semiBold", size: 16))
+                            .foregroundColor(Color.noir)
+                            .padding(.leading)
+                        
+                        Text(event.overview ?? "No overview available")
+                            .font(.custom("Safiro-Regular", size: 14))
+                            .foregroundColor(Color.noir)
+                            .padding(.leading)
+                            .multilineTextAlignment(.leading)
+                    }
+                    .padding(.top, 25)
+
+
+
+                    
+                    
+                    
+                    
+                    Divider()
                         .padding(.horizontal)
-                        .padding(.top, 20)
                 }
+                
                 .frame(maxWidth: .infinity)
                 .background(Color.background)
                 .clipShape(
@@ -37,6 +85,7 @@ struct EventDetailView: View {
                 )
                 .padding(.top, -32)
             }
+            .background(Color.background)
         }
         .background(Color.background)
         .navigationBarTitleDisplayMode(.inline)
@@ -55,6 +104,7 @@ struct EventDetailView_Previews: PreviewProvider {
             city: "Paris",
             category: "Technologie",
             isMyEvent: true,
+            overview: "Explore the latest trends and innovations in AI and Machine Learning. This conference brings together leading experts and practitioners to share insights and advancements.",
             location: "Grand Palais"
         )
         

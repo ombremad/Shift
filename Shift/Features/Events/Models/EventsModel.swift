@@ -16,9 +16,10 @@ struct EventModel: Hashable {
     var city: String
     var category: String
     var isMyEvent: Bool
+    var overview: String?
     var location: String //  Pour la map
     
-    init(imageName: String, isLiked: Bool, title: String, date: Date, city: String, category: String, isMyEvent: Bool, location: String) {
+    init(imageName: String, isLiked: Bool, title: String, date: Date, city: String, category: String, isMyEvent: Bool, overview: String? = nil, location: String) {
         self.imageName = imageName
         self.isLiked = isLiked
         self.title = title
@@ -26,6 +27,7 @@ struct EventModel: Hashable {
         self.city = city
         self.category = category
         self.isMyEvent = isMyEvent
+        self.overview = overview
         self.location = location
     }
     
