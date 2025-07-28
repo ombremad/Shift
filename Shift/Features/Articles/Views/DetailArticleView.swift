@@ -10,6 +10,8 @@ import SwiftUI
 struct DetailArticleView: View {
     
     let article : Article
+    @State private var showAlert = false;
+    
     @Environment(ArticlesViewModel.self) var viewModel
     
     var body: some View {
@@ -32,7 +34,7 @@ struct DetailArticleView: View {
                 
                 HStack(){ //pictos
                     Button(action: {
-                        
+                       showAlert = true
                     }) {
                         ZStack{ //share
                             Circle()
@@ -42,6 +44,13 @@ struct DetailArticleView: View {
                                 .resizable()
                                 .frame(width: 13, height: 15)
                         }
+                    }
+                    .alert(isPresented: $showAlert) {
+                        Alert(
+                            title: Text("Succès"),
+                            message: Text("L'événement a été partagé avec succès."),
+                            dismissButton: .default(Text("OK"))
+                        )
                     }
                     Button(action: {
                         if viewModel.isLiked == false
@@ -56,9 +65,9 @@ struct DetailArticleView: View {
                                 .frame(width: 35)
                                 .foregroundColor(.neonGreen)
                             Image(systemName: viewModel.isLiked ? "heart.fill" : "heart")
-                                //.resizable()
+                            //.resizable()
                                 .frame(width: 15, height: 15)
-                                .foregroundStyle(.noir)
+                                .foregroundStyle(.black)
                         }
                     }
                 }

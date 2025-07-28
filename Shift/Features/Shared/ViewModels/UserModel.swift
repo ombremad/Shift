@@ -24,7 +24,7 @@ class UserModel {
         return currentUser
     }
     
-    func setCurrentUser(name: String, nickname: String, picture: ImageResource? = nil , city: String, interests: [FieldOfInterest]? = nil) {
+    func setCurrentUser(name: String, nickname: String, picture: ImageResource , city: String, interests: [FieldOfInterest]) {
         currentUser = User(name: name, nickname: nickname, picture: picture, city: city, interests: interests)
     }
     

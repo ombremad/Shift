@@ -21,6 +21,7 @@ struct ArticlesView: View {
                     .padding(.bottom, 15)
                     .padding(.leading, 15)
                     .padding(.bottom, 15)
+                    
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 12){
                         ForEach(viewModel.articlesSlider) { article in
@@ -28,6 +29,7 @@ struct ArticlesView: View {
                                 article: article
                             ).environment(viewModel)) {
                                 SliderView(article: article)
+                                    .padding(.vertical, 10)
                             }
                             .navigationBarBackButtonHidden(true)
                         }
@@ -48,7 +50,7 @@ struct ArticlesView: View {
                                       )}
                         }
                     }
-                    .padding(.top, 15)
+                    .padding(.bottom, 5)
                     // Articles les plus récent
                     Text("Latest")
                         .font(.custom("Safiro-SemiBold", size: 24))

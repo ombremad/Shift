@@ -22,7 +22,7 @@ struct InterestCardView: View {
                     .cornerRadius(10)
                 
                 Image(filter.icon)
-                    .foregroundColor(isSelected ? .blanc : .noir)
+                    .foregroundColor(isSelected ? .white : .black)
                     .frame(width: 49, height: 49)
             }
             

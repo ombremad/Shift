@@ -10,6 +10,33 @@ import UIKit
 class ViewController: UIViewController {
     var userModel = UserModel()
     
+    private let darkModeLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Switch to Dark mode"
+        label.textColor = .noir
+        label.textAlignment = .left
+        label.font = UIFont(name: "Safiro-SemiBold", size: 18)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let darkModeToggle: UISwitch = {
+        let toggle = UISwitch()
+        toggle.isOn = false
+        toggle.onTintColor = .violet
+        toggle.translatesAutoresizingMaskIntoConstraints = false
+        return toggle
+    }()
+    
+    private lazy var darkModeStack: UIStackView = {
+        let stack = UIStackView(arrangedSubviews: [darkModeLabel, darkModeToggle])
+        stack.axis = .horizontal
+        stack.spacing = 10
+        stack.alignment = .center
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
+    }()
+    
     private let titlePage: UILabel = {
         var label = UILabel()
         label.text = "Profile settings"
@@ -33,7 +60,7 @@ class ViewController: UIViewController {
         let button = UIButton(type: .custom)
         button.setTitle("Upload picture", for: .normal)
        // button.font = UIFont(name: "Safiro-SemiBold", size: 32) ça marche pas !!!
-        button.setTitleColor(.blanc, for: .normal)
+        button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .violet
         button.layer.cornerRadius = 10
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -83,27 +110,6 @@ class ViewController: UIViewController {
         return textField
     }()
     
-    private let country: UILabel = {
-        let label = UILabel()
-        label.text = "Country"
-        label.textColor = .noir
-        label.textAlignment = .left
-        label.font = UIFont(name: "Safiro-SemiBold", size: 18)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    private let countryTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Your country"
-        textField.borderStyle = .roundedRect
-        textField.textColor = .grisForm
-        textField.backgroundColor = .blanc
-        textField.font = UIFont(name: "helveticaNeue-Courant", size: 14)
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        return textField
-    }()
-    
     private let city: UILabel = {
         let label = UILabel()
         label.text = "City"
@@ -128,7 +134,7 @@ class ViewController: UIViewController {
     private let saveButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setTitle("Save", for: .normal)
-        button.setTitleColor(.blanc, for: .normal)
+        button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .violet
         button.layer.cornerRadius = 10
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -151,19 +157,20 @@ class ViewController: UIViewController {
         view.addSubview(titlePage)
         view.addSubview(userImage)
         view.addSubview(changeImageButton)
+        view.addSubview(darkModeLabel)
+        view.addSubview(darkModeToggle)
+        view.addSubview(darkModeStack)
         view.addSubview(name)
         view.addSubview(nameTextField)
         view.addSubview(nickname)
         view.addSubview(nicknameTextField)
-        view.addSubview(country)
-        view.addSubview(countryTextField)
         view.addSubview(city)
         view.addSubview(cityTextField)
         view.addSubview(saveButton)
         view.addSubview(message)
 
         NSLayoutConstraint.activate([
-                   titlePage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+                   titlePage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40),
                    titlePage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
                    
                    userImage.topAnchor.constraint(equalTo: titlePage.bottomAnchor, constant: 35),
@@ -176,7 +183,11 @@ class ViewController: UIViewController {
                    changeImageButton.widthAnchor.constraint(equalToConstant: 167),
                    changeImageButton.heightAnchor.constraint(equalToConstant: 40),
                    
-                   name.topAnchor.constraint(equalTo: changeImageButton.bottomAnchor, constant: 20),
+                   darkModeStack.topAnchor.constraint(equalTo: changeImageButton.bottomAnchor, constant: 50),
+                   darkModeStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+                   darkModeStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+
+                   name.topAnchor.constraint(equalTo: darkModeStack.bottomAnchor, constant: 20),
                    name.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
                    
                    nameTextField.topAnchor.constraint(equalTo: name.bottomAnchor, constant: 10),
@@ -192,15 +203,7 @@ class ViewController: UIViewController {
                    nicknameTextField.widthAnchor.constraint(equalToConstant: 372),
                    nicknameTextField.heightAnchor.constraint(equalToConstant: 44),
                    
-                   country.topAnchor.constraint(equalTo: nicknameTextField.bottomAnchor, constant: 20),
-                   country.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
-                   
-                   countryTextField.topAnchor.constraint(equalTo: country.bottomAnchor, constant: 10),
-                   countryTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
-                   countryTextField.widthAnchor.constraint(equalToConstant: 372),
-                   countryTextField.heightAnchor.constraint(equalToConstant: 44),
-                   
-                   city.topAnchor.constraint(equalTo: countryTextField.bottomAnchor, constant: 20),
+                   city.topAnchor.constraint(equalTo: nicknameTextField.bottomAnchor, constant: 20),
                    city.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
                    
                    cityTextField.topAnchor.constraint(equalTo: city.bottomAnchor, constant: 10),
@@ -225,25 +228,29 @@ class ViewController: UIViewController {
         super.viewDidLayoutSubviews()
         userImage.layer.cornerRadius = userImage.frame.size.width / 2
         saveButton.addTarget(self, action: #selector(saveButtonAction), for: .touchUpInside)
-
+        
+        darkModeToggle.addTarget(self, action: #selector(toggleChanged), for: .valueChanged)
         
     }
     //Fonction pour récupérer les champs de textField (sauf name deja enregistré) dans le userViewModel - currentUser
     @objc func saveButtonAction(){
         let name = userModel.getCurrentUser().name
         let nickname = nicknameTextField.text ?? ""
-        let country = countryTextField.text ?? ""
         let city = cityTextField.text ?? ""
+        let picture = userModel.getCurrentUser().picture
+        let interest = userModel.getCurrentUser().interests
         
-        if !nickname.isEmpty && !country.isEmpty && !city.isEmpty {
-        userModel.setCurrentUser(name: name, nickname: nickname, city: city)
-            message.text = "Profil sauvegardé"
-            message.textColor = .noir
+        if !nickname.isEmpty && !city.isEmpty {
+            userModel.setCurrentUser(name: name, nickname: nickname, picture: picture, city: city, interests: interest)
+            message.text = "Saved Profile!"
+            message.textColor = .violet
     print(userModel.getCurrentUser())
       } else {
-          message.text = "Erreur: un des champs est vide."
+          message.text = "Error: one of the fields is empty."
           message.textColor = .red
       }
     }
+    @objc func toggleChanged(_ sender: UISwitch) {
+        overrideUserInterfaceStyle = sender.isOn ? .dark : .light
+    }
 }
-

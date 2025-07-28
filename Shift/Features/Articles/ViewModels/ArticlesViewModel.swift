@@ -10,6 +10,7 @@ import SwiftUI
 @Observable
 class ArticlesViewModel {
     
+    var showAlert: Bool = false
     var isLiked: Bool = false
     var selectedFilter: FieldOfInterest? = nil
     let tagModel: fieldOfInterestModel //Objet qui contient toutes les instances des tag

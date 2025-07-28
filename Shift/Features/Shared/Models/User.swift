@@ -11,12 +11,12 @@ struct User: Identifiable {
     var id = UUID()
     var name: String                // full name ie. what's displayed privately on users' homepage
     var nickname: String            // display name ie. how the user's called on the forum
-    var picture: ImageResource?
+    var picture: ImageResource
    // var country: String
     var city: String
-    var interests: [FieldOfInterest]?
+    var interests: [FieldOfInterest]
     
-    init(name: String, nickname: String, picture: ImageResource? = nil, city: String, interests: [FieldOfInterest]? = nil) {
+    init(name: String, nickname: String, picture: ImageResource, city: String, interests: [FieldOfInterest]) {
         self.name = name
         self.nickname = nickname
        // self.country = country

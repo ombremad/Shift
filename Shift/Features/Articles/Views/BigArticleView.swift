@@ -27,7 +27,7 @@ struct BigArticleView: View {
                 VStack (alignment: .leading, spacing: 12){
                     Spacer()
                     Text(article.tag.name)
-                        .foregroundColor(.blanc)
+                        .foregroundColor(.white)
                         .font(.custom("HelveticaNeue-Bold", size: 12))
                         .padding(.horizontal, 12)
                         .padding(.vertical, 5)

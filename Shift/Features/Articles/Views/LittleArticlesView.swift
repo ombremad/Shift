@@ -30,7 +30,7 @@ struct LittleArticlesView: View {
                         
                         Text(article.tag.name)
                             .font(.custom("HelveticaNeue-Bold", size: 12))
-                            .foregroundColor(.blanc)
+                            .foregroundColor(.white)
                             .padding(.vertical,6)
                             .padding(.horizontal, 12)
                             .background(Color.violet)

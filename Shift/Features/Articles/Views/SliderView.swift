@@ -28,7 +28,7 @@ struct SliderView: View {
                         .clipped()
                     Text(article.tag.name)
                         .font(.custom("HelveticaNeue-Bold", size: 12))
-                        .foregroundColor(.blanc)
+                        .foregroundColor(.white)
                         .padding(.vertical,6)
                         .padding(.horizontal, 12)
                         .background(Color.violet)
@@ -55,7 +55,7 @@ struct SliderView: View {
                         chapeau: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore. ",
                         tag: .init(name: "web", nameShort: "web", icon: .arrowBendUpLeft),
                         datePublication: "17 juillet 2025",
-                        imageCouv: "webMobile-1",
+                        imageCouv: "web-1",
                         contentArticle :[
                             .subtitle1("Sous titre"),
                             .paragraph1("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
