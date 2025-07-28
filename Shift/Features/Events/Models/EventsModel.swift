@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 struct EventModel: Hashable {
     let id = UUID()
@@ -17,9 +18,11 @@ struct EventModel: Hashable {
     var category: String
     var isMyEvent: Bool
     var overview: String?
-    var location: String //  Pour la map
+    var location: String
+    var latitude: Double?
+    var longitude: Double?
     
-    init(imageName: String, isLiked: Bool, title: String, date: Date, city: String, category: String, isMyEvent: Bool, overview: String? = nil, location: String) {
+    init(imageName: String, isLiked: Bool, title: String, date: Date, city: String, category: String, isMyEvent: Bool, overview: String? = nil, location: String, latitude: Double? = nil, longitude: Double? = nil ) {
         self.imageName = imageName
         self.isLiked = isLiked
         self.title = title
@@ -29,8 +32,16 @@ struct EventModel: Hashable {
         self.isMyEvent = isMyEvent
         self.overview = overview
         self.location = location
+        self.latitude = latitude
+        self.longitude = longitude
     }
     
+    var coordinate: CLLocationCoordinate2D? {
+        guard let latitude = latitude, let longitude = longitude else {
+            return nil
+        }
+        return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    }
 
     func formattedDate() -> String {
         let formatter = DateFormatter()

@@ -65,13 +65,14 @@ struct EventDetailView: View {
                     }
                     .padding(.top, 25)
                     
+                    
                     VStack(alignment: .leading, spacing: 10) {
                         Text("Location")
                             .font(.custom("Safiro-semiBold", size: 16))
                             .foregroundColor(Color.noir)
                             .padding(.leading)
                         
-                        HStack {
+                        HStack(spacing: 10) {
                             Image(systemName: "mappin.and.ellipse")
                                 .resizable()
                                 .frame(width: 20, height: 20)
@@ -81,14 +82,23 @@ struct EventDetailView: View {
                                 .foregroundColor(Color.noir)
                         }
                         .padding(.leading)
+                        .padding(.top, 10)
+                        
+                        
+                        // Map view here
+                        if let coordinate = event.coordinate {
+                            MapView(coordinate: coordinate)
+                                .padding(.leading)
+                                .padding(.top, 10)
+                        } else {
+                            Text("No location data available")
+                                .padding(.leading)
+                                .padding(.top, 10)
+                        }
                     }
                     .padding(.top, 25)
+                    .padding(.bottom, 20)
 
-
-
-                    
-                    
-                    
                     
                     Divider()
                         .padding(.horizontal)
