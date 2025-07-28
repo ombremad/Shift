@@ -38,20 +38,14 @@ struct DailyInspirationCard: View {
                 Text(woman.whyInspiring)
                     .font(.custom("HelveticaNeue", size: 14))
                     .foregroundColor(.white)
-                    .lineLimit(4)
-                
-                Text("See more")
-                    .font(.custom("HelveticaNeue-Bold", size: 12))
-                    .foregroundColor(.white)
-                    
+                    .lineLimit(5)
             }
-            .frame(width:156, height: 139, alignment: .leading)
+            .frame(width:141, height: 139, alignment: .leading)
             
         }
-        .padding()
+        .padding(15)
         .background(Color("Violet"))
         .cornerRadius(15)
-        .frame(width:362, height: 201)
     }
 }
 

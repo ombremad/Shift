@@ -10,11 +10,14 @@ import SwiftUI
 struct ForumCard: View {
     
     var post: Post
+    var backgroundColor: Color = .blanc
+    var textColor: Color = Color(.noir)
+
     
 var body: some View {
         ZStack {
             Rectangle()
-                .fill(.blanc)
+                .fill(backgroundColor)
                 .cornerRadius(15)
                 .shadow(color: .noir.opacity(0.20), radius: 2, x: 0, y: 2)
             VStack(alignment:.leading, spacing: 10) {
@@ -34,10 +37,10 @@ var body: some View {
                             Image(.chatTeardrop)
                                 .resizable()
                                 .frame(width: 20, height: 20)
-                                .foregroundStyle(.noir)
+                                .foregroundStyle(textColor)
                                 .scaledToFit()
                             Text(post.comments.count.description)
-                                .foregroundStyle(.noir)
+                                .foregroundStyle(textColor)
                         }
                         HStack {
                             Image(.thumbsUp)
@@ -81,7 +84,7 @@ var body: some View {
                 .font(.custom("HelveticaNeue-Bold", size: 12))
             }
             .padding(.vertical, 0)
-            .foregroundStyle(.noir)
+            .foregroundColor(textColor)
         }
         .frame(height: 140)
     }
