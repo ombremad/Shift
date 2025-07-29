@@ -13,15 +13,8 @@ struct OnboardingStep3: View {
     @Environment(UserModel.self) var userModel
 
     @State private var name: String = ""
+    @State var fieldOfInterests = fieldOfInterestModel()
     @State private var selectedInterests: Set<FieldOfInterest> = []
-    
-    let fields: [FieldOfInterest] = [
-        FieldOfInterest(name: "Web / Mobile", nameShort: "Web", icon: .devices),
-        FieldOfInterest(name: "UX / UI", nameShort: "UXUI", icon: .bezierCurve),
-        FieldOfInterest(name: "Data Science & AI", nameShort: "Data", icon: .chartBar),
-        FieldOfInterest(name: "Cyber Security", nameShort: "Cyber", icon: .shieldCheck),
-        FieldOfInterest(name: "DevOps", nameShort: "DevOps", icon: .gear)
-    ]
     
     var body: some View {
         
@@ -54,7 +47,7 @@ struct OnboardingStep3: View {
                         .font(.custom("Safiro-Medium", size: 24))
                         .foregroundColor(.blanc)
                     
-                    ForEach(fields, id: \.id) { field in
+                    ForEach (fieldOfInterests.getFieldOfInterestList()) { field in
                         Button(action: {
                             if selectedInterests.contains(field) {
                                 selectedInterests.remove(field)
