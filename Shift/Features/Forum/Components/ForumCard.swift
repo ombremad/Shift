@@ -10,82 +10,85 @@ import SwiftUI
 struct ForumCard: View {
     
     var post: Post
+    var backgroundColor: Color = .blanc
+    var textColor: Color = .noir
     
-var body: some View {
+    
+    var body: some View {
         ZStack {
             Rectangle()
-                .fill(.blanc)
+                .fill(backgroundColor)
                 .cornerRadius(15)
                 .shadow(color: .noir.opacity(0.20), radius: 2, x: 0, y: 2)
             VStack(alignment:.leading, spacing: 10) {
-                Text(post.title)
-                    .font(.custom("Safiro-SemiBold", size: 16))
-                    .lineLimit(1)
-                    .allowsTightening(true)
-                    .padding(.horizontal)
-                Text(post.content)
-                    .font(.custom("HelveticaNeue", size: 14))
-                    .lineLimit(3)
-                    .multilineTextAlignment(.leading)
-                    .padding(.horizontal)
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 20) {
-                        HStack(spacing: 5) {
-                            Image(.chatTeardrop)
-                                .resizable()
-                                .frame(width: 20, height: 20)
-                                .foregroundStyle(.noir)
-                                .scaledToFit()
-                            Text(post.comments.count.description)
-                                .foregroundStyle(.noir)
-                        }
-                        HStack {
-                            Image(.thumbsUp)
-                                .resizable()
-                                .frame(width: 20, height: 20)
-                                .scaledToFit()
-                            Text(post.numberOfLikes.description)
-                        }
-                            HStack(spacing: 10) {
-                                if post.isHot {
-                                    HStack(spacing: 3) {
-                                        Image(.fire)
-                                            .resizable()
-                                            .frame(width: 16, height: 16)
-                                            .scaledToFit()
-                                        Text("hot").textCase(.lowercase)
-                                            .font(.custom("Safiro-SemiBold", size: 12))
-                                    }
-                                    .padding(.vertical, 2)
-                                    .padding(.leading, 7)
-                                    .padding(.trailing, 10)
-                                    .frame(height: 24)
-                                    .foregroundStyle(.black)
-                                    .background(.neonGreen)
-                                    .cornerRadius(5)
-                                }
-                                ForEach (post.tags, id: \.self) { tag in
-                                    Text(tag).textCase(.lowercase)
-                                        .font(.custom("Safiro-SemiBold", size: 12))
-                                        .padding(.vertical, 2)
-                                        .padding(.horizontal, 10)
-                                        .frame(height: 24)
-                                        .foregroundStyle(.black)
-                                        .background(.neonGreen)
-                                        .cornerRadius(5)
-                                }
-                            }
-                        }
-                    .padding(.horizontal)
-                }
-                .font(.custom("HelveticaNeue-Bold", size: 12))
-            }
-            .padding(.vertical, 0)
-            .foregroundStyle(.noir)
-        }
-        .frame(height: 140)
-    }
-}
+                   Text(post.title)
+                       .font(.custom("Safiro-SemiBold", size: 16))
+                       .lineLimit(1)
+                       .allowsTightening(true)
+                       .padding(.horizontal)
+                   Text(post.content)
+                       .font(.custom("HelveticaNeue", size: 14))
+                       .lineLimit(3)
+                       .multilineTextAlignment(.leading)
+                       .padding(.horizontal)
+                   ScrollView(.horizontal, showsIndicators: false) {
+                       HStack(spacing: 20) {
+                           HStack(spacing: 5) {
+                               Image(.chatTeardrop)
+                                   .resizable()
+                                   .frame(width: 20, height: 20)
+                                   .foregroundStyle(textColor)
+                                   .scaledToFit()
+                               Text(post.comments.count.description)
+                                   .foregroundStyle(textColor)
+                           }
+                           HStack {
+                               Image(.thumbsUp)
+                                   .resizable()
+                                   .frame(width: 20, height: 20)
+                                   .scaledToFit()
+                               Text(post.numberOfLikes.description)
+                           }
+                               HStack(spacing: 10) {
+                                   if post.isHot {
+                                       HStack(spacing: 3) {
+                                           Image(.fire)
+                                               .resizable()
+                                               .frame(width: 16, height: 16)
+                                               .scaledToFit()
+                                           Text("hot").textCase(.lowercase)
+                                               .font(.custom("Safiro-SemiBold", size: 12))
+                                       }
+                                       .padding(.vertical, 2)
+                                       .padding(.leading, 7)
+                                       .padding(.trailing, 10)
+                                       .frame(height: 24)
+                                       .foregroundStyle(.black)
+                                       .background(.neonGreen)
+                                       .cornerRadius(5)
+                                   }
+                                   ForEach (post.tags, id: \.self) { tag in
+                                       Text(tag).textCase(.lowercase)
+                                           .font(.custom("Safiro-SemiBold", size: 12))
+                                           .padding(.vertical, 2)
+                                           .padding(.horizontal, 10)
+                                           .frame(height: 24)
+                                           .foregroundStyle(.black)
+                                           .background(.neonGreen)
+                                           .cornerRadius(5)
+                                   }
+                               }
+                           }
+                       .padding(.horizontal)
+                   }
+                   .font(.custom("HelveticaNeue-Bold", size: 12))
+               }
+               .padding(.vertical, 0)
+               .foregroundColor(textColor)
+           }
+           .frame(height: 140)
+       }
+   }
 
 #Preview {
     ForumCard(post: Post (

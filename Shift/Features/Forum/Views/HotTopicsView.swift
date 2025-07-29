@@ -16,11 +16,14 @@ struct HotTopicsView: View {
             
             ForEach(hotPosts) { post in
                 NavigationLink(
-                    destination: ForumSingleView(post: post)
+                    destination: ForumSingleView(
+                        currentUser: forumViewModel.user.getCurrentUser(),
+                        post: post
+                    )
                 ) {
                     ForumCard(
                         post: post,
-                        backgroundColor: Color("Violet"),
+                        backgroundColor: Color(.violet),
                         textColor: .white
                     )
                     .frame(width: 371, height: 122)
