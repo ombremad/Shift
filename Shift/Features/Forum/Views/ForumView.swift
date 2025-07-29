@@ -194,7 +194,7 @@ struct ForumView: View {
                             searchResultPosts()
                         }
                     }
-                    .padding(.top, 20)
+                    .padding(.vertical, 30)
                 }
                 .navigationTitle("")
                 .navigationBarTitleDisplayMode(.inline)
