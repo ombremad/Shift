@@ -23,7 +23,7 @@ struct CardView: View {
                 VStack(spacing: 0) {
                     ZStack(alignment: .topTrailing) {
                         // Image
-                        Image(systemName: "photo")
+                        Image(event.imageName)
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .frame(width: 368, height: 193)

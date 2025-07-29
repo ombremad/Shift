@@ -65,7 +65,7 @@ class EventsViewModel {
         // Create fake events
         events = [
             EventModel(
-                imageName: "Image1",
+                imageName: "event-1",
                 isLiked: false,
                 title: "AI and Machine Learning Conference",
                 date: today,
@@ -78,7 +78,7 @@ class EventsViewModel {
                 longitude: 2.3522
             ),
             EventModel(
-                imageName: "Image3",
+                imageName: "event-2",
                 isLiked: true,
                 title: "DevOps Summit",
                 date: tomorrow,
@@ -91,7 +91,7 @@ class EventsViewModel {
                 longitude: 13.4050
             ),
             EventModel(
-                imageName: "Image4",
+                imageName: "event-3",
                 isLiked: false,
                 title: "Mobile Development Workshop",
                 date: calendar.date(byAdding: .day, value: 3, to: today)!,
@@ -104,7 +104,7 @@ class EventsViewModel {
                 longitude: 4.9041
             ),
             EventModel(
-                imageName: "Image5",
+                imageName: "event-4",
                 isLiked: true,
                 title: "UX Design Masterclass",
                 date: calendar.date(byAdding: .day, value: 5, to: today)!,
@@ -117,7 +117,7 @@ class EventsViewModel {
                 longitude: -9.1393
             ),
             EventModel(
-                imageName: "Image6",
+                imageName: "event-5",
                 isLiked: false,
                 title: "Cybersecurity Seminar",
                 date: calendar.date(byAdding: .day, value: 2, to: today)!,
@@ -130,7 +130,7 @@ class EventsViewModel {
                 longitude: -3.7038
             ),
             EventModel(
-                imageName: "Image7",
+                imageName: "event-1",
                 isLiked: true,
                 title: "Data Science Bootcamp",
                 date: calendar.date(byAdding: .day, value: 4, to: today)!,
@@ -143,7 +143,7 @@ class EventsViewModel {
                 longitude: 12.4964
             ),
             EventModel(
-                imageName: "Image8",
+                imageName: "event-2",
                 isLiked: false,
                 title: "Cloud Computing Workshop",
                 date: calendar.date(byAdding: .day, value: 6, to: today)!,
@@ -156,7 +156,7 @@ class EventsViewModel {
                 longitude: 4.3517
             ),
             EventModel(
-                imageName: "Image9",
+                imageName: "event-3",
                 isLiked: true,
                 title: "iOS Development Conference",
                 date: calendar.date(byAdding: .day, value: 1, to: tomorrow)!,
@@ -169,7 +169,7 @@ class EventsViewModel {
                 longitude: 2.3522
             ),
             EventModel(
-                imageName: "Image10",
+                imageName: "event-4",
                 isLiked: false,
                 title: "UI Animation Workshop",
                 date: calendar.date(byAdding: .day, value: 7, to: today)!,
@@ -182,7 +182,7 @@ class EventsViewModel {
                 longitude: 13.4050
             ),
             EventModel(
-                imageName: "Image11",
+                imageName: "event-5",
                 isLiked: true,
                 title: "Network Security Conference",
                 date: calendar.date(byAdding: .day, value: 8, to: today)!,
@@ -195,7 +195,7 @@ class EventsViewModel {
                 longitude: 4.9041
             ),
             EventModel(
-                imageName: "Image1",
+                imageName: "event-1",
                 isLiked: false,
                 title: "AI in Healthcare",
                 date: calendar.date(byAdding: .day, value: 9, to: today)!,
@@ -208,7 +208,7 @@ class EventsViewModel {
                 longitude: -9.1393
             ),
             EventModel(
-                imageName: "Image3",
+                imageName: "event-2",
                 isLiked: true,
                 title: "Continuous Integration Seminar",
                 date: calendar.date(byAdding: .day, value: 10, to: today)!,
@@ -221,7 +221,7 @@ class EventsViewModel {
                 longitude: -3.7038
             ),
             EventModel(
-                imageName: "Image4",
+                imageName: "event-3",
                 isLiked: false,
                 title: "Android Development Bootcamp",
                 date: calendar.date(byAdding: .day, value: 11, to: today)!,
@@ -234,7 +234,7 @@ class EventsViewModel {
                 longitude: 12.4964
             ),
             EventModel(
-                imageName: "Image5",
+                imageName: "event-4",
                 isLiked: true,
                 title: "User Research Workshop",
                 date: calendar.date(byAdding: .day, value: 12, to: today)!,
@@ -247,7 +247,7 @@ class EventsViewModel {
                 longitude: 4.3517
             ),
             EventModel(
-                imageName: "Image6",
+                imageName: "event-5",
                 isLiked: false,
                 title: "Blockchain and Security",
                 date: calendar.date(byAdding: .day, value: 13, to: today)!,
@@ -260,7 +260,7 @@ class EventsViewModel {
                 longitude: 2.3522
             ),
             EventModel(
-                imageName: "Image7",
+                imageName: "event-1",
                 isLiked: true,
                 title: "Big Data Analytics Conference",
                 date: calendar.date(byAdding: .day, value: 14, to: today)!,
@@ -273,7 +273,7 @@ class EventsViewModel {
                 longitude: 13.4050
             ),
             EventModel(
-                imageName: "Image8",
+                imageName: "event-2",
                 isLiked: false,
                 title: "Serverless Architecture Workshop",
                 date: calendar.date(byAdding: .day, value: 15, to: today)!,
@@ -286,7 +286,7 @@ class EventsViewModel {
                 longitude: 4.9041
             ),
             EventModel(
-                imageName: "Image9",
+                imageName: "event-3",
                 isLiked: true,
                 title: "Cross-Platform Development Seminar",
                 date: calendar.date(byAdding: .day, value: 16, to: today)!,
@@ -299,7 +299,7 @@ class EventsViewModel {
                 longitude: -9.1393
             ),
             EventModel(
-                imageName: "Image10",
+                imageName: "event-4",
                 isLiked: false,
                 title: "Interaction Design Conference",
                 date: calendar.date(byAdding: .day, value: 17, to: today)!,
@@ -312,7 +312,7 @@ class EventsViewModel {
                 longitude: -3.7038
             ),
             EventModel(
-                imageName: "Image11",
+                imageName: "event-5",
                 isLiked: true,
                 title: "Ethical Hacking Workshop",
                 date: calendar.date(byAdding: .day, value: 18, to: today)!,
