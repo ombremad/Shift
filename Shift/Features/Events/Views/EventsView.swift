@@ -39,8 +39,8 @@ struct EventsView: View {
 
                 ScrollView {
                     VStack(spacing: 15) {
-                        ForEach(viewModel.filteredEvents, id: \.title) { event in
-                            NavigationLink(destination: EventDetailView(event: event)) {
+                        ForEach(viewModel.filteredEvents, id: \.id) { event in
+                            NavigationLink(destination: EventDetailView(event: event, viewModel: viewModel)) {
                                 CardView(event: event) {
                                     viewModel.toggleLike(for: event.id)
                                 }

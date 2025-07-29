@@ -86,7 +86,7 @@ class EventsViewModel {
                 date: tomorrow,
                 city: "Berlin",
                 category: "DevOps",
-                isMyEvent: true,
+                isMyEvent: false,
                 overview: "A deep dive into DevOps practices and tools for continuous integration and deployment. Learn from industry leaders about improving your development workflows.",
                 location: "Tech Center",
                 latitude: 52.5200,
@@ -128,7 +128,7 @@ class EventsViewModel {
                 date: calendar.date(byAdding: .day, value: 2, to: today)!,
                 city: "Madrid",
                 category: "Cybersecurity",
-                isMyEvent: true,
+                isMyEvent: false,
                 overview: "Seminar on the latest threats and protection strategies in cybersecurity. Experts will discuss current trends and future challenges in the field.",
                 location: "Security Forum",
                 latitude: 40.4168,
@@ -360,6 +360,13 @@ class EventsViewModel {
     func toggleLike(for eventId: UUID) {
         if let index = events.firstIndex(where: { $0.id == eventId }) {
             events[index].isLiked.toggle()
+            applyFilters(selectedTab: selectedTab)
+        }
+    }
+    
+    func toggleParticipation(for eventId: UUID) {
+        if let index = events.firstIndex(where: { $0.id == eventId }) {
+            events[index].isMyEvent.toggle()
             applyFilters(selectedTab: selectedTab)
         }
     }

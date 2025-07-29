@@ -9,6 +9,7 @@ import SwiftUI
 
 struct EventDetailView: View {
     let event: EventModel
+    var viewModel: EventsViewModel
 
     var body: some View {
         ScrollView {
@@ -29,9 +30,9 @@ struct EventDetailView: View {
                                 .foregroundColor(Color.noir)
                                 .multilineTextAlignment(.leading)
                                 .lineLimit(3)
-                            
+
                             Spacer()
-                            
+
                             HStack(spacing: 5) {
                                 ZStack {
                                     Circle()
@@ -41,18 +42,20 @@ struct EventDetailView: View {
                                         .resizable()
                                         .frame(width: 13, height: 15)
                                 }
-                                
+
                                 ZStack {
                                     Circle()
                                         .frame(width: 35)
                                         .foregroundColor(.neonGreen)
-                                    Image(systemName: event.isLiked ? "heart.fill" : "heart")
-                                        .frame(width: 15, height: 15)
-                                        .foregroundStyle(.black)
+                                    Image(
+                                        systemName: event.isLiked
+                                            ? "heart.fill" : "heart"
+                                    )
+                                    .frame(width: 15, height: 15)
+                                    .foregroundStyle(.black)
                                 }
                             }
                         }
-
 
                         HStack {
                             Text(
@@ -70,14 +73,14 @@ struct EventDetailView: View {
                     }
                     .padding(.horizontal)
                     .padding(.top, 20)
-                    
+
                     VStack(alignment: .leading, spacing: 10) {
                         Text("Participants")
                             .font(.custom("Safiro-semiBold", size: 16))
                             .foregroundColor(Color.noir)
                             .padding(.leading)
                             .padding(.top, 25)
-                        
+
                         HStack(spacing: 2) {
                             ZStack {
                                 Circle()
@@ -88,7 +91,7 @@ struct EventDetailView: View {
                                     .frame(width: 36, height: 36)
                                     .clipShape(Circle())
                             }
-                            
+
                             ZStack {
                                 Circle()
                                     .frame(width: 36, height: 36)
@@ -98,7 +101,7 @@ struct EventDetailView: View {
                                     .frame(width: 36, height: 36)
                                     .clipShape(Circle())
                             }
-                            
+
                             ZStack {
                                 Circle()
                                     .frame(width: 36, height: 36)
@@ -108,7 +111,7 @@ struct EventDetailView: View {
                                     .frame(width: 36, height: 36)
                                     .clipShape(Circle())
                             }
-                            
+
                             ZStack {
                                 Circle()
                                     .frame(width: 36, height: 36)
@@ -169,6 +172,10 @@ struct EventDetailView: View {
                             }
 
                             Button(action: {
+                                print(
+                                    "Participate button pressed for event with ID: \(event.id)"
+                                )
+                                viewModel.toggleParticipation(for: event.id)
 
                             }) {
                                 Text("Participate")
@@ -209,21 +216,23 @@ struct EventDetailView: View {
 
 struct EventDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        let sampleEvent = EventModel(
-            imageName: "event-1",
-            isLiked: true,
-            title: "Conférence SwiftUI",
-            date: Date(),
-            city: "Paris",
-            category: "Technologie",
-            isMyEvent: true,
-            overview:
-                "Explore the latest trends and innovations in AI and Machine Learning. This conference brings together leading experts and practitioners to share insights and advancements.",
-            location: "Grand Palais"
-        )
-
         NavigationView {
-            EventDetailView(event: sampleEvent)
+            let viewModel = EventsViewModel()
+
+            let sampleEvent = EventModel(
+                imageName: "event-1",
+                isLiked: true,
+                title: "Conférence SwiftUI",
+                date: Date(),
+                city: "Paris",
+                category: "Technologie",
+                isMyEvent: true,
+                overview:
+                    "Explore the latest trends and innovations in AI and Machine Learning. This conference brings together leading experts and practitioners to share insights and advancements.",
+                location: "Grand Palais"
+            )
+
+            EventDetailView(event: sampleEvent, viewModel: viewModel)
         }
     }
 }
