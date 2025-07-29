@@ -31,37 +31,8 @@ struct EventsView: View {
                 Text("Events")
                     .font(.custom("Safiro-Bold", size: 36))
                     .padding(.leading, 25)
-                
-                HStack {
-                    
-                    ZStack(alignment: .leading) {
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.gray, lineWidth: 1)
-                            .frame(width: 310, height: 40)
-                        
-                        Image("magnifying-glass")
-                            .frame(width: 40, height: 40)
-                            .background(Color("NeonGreen"))
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                        
-                        TextField("Search", text: $searchEvent)
-                            .font(.custom("Helvetica Neue", size: 14))
-                            .padding(.leading, 50)
-                            .frame(width: 316, height: 40)
-                    }
-                    
-                    Button(action: {
-                        showingFilterModal.toggle()
-                    }) {
-                        Image("faders")
-                            .frame(width: 42, height: 40)
-                            .background(Color("NeonGreen"))
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                            .foregroundStyle(.black)
-                    }
-                    
-                }
-                .padding(.leading, 25)
+
+                SearchBar(searchEvent: $searchEvent, showingFilterModal: $showingFilterModal)
             
                 TabPickerView(selectedTab: $selectedTab, tabs: viewModel.tabs, viewModel: viewModel)
                 .padding(.top, 28)
