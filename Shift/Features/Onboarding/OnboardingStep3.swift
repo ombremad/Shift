@@ -41,7 +41,7 @@ struct OnboardingStep3: View {
                         .foregroundColor(.blanc)
                         .multilineTextAlignment(.leading)
                     
-                    TextField(user.name, text: $name)
+                    TextField("Your name", text: $name)
                         .padding()
                         .background(Color.white)
                         .cornerRadius(10)
