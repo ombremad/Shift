@@ -13,7 +13,6 @@ struct ForumCard: View {
     var backgroundColor: Color = .blanc
     var textColor: Color = .noir
     
-    
     var body: some View {
         ZStack {
             Rectangle()
