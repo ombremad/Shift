@@ -83,7 +83,7 @@ struct OnboardingStep3: View {
                 
                 //MARK: -  Button
                 Button(action: {
-                    userModel.setCurrentUser(name: name, nickname: name, picture: user.picture, city: user.city, interests: Array(selectedInterests))
+                    userModel.setCurrentUser(name: name.isEmpty ? "Anonymous" : name, nickname: name.isEmpty ? "Anonymous" : name, picture: user.picture, city: user.city, interests: Array(selectedInterests))
                     hasCompletedOnboarding = true
 
                 }) {
