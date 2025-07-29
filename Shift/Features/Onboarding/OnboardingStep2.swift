@@ -7,14 +7,91 @@
 
 import SwiftUI
 
-struct OnboardingStep2: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
+        struct OnboardingStep2: View {
+            var body: some View {
+                
+                NavigationStack {
+                    VStack() {
+                        
+                        Text("Why SHIFT?")
+                            .font(.custom("Safiro-SemiBold", size: 36))
+                            .foregroundColor(.blanc)
+                            .padding(.top, 60)
+                            .padding(.bottom, 70)
+                        
+                        VStack(alignment: .leading, spacing: 20) {
+                            HStack {
+                                ZStack {
+                                    Circle()
+                                        .fill(Color(.neonGreen))
+                                        .frame(width: 55, height: 55)
+                                    Image("eye")}
+                                Text("Discover inspiring women in tech")
+                                    .padding(.leading, 15)
+                            }
+                            .padding(.bottom, 40)
+                            HStack {
+                                ZStack {
+                                    Circle()
+                                        .fill(Color(.neonGreen))
+                                        .frame(width: 55, height: 55)
+                                    Image("pencil-line")}
+                                Text("Share your thoughts and stories in the forum")
+                                    .padding(.leading, 15)
+                            }
+                            .padding(.bottom, 40)
+                            
+                            HStack {
+                                ZStack {
+                                    Circle()
+                                        .fill(Color(.neonGreen))
+                                        .frame(width: 55, height: 55)
+                                    Image("calendar-star")}
+                                Text("Explore upcoming events and meetups")
+                                    .padding(.leading, 15)
+                                
+                            }
+                            .padding(.bottom, 40)
+                            HStack {
+                                ZStack {
+                                    Circle()
+                                        .fill(Color(.neonGreen))
+                                        .frame(width: 55, height: 55)
+                                    Image("smiley")
+                                }
+                                Text("Find your daily boost of motivation")
+                                    .padding(.leading, 15)
+                                
+                            }
+                        }
+                        .padding(.horizontal, 50)
+                        .foregroundColor(.blanc)
+                        .font(.custom("Safiro-Medium", size: 20))
+                        
+                        Spacer()
+                        
+                        NavigationLink(destination: OnboardingStep3()) {
+                            Text("Continue")
+                                .font(.custom("HelveticaNeue-Bold", size: 20))
+                                .foregroundColor(.violet)
+                                .frame(width: 183, height: 56)
+                                .background(Color("NeonGreen"))
+                                .cornerRadius(20)
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding(.bottom, 40)
+                        
+                    }
+                    .background(Image("background"))
+                    .background(Color("Violet"))
+                    .navigationBarBackButtonHidden(true)
+                }
+                }
+            }
         
 
-}
-//    .navigationBarBackButtonHidden(true)
+
+    
 
 #Preview {
     OnboardingStep2()

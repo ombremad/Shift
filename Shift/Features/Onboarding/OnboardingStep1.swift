@@ -12,46 +12,47 @@ struct OnboardingStep1: View {
         
         NavigationStack {
             VStack(spacing: 40) {
-                Spacer()
+
                 
                 Text("Welcome to")
-                    .font(.title2)
-                    .foregroundColor(.white)
+                    .font(.custom("Safiro-SemiBold", size: 36))
+                    .foregroundColor(.blanc)
+                    .padding(.top, 60)
                 
                 Text("SHIFT")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .foregroundColor(.white)
+                    .font(.custom("Safiro-SemiBold", size: 48))
+                    .foregroundColor(.blanc)
+                    .padding(.top, 30)
                 
-                Text("A space for women in tech to connect,\ngrow, and inspire each other.")
+                Text("A space for women\n in tech to connect, grow and inspire each other.")
                     .multilineTextAlignment(.center)
-                    .foregroundColor(.white)
-                    .padding(.horizontal, 30)
+                    .foregroundColor(.blanc)
+                    .font(.custom("Safiro-Medium", size: 28))
+                    .padding(.horizontal, 60)
+                    .padding(.top, 50)
                 
                 Spacer()
                 
                 NavigationLink(destination: OnboardingStep2()) {
                     Text("Next")
-                        .fontWeight(.semibold)
-                        .frame(maxWidth: .infinity)
-                        .padding()
+                        .font(.custom("HelveticaNeue-Bold", size: 20))
+                        .frame(width: 183, height: 56)
                         .background(Color("NeonGreen"))
-                        .foregroundColor(.black)
-                        .cornerRadius(30)
-                        .padding(.horizontal, 40)
+                        .cornerRadius(20)
                 }
+                .frame(maxWidth: .infinity)
+                .padding(.bottom, 40)
                 
-                Spacer()
+    
             }
             .background(Image("background"))
             .background(Color("Violet"))
+            
+            
 
         }
-
-
-       
-
     }
+
 }
 
 #Preview {

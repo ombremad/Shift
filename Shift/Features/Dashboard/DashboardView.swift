@@ -9,8 +9,6 @@ import SwiftUI
 
 struct DashboardView: View {
     @StateObject private var viewModel = InspirationsViewModel()
-    @State var forumViewModel = ForumViewModel()
-    
     
     var body: some View {
         NavigationStack {
@@ -21,7 +19,7 @@ struct DashboardView: View {
                     
                     // TODO: - Add logic to recover current user's image and name
                     HStack(spacing: 12) {
-                        Image("ProfileImage")
+                        Image(.profile)
                             .resizable()
                             .scaledToFill()
                             .frame(width: 52, height: 52)
@@ -32,13 +30,13 @@ struct DashboardView: View {
                     }
                     
                     // MARK: - Profile
-                    NavigationLink(destination: ProfileView()) {
+                    NavigationLink(destination: ProfilView()) {
                         Text("My profile")
                             .font(.custom("Safiro-SemiBold", size: 14))
                             .foregroundColor(.black)
                             .frame(maxWidth: 236)
                             .frame(height: 40)
-                            .background(Color("NeonGreen"))
+                            .background(Color(.neonGreen))
                             .cornerRadius(10)
                     }
                     .frame(maxWidth: .infinity)
@@ -71,27 +69,14 @@ struct DashboardView: View {
                         .font(.custom("Safiro-SemiBold", size: 24))
                         .padding(.top, 40)
                     
-                    /*
+                    HotTopicsView()
+                    
+                
                      // MARK: - Hot Topics
                     Text("Hot Topics")
                         .font(.custom("Safiro-SemiBold", size: 24))
+                   
                     
-                    VStack (spacing: 30){
-                        ForEach(forumViewModel.getHotPosts()) { post in
-                            NavigationLink(destination: ForumSingleView(currentUser: forumViewModel.user.getCurrentUser(), post: post)) {
-                                ForumCard(
-                                    post: post,
-                                    backgroundColor: Color("Violet"),
-                                    textColor: .white
-                                )
-                                .frame(width: 371, height: 122)
-                            }
-                        }
-                    }
-                    .padding(.bottom, 40)
-                    .padding(.top, 15)
-                    
-                      */
                     // MARK: - Events
                     Text("Popular events")
                         .font(.custom("Safiro-SemiBold", size: 24))

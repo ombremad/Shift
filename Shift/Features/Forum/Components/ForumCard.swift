@@ -11,7 +11,7 @@ struct ForumCard: View {
     
     var post: Post
     var backgroundColor: Color = .blanc
-    var textColor: Color = Color(.noir)
+    var textColor: Color = .noir
 
     
 var body: some View {
