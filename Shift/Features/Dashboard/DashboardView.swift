@@ -10,7 +10,7 @@ import SwiftUI
 struct DashboardView: View {
     @StateObject private var viewModel = InspirationsViewModel()
     @State var forumViewModel = ForumViewModel()
-    
+    @State private var articlesViewModel = ArticlesViewModel()
     
     var body: some View {
         NavigationStack {
@@ -32,7 +32,7 @@ struct DashboardView: View {
                     }
                     
                     // MARK: - Profile
-                    NavigationLink(destination: ProfileView()) {
+                    NavigationLink(destination: ProfilView()) {
                         Text("My profile")
                             .font(.custom("Safiro-SemiBold", size: 14))
                             .foregroundColor(.black)
@@ -44,6 +44,7 @@ struct DashboardView: View {
                     .frame(maxWidth: .infinity)
                     .padding(.bottom, 23)
                     .padding(.top, -10)
+                    .tint(.violet)
                     
                     // MARK: - Daily Inspiration
                     Text("Daily Inspiration")
@@ -65,33 +66,40 @@ struct DashboardView: View {
                         .buttonStyle(PlainButtonStyle())
                     }
                     
-                    
                     // MARK: - Latest Articles
                     Text("Latest Articles")
                         .font(.custom("Safiro-SemiBold", size: 24))
-                        .padding(.top, 40)
-                    
-                    /*
-                     // MARK: - Hot Topics
-                    Text("Hot Topics")
-                        .font(.custom("Safiro-SemiBold", size: 24))
-                    
-                    VStack (spacing: 30){
-                        ForEach(forumViewModel.getHotPosts()) { post in
-                            NavigationLink(destination: ForumSingleView(currentUser: forumViewModel.user.getCurrentUser(), post: post)) {
-                                ForumCard(
-                                    post: post,
-                                    backgroundColor: Color("Violet"),
-                                    textColor: .white
-                                )
-                                .frame(width: 371, height: 122)
+                        .padding(.top, 20)
+                    VStack{
+                        ForEach(articlesViewModel.sortedByDate(array: articlesViewModel.articlesArray).prefix(2)) { article in
+                            NavigationLink(destination : DetailArticleView(
+                                article: article
+                            ).environment(articlesViewModel)) {
+                                LittleArticlesView(article : article, fromDashboard: true)
                             }
                         }
                     }
-                    .padding(.bottom, 40)
-                    .padding(.top, 15)
+                   
+                     // MARK: - Hot Topics
+//                    Text("Hot Topics")
+//                        .font(.custom("Safiro-SemiBold", size: 24))
+//                    
+//                    VStack (spacing: 30){
+//                        ForEach(forumViewModel.getHotPosts()) { post in
+//                            NavigationLink(destination: ForumSingleView(currentUser: forumViewModel.user.getCurrentUser(), post: post)) {
+//                                ForumCard(
+//                                    post: post,
+//                                    backgroundColor: Color("Violet"),
+//                                    textColor: .white
+//                                )
+//                                .frame(width: 371, height: 122)
+//                            }
+//                        }
+//                    }
+//                    .padding(.bottom, 40)
+//                    .padding(.top, 15)
                     
-                      */
+                      
                     // MARK: - Events
                     Text("Popular events")
                         .font(.custom("Safiro-SemiBold", size: 24))
@@ -105,7 +113,7 @@ struct DashboardView: View {
                 .ignoresSafeArea())
             
         }
-        .tint(.white)
+        .tint(.noir)
     }
 }
 

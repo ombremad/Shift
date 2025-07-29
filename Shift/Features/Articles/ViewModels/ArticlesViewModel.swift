@@ -1,4 +1,4 @@
-//
+
 // .swift
 //  Shift
 //
@@ -20,6 +20,7 @@ class ArticlesViewModel {
         return articlesArray.filter { $0.isOnSlider }
     }
     
+    
     //propriété calculée :
     //filtrage (si un tag sélectionné)
    //tri par date (du plus récent au plus ancien)
@@ -34,10 +35,8 @@ class ArticlesViewModel {
         } else {
             filtered = articlesArray
         }
-
         return filtered
             .filter { !sliderArticles.contains($0) } // évite les doublons
-            .sorted { $0.datePublication > $1.datePublication }
     }
 
     init() {
@@ -50,7 +49,7 @@ class ArticlesViewModel {
                 intro: "A dive into the evolving landscape of cyber threats and defenses.",
                 chapeau: "As technology advances, so do the methods of cybercriminals. This article explores current trends, expert insights, and inclusive approaches to cyber resilience.",
                 tag: tagModel.cybersecurity,
-                datePublication: "25 juillet 2025",
+                datePublication: "2025-07-26",
                 imageCouv: "cyber-1",
                 contentArticle: [
                     .subtitle1("Rising Threats"),
@@ -67,7 +66,7 @@ class ArticlesViewModel {
                 intro: "Teaching cybersecurity to kids, teens, and non-tech audiences.",
                 chapeau: "Cyber literacy starts early. Across the world, programs are making cybersecurity education more inclusive and engaging for all ages.",
                 tag: tagModel.cybersecurity,
-                datePublication: "22 juillet 2025",
+                datePublication: "2025-07-22",
                 imageCouv: "cyber-3",
                 contentArticle: [
                     .subtitle1("Starting Young"),
@@ -84,7 +83,7 @@ class ArticlesViewModel {
                 intro: "Why open-source projects are leading innovation in cybersecurity.",
                 chapeau: "From Linux to Signal, open-source communities are proving that transparency and collaboration can outsmart cyber threats.",
                 tag: tagModel.cybersecurity,
-                datePublication: "20 juillet 2025",
+                datePublication: "2025-07-20",
                 imageCouv: "cyber-5",
                 contentArticle: [
                     .subtitle1("Transparent by Design"),
@@ -101,7 +100,7 @@ class ArticlesViewModel {
                 intro: "As digital IDs expand, so do questions about control, bias, and security.",
                 chapeau: "Governments and companies are rolling out digital identity systems, but how do we ensure they are secure and fair?",
                 tag: tagModel.cybersecurity,
-                datePublication: "19 juillet 2025",
+                datePublication: "2025-07-17",
                 imageCouv: "cyber-7",
                 contentArticle: [
                     .subtitle1("Global Momentum"),
@@ -118,7 +117,7 @@ class ArticlesViewModel {
                 intro: "A new wave of startups is reshaping the cybersecurity landscape.",
                 chapeau: "These innovators are building tools that are faster, smarter, and more inclusive.",
                 tag: tagModel.cybersecurity,
-                datePublication: "18 juillet 2025",
+                datePublication: "2025-07-06",
                 imageCouv: "cyber-9",
                 contentArticle: [
                     .subtitle1("Rethinking the Stack"),
@@ -135,7 +134,7 @@ class ArticlesViewModel {
                 intro: "Highlighting the women and marginalized voices changing the face of cybersecurity.",
                 chapeau: "The cybersecurity field has long been dominated by certain demographics. But change is underway—and it’s redefining how we protect the digital world.",
                 tag: tagModel.cybersecurity,
-                datePublication: "17 juillet 2025",
+                datePublication: "2025-07-17",
                 imageCouv: "cyber-11",
                 contentArticle: [
                     .subtitle1("New Faces, New Strengths"),
@@ -154,7 +153,7 @@ class ArticlesViewModel {
                 intro: "Why mobile-first means touch-first, too.",
                 chapeau: "On mobile, the thumb rules everything. UI patterns must evolve to match how users really interact with their phones—fast, one-handed, and often on the go.",
                 tag: tagModel.web,
-                datePublication: "25 juillet 2025",
+                datePublication: "2025-07-25",
                 imageCouv: "web-1",
                 contentArticle: [
                     .subtitle1("Thumb Zones Matter"),
@@ -172,7 +171,7 @@ class ArticlesViewModel {
                 intro: "Users lose signal. Apps shouldn’t lose function.",
                 chapeau: "Connectivity is inconsistent—even in 2025. Building apps that work offline or with limited signal isn't a niche concern: it’s a baseline for global usability.",
                 tag: tagModel.web,
-                datePublication: "24 juillet 2025",
+                datePublication: "2025-07-24",
                 imageCouv: "web-3",
                 contentArticle: [
                     .subtitle1("Plan for Disconnection"),
@@ -190,7 +189,7 @@ class ArticlesViewModel {
                 intro: "Speed is accessibility—and retention.",
                 chapeau: "Users abandon apps that lag. Performance isn’t just a technical metric—it’s a core part of user experience and equity. Seconds matter, everywhere.",
                 tag: tagModel.web,
-                datePublication: "23 juillet 2025",
+                datePublication: "2025-07-22",
                 imageCouv: "web-5",
                 contentArticle: [
                     .subtitle1("Every Millisecond Counts"),
@@ -206,7 +205,7 @@ class ArticlesViewModel {
                 intro: "Small screens demand big accessibility thinking.",
                 chapeau: "Accessibility is often treated as a desktop issue. But mobile users—especially those with disabilities—face unique challenges that require adaptive, responsive, and inclusive approaches.",
                 tag: tagModel.web,
-                datePublication: "22 juillet 2025",
+                datePublication: "2025-07-21",
                 imageCouv: "web-7",
                 contentArticle: [
                     .subtitle1("Zoom Isn’t a Fix"),
@@ -223,7 +222,7 @@ class ArticlesViewModel {
                 intro: "Design isn’t neutral. It nudges behavior.",
                 chapeau: "Modern mobile UX often walks a fine line between helpful and manipulative. As apps fight for engagement, ethical design has never been more urgent.",
                 tag: tagModel.web,
-                datePublication: "21 juillet 2025",
+                datePublication: "2025-07-05",
                 imageCouv: "web-9",
                 contentArticle: [
                     .subtitle1("Patterns That Push"),
@@ -240,7 +239,7 @@ class ArticlesViewModel {
                 intro: "Ping fatigue is real—and harmful.",
                 chapeau: "Notifications are supposed to be helpful. But too often, they disrupt, distract, and disengage. Thoughtful notification design is becoming a priority for modern mobile teams.",
                 tag: tagModel.web,
-                datePublication: "20 juillet 2025",
+                datePublication: "2025-07-29",
                 imageCouv: "web-11",
                 contentArticle: [
                     .subtitle1("More Signal, Less Noise"),
@@ -259,7 +258,7 @@ class ArticlesViewModel {
                 intro: "Small moments shape big user experiences.",
                 chapeau: "From a button ripple to a success checkmark, microinteractions guide users, build feedback loops, and give apps personality. When done well, they go unnoticed—yet feel essential.",
                 tag: tagModel.uxui,
-                datePublication: "25 juillet 2025",
+                datePublication: "2025-07-25",
                 imageCouv: "ux-1",
                 contentArticle: [
                     .subtitle1("Clarity in Motion"),
@@ -276,7 +275,7 @@ class ArticlesViewModel {
                 intro: "Words guide just as much as visuals.",
                 chapeau: "Interfaces are full of text—buttons, alerts, labels. UX writing isn’t about cleverness, it’s about clarity. Good copy turns navigation into intuition.",
                 tag: tagModel.uxui,
-                datePublication: "24 juillet 2025",
+                datePublication: "2025-07-23",
                 imageCouv: "ux-3",
                 contentArticle: [
                     .subtitle1("Designing with Language"),
@@ -293,7 +292,7 @@ class ArticlesViewModel {
                 intro: "Mock content isn’t user content.",
                 chapeau: "Using real content from the start reveals design flaws faster. Placeholder text hides layout issues, confusion points, and edge cases that only show up with true data.",
                 tag: tagModel.uxui,
-                datePublication: "23 juillet 2025",
+                datePublication: "2025-07-22",
                 imageCouv: "ux-5",
                 contentArticle: [
                     .subtitle1("Designing Beyond Lorem Ipsum"),
@@ -310,7 +309,7 @@ class ArticlesViewModel {
                 intro: "Comfort, clarity, and battery life—by design.",
                 chapeau: "Dark mode isn't just a style trend. It’s a functional choice that reduces eye strain, improves contrast, and respects user environments—especially on mobile and OLED screens.",
                 tag: tagModel.uxui,
-                datePublication: "22 juillet 2025",
+                datePublication: "2025-07-21",
                 imageCouv: "ux-7",
                 contentArticle: [
                     .subtitle1("Designing for Two Modes"),
@@ -327,7 +326,7 @@ class ArticlesViewModel {
                 intro: "Motion can guide—not distract.",
                 chapeau: "Used intentionally, animation can highlight changes, provide context, and soften transitions. The goal isn’t to entertain, but to orient and reassure.",
                 tag: tagModel.uxui,
-                datePublication: "21 juillet 2025",
+                datePublication: "2025-07-09",
                 imageCouv: "ux-9",
                 contentArticle: [
                     .subtitle1("Designing Transitions That Teach"),
@@ -344,7 +343,7 @@ class ArticlesViewModel {
                 intro: "Consistency is efficiency.",
                 chapeau: "Design systems bring order to growing teams. They align developers and designers with shared components, patterns, and guidelines—reducing rework and boosting scalability.",
                 tag: tagModel.uxui,
-                datePublication: "20 juillet 2025",
+                datePublication: "2025-06-25",
                 imageCouv: "ux-11",
                 contentArticle: [
                     .subtitle1("Build Once, Reuse Often"),
@@ -362,7 +361,7 @@ class ArticlesViewModel {
                 intro: "Empathy is a data skill.",
                 chapeau: "Spreadsheets don’t change the world—stories do. Translating insights into meaning is becoming the most valuable part of the data pipeline.",
                 tag: tagModel.dataScience,
-                datePublication: "25 juillet 2025",
+                datePublication: "2025-07-25",
                 imageCouv: "data-1",
                 contentArticle: [
                     .subtitle1("From Dashboards to Decisions"),
@@ -379,7 +378,7 @@ class ArticlesViewModel {
                 intro: "Assumptions shape algorithms.",
                 chapeau: "From hiring tools to health models, machine learning systems inherit the worldviews of their makers. Data scientists are learning to audit not just inputs—but intent.",
                 tag: tagModel.dataScience,
-                datePublication: "24 juillet 2025",
+                datePublication: "2025-07-24",
                 imageCouv: "data-3",
                 contentArticle: [
                     .subtitle1("Training Data, Trained Thinking"),
@@ -396,7 +395,7 @@ class ArticlesViewModel {
                 intro: "Simplicity scales better.",
                 chapeau: "In the rush to use AI, many teams forget that a spreadsheet and some logic often outperform overengineered models. Data science should serve the problem—not the hype.",
                 tag: tagModel.dataScience,
-                datePublication: "23 juillet 2025",
+                datePublication: "2025-07-03",
                 imageCouv: "data-5",
                 contentArticle: [
                     .subtitle1("Start With Questions, Not Tools"),
@@ -413,7 +412,7 @@ class ArticlesViewModel {
                 intro: "Pipelines are product features.",
                 chapeau: "Once seen as backend-only, data engineering is now central to fast, reliable products. Without clean, scalable pipelines—AI and analytics simply don’t work.",
                 tag: tagModel.dataScience,
-                datePublication: "22 juillet 2025",
+                datePublication: "2025-06-01",
                 imageCouv: "data-7",
                 contentArticle: [
                     .subtitle1("From SQL to Spark to Stream"),
@@ -430,7 +429,7 @@ class ArticlesViewModel {
                 intro: "Or at least they should be.",
                 chapeau: "The best data teams aren’t gatekeepers. They empower others. Through self-serve dashboards, lightweight tools, and collaborative culture, data becomes part of everyone’s job.",
                 tag: tagModel.dataScience,
-                datePublication: "21 juillet 2025",
+                datePublication: "2025-07-14",
                 imageCouv: "data-9",
                 contentArticle: [
                     .subtitle1("Democratizing Insight"),
@@ -447,7 +446,7 @@ class ArticlesViewModel {
                 intro: "Prediction meets protection.",
                 chapeau: "As machine learning gets more powerful, user data becomes more vulnerable. Data scientists must now act as privacy advocates—baking ethics into their pipelines from the start.",
                 tag: tagModel.dataScience,
-                datePublication: "20 juillet 2025",
+                datePublication: "2025-07-23",
                 imageCouv: "data-11",
                 contentArticle: [
                     .subtitle1("More Than Anonymity"),
@@ -466,7 +465,7 @@ class ArticlesViewModel {
                 intro: "Language shapes machine behavior.",
                 chapeau: "Prompt engineering is redefining how we interact with AI. Knowing what to ask—and how—is becoming a critical design and development skill.",
                 tag: tagModel.ai,
-                datePublication: "25 juillet 2025",
+                datePublication: "2025-07-25",
                 imageCouv: "ia-1",
                 contentArticle: [
                     .subtitle1("Designing the Input Layer"),
@@ -483,7 +482,7 @@ class ArticlesViewModel {
                 intro: "They mimic, not think.",
                 chapeau: "Despite astonishing fluency, generative AI doesn’t reason like humans. Recognizing its limits is key to using it responsibly.",
                 tag: tagModel.ai,
-                datePublication: "24 juillet 2025",
+                datePublication: "2025-07-12",
                 imageCouv: "ia-3",
                 contentArticle: [
                     .subtitle1("Prediction ≠ Cognition"),
@@ -500,7 +499,7 @@ class ArticlesViewModel {
                 intro: "Local AI is on the rise.",
                 chapeau: "Big isn't always better. Edge-friendly AI models are enabling fast, private, and offline experiences—from on-device assistants to smart cameras.",
                 tag: tagModel.ai,
-                datePublication: "23 juillet 2025",
+                datePublication: "2025-07-15",
                 imageCouv: "ia-5",
                 contentArticle: [
                     .subtitle1("Why Go Small?"),
@@ -517,7 +516,7 @@ class ArticlesViewModel {
                 intro: "Interfaces are lagging behind models.",
                 chapeau: "Large models are powerful—but using them often feels clunky. Designers now face the challenge of building AI-native interfaces that guide, explain, and build trust.",
                 tag: tagModel.ai,
-                datePublication: "22 juillet 2025",
+                datePublication: "2025-07-22",
                 imageCouv: "ia-7",
                 contentArticle: [
                     .subtitle1("From Chatbots to Copilots"),
@@ -534,7 +533,7 @@ class ArticlesViewModel {
                 intro: "AI moves faster than governance.",
                 chapeau: "From bias to misinformation, AI systems raise urgent ethical questions. But most teams still lack processes, people, and tools to address them meaningfully.",
                 tag: tagModel.ai,
-                datePublication: "21 juillet 2025",
+                datePublication: "2025-07-19",
                 imageCouv: "ia-9",
                 contentArticle: [
                     .subtitle1("Risks by Default"),
@@ -551,7 +550,7 @@ class ArticlesViewModel {
                 intro: "Co-creation beats automation.",
                 chapeau: "The best use cases of AI aren’t about removing humans—they’re about enhancing them. From code generation to visual ideation, the magic happens in collaboration.",
                 tag: tagModel.ai,
-                datePublication: "20 juillet 2025",
+                datePublication: "2025-07-20",
                 imageCouv: "ia-11",
                 contentArticle: [
                     .subtitle1("Humans in the Loop"),
@@ -570,7 +569,7 @@ class ArticlesViewModel {
                 intro: "Automation is moving up the stack.",
                 chapeau: "DevOps began with build pipelines. Now, machine learning helps predict failures, optimize deployments, and detect anomalies before they hit production.",
                 tag: tagModel.devops,
-                datePublication: "25 juillet 2025",
+                datePublication: "2025-07-24",
                 imageCouv: "devops-1",
                 contentArticle: [
                     .subtitle1("Smarter Pipelines"),
@@ -587,7 +586,7 @@ class ArticlesViewModel {
                 intro: "Terraforming teams, not just systems.",
                 chapeau: "IaC tools like Terraform and Pulumi changed how infra is provisioned. But the real transformation is how they shape team habits, reviews, and collaboration.",
                 tag: tagModel.devops,
-                datePublication: "24 juillet 2025",
+                datePublication: "2025-07-23",
                 imageCouv: "devops-3",
                 contentArticle: [
                     .subtitle1("GitOps Mentality"),
@@ -604,7 +603,7 @@ class ArticlesViewModel {
                 intro: "Local setup is becoming obsolete.",
                 chapeau: "Cloud dev environments like Codespaces, Gitpod, or Coder let developers spin up fully-configured workspaces instantly—no more ‘it works on my machine’.",
                 tag: tagModel.devops,
-                datePublication: "23 juillet 2025",
+                datePublication: "2025-07-22",
                 imageCouv: "devops-5",
                 contentArticle: [
                     .subtitle1("Portable and Predictable"),
@@ -621,7 +620,7 @@ class ArticlesViewModel {
                 intro: "Dashboards aren’t enough.",
                 chapeau: "Developer platforms often prioritize power over usability. But good internal tools should be discoverable, safe, and even pleasant to use.",
                 tag: tagModel.devops,
-                datePublication: "22 juillet 2025",
+                datePublication: "2025-07-21",
                 imageCouv: "devops-7",
                 contentArticle: [
                     .subtitle1("Developer Experience Matters"),
@@ -638,7 +637,7 @@ class ArticlesViewModel {
                 intro: "Enabling developers at scale.",
                 chapeau: "Rather than every team reinventing infra, platform engineers build paved paths—secure, supported ways to deploy, monitor, and scale software.",
                 tag: tagModel.devops,
-                datePublication: "21 juillet 2025",
+                datePublication: "2025-07-18",
                 imageCouv: "devops-9",
                 contentArticle: [
                     .subtitle1("Golden Paths, Not Silver Bullets"),
@@ -655,7 +654,7 @@ class ArticlesViewModel {
                 intro: "Speed and safety go hand in hand.",
                 chapeau: "Modern DevOps isn’t just about velocity—it’s about safe delivery. Canary deploys, feature flags, and rollback automation are now must-haves.",
                 tag: tagModel.devops,
-                datePublication: "20 juillet 2025",
+                datePublication: "2025-07-08",
                 imageCouv: "devops-11",
                 contentArticle: [
                     .subtitle1("Progressive Delivery"),
@@ -671,5 +670,26 @@ class ArticlesViewModel {
     }
     func FilteredArticles(currentArticle: Article) -> [Article] {
         return articlesArray.filter {$0.tag == currentArticle.tag && $0.id != currentArticle.id}.shuffled()  // shuffled() = Mélange aléatoirement les articles proposés
+    }
+    
+    //Fonction pour convertir string en date
+    func convertStringToDate(dateString: String) -> Date? {
+        let NewFormat = DateFormatter()
+            NewFormat.dateFormat = "yyyy-MM-dd"
+        NewFormat.locale = Locale(identifier: "en_US_POSIX")
+        return NewFormat.date(from: dateString)
+    }
+    
+    //Fonction de tri par date
+    func sortedByDate(array: [Article]) -> [Article] {
+        array.sorted { article1, article2 in
+            if let date1 = convertStringToDate(dateString: article1.datePublication),
+            let date2 = convertStringToDate(dateString: article2.datePublication)
+            {
+                return date1 > date2
+            } else {
+                return false
+            }
+        }
     }
 }

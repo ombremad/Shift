@@ -20,7 +20,6 @@ struct ArticlesView: View {
                     .padding(.top, 50)
                     .padding(.bottom, 15)
                     .padding(.leading, 15)
-                    .padding(.bottom, 15)
                     
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 12){
@@ -55,7 +54,7 @@ struct ArticlesView: View {
                     Text("Latest")
                         .font(.custom("Safiro-SemiBold", size: 24))
                         .padding([.top, .bottom], 10)
-                    ForEach(viewModel.filteredArticles.prefix(8)) { article in
+                    ForEach(viewModel.sortedByDate(array: viewModel.filteredArticles).prefix(8)) { article in
                         NavigationLink(destination : DetailArticleView(
                             article: article
                         ).environment(viewModel)) {
@@ -75,7 +74,7 @@ struct ArticlesView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.background)
         }
-        .tint(.violet)
+        .tint(.noir)
     }
 }
 
