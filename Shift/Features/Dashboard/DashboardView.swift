@@ -12,7 +12,6 @@ struct DashboardView: View {
     @State var forumViewModel = ForumViewModel()
     @State private var articlesViewModel = ArticlesViewModel()
     
-    
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -67,13 +66,12 @@ struct DashboardView: View {
                         .buttonStyle(PlainButtonStyle())
                     }
                     
-                    
                     // MARK: - Latest Articles
                     Text("Latest Articles")
                         .font(.custom("Safiro-SemiBold", size: 24))
                         .padding(.top, 20)
                     VStack{
-                        ForEach(articlesViewModel.articlesArray.prefix(2).sorted { $0.datePublication > $1.datePublication }) { article in
+                        ForEach(articlesViewModel.sortedByDate(array: articlesViewModel.articlesArray).prefix(2)) { article in
                             NavigationLink(destination : DetailArticleView(
                                 article: article
                             ).environment(articlesViewModel)) {

@@ -54,7 +54,7 @@ struct ArticlesView: View {
                     Text("Latest")
                         .font(.custom("Safiro-SemiBold", size: 24))
                         .padding([.top, .bottom], 10)
-                    ForEach(viewModel.filteredArticles.prefix(8)) { article in
+                    ForEach(viewModel.sortedByDate(array: viewModel.filteredArticles).prefix(8)) { article in
                         NavigationLink(destination : DetailArticleView(
                             article: article
                         ).environment(viewModel)) {

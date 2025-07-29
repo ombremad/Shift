@@ -19,7 +19,7 @@ struct DetailArticleView: View {
             VStack (alignment: .leading , spacing: 5){ //titre + date
                 Text(article.titre)
                     .font(.custom("Safiro-Bold", size: 36))
-                Text("Publié le \(article.datePublication)")
+                Text("Published on \(article.datePublication)")
                     .font(.custom("HelveticaNeue-Courant", size: 14))
             }
             .padding(15)
@@ -48,8 +48,8 @@ struct DetailArticleView: View {
                     }
                     .alert(isPresented: $showAlert) {
                         Alert(
-                            title: Text("Succès"),
-                            message: Text("L'événement a été partagé avec succès."),
+                            title: Text("Succes"),
+                            message: Text("The event was successfully shared."),
                             dismissButton: .default(Text("OK"))
                         )
                     }
