@@ -66,11 +66,38 @@ struct DashboardView: View {
                         .buttonStyle(PlainButtonStyle())
                     }
                     
-                    
                     // MARK: - Latest Articles
                     Text("Latest Articles")
                         .font(.custom("Safiro-SemiBold", size: 24))
-                        .padding(.top, 40)
+                        .padding(.top, 20)
+                    VStack{
+                        ForEach(articlesViewModel.sortedByDate(array: articlesViewModel.articlesArray).prefix(2)) { article in
+                            NavigationLink(destination : DetailArticleView(
+                                article: article
+                            ).environment(articlesViewModel)) {
+                                LittleArticlesView(article : article, fromDashboard: true)
+                            }
+                        }
+                    }
+                   
+                     // MARK: - Hot Topics
+//                    Text("Hot Topics")
+//                        .font(.custom("Safiro-SemiBold", size: 24))
+//                    
+//                    VStack (spacing: 30){
+//                        ForEach(forumViewModel.getHotPosts()) { post in
+//                            NavigationLink(destination: ForumSingleView(currentUser: forumViewModel.user.getCurrentUser(), post: post)) {
+//                                ForumCard(
+//                                    post: post,
+//                                    backgroundColor: Color("Violet"),
+//                                    textColor: .white
+//                                )
+//                                .frame(width: 371, height: 122)
+//                            }
+//                        }
+//                    }
+//                    .padding(.bottom, 40)
+//                    .padding(.top, 15)
                     
                      // MARK: - Hot Topics
                     Text("Hot Topics")
