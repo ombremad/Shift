@@ -34,7 +34,6 @@ class ArticlesViewModel {
         } else {
             filtered = articlesArray
         }
-
         return filtered
             .filter { !sliderArticles.contains($0) } // évite les doublons
             .sorted { $0.datePublication > $1.datePublication }
@@ -671,5 +670,12 @@ class ArticlesViewModel {
     }
     func FilteredArticles(currentArticle: Article) -> [Article] {
         return articlesArray.filter {$0.tag == currentArticle.tag && $0.id != currentArticle.id}.shuffled()  // shuffled() = Mélange aléatoirement les articles proposés
+    }
+    
+    func convertStringToDate(dateString: String) -> Date? {
+        let NewFormat = DateFormatter()
+            NewFormat.dateFormat = "yyyy-MM-dd"
+        NewFormat.locale = Locale(identifier: "en_US_POSIX")
+        return NewFormat.date(from: dateString)
     }
 }
