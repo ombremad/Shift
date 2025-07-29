@@ -217,6 +217,7 @@ struct ForumSingleView: View {
                     forumAnswers()
                 }
                 .padding()
+                .padding(.bottom, 20)
             }
             .navigationTitle("")
             .navigationBarTitleDisplayMode(.inline)
