@@ -11,6 +11,12 @@ import SwiftUI
 struct ShiftApp: App {
     @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding: Bool = false
     
+    init() {
+#if DEBUG
+        UserDefaults.standard.removeObject(forKey: "hasCompletedOnboarding")
+#endif
+    }
+    
     var body: some Scene {
         WindowGroup {
             if hasCompletedOnboarding {
