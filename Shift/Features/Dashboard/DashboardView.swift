@@ -21,7 +21,7 @@ struct DashboardView: View {
                     
                     // TODO: - Add logic to recover current user's image and name
                     HStack(spacing: 12) {
-                        Image("ProfileImage")
+                        Image(.profile)
                             .resizable()
                             .scaledToFill()
                             .frame(width: 52, height: 52)
@@ -38,7 +38,7 @@ struct DashboardView: View {
                             .foregroundColor(.black)
                             .frame(maxWidth: 236)
                             .frame(height: 40)
-                            .background(Color("NeonGreen"))
+                            .background(Color(.neonGreen))
                             .cornerRadius(10)
                     }
                     .frame(maxWidth: .infinity)
@@ -99,7 +99,11 @@ struct DashboardView: View {
 //                    .padding(.bottom, 40)
 //                    .padding(.top, 15)
                     
-                      
+                     // MARK: - Hot Topics
+                    Text("Hot Topics")
+                        .font(.custom("Safiro-SemiBold", size: 24))
+                    HotTopicsView()
+                  
                     // MARK: - Events
                     Text("Popular events")
                         .font(.custom("Safiro-SemiBold", size: 24))

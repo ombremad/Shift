@@ -9,12 +9,15 @@ import SwiftUI
 
 @main
 struct ShiftApp: App {
+    @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding: Bool = false
+    
     var body: some Scene {
         WindowGroup {
-     //TODO: Add logic: hasCompletedOnboarding? TabView() : OnboardingView()
-            
-            TabBarView()
-            
+            if hasCompletedOnboarding {
+                TabBarView()
+            } else {
+                OnboardingStep1()
+            }
         }
     }
 }
