@@ -103,7 +103,7 @@ struct DashboardView: View {
                     Text("Hot Topics")
                         .font(.custom("Safiro-SemiBold", size: 24))
                     HotTopicsView()
-
+                  
                     // MARK: - Events
                     Text("Popular events")
                         .font(.custom("Safiro-SemiBold", size: 24))
