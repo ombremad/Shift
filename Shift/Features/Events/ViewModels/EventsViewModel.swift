@@ -12,6 +12,7 @@ class EventsViewModel {
     
     var events: [EventModel] = []
     var filteredEvents: [EventModel] = []
+    var selectedTab = 0
     var selectedIndexOption: Int = 0 {
         didSet {
             applyFilters(selectedTab: 0)
@@ -356,6 +357,14 @@ class EventsViewModel {
         selectedDateOption = 0
     }
     
+    func toggleLike(for eventId: UUID) {
+        if let index = events.firstIndex(where: { $0.id == eventId }) {
+            events[index].isLiked.toggle()
+            applyFilters(selectedTab: selectedTab)
+        }
+    }
+
+    
     private func applyFilters(categories: [String]?, city: String?, dateOption: Int?, isMyEvent: Bool? = nil, isLiked: Bool? = nil) {
         let calendar = Calendar.current
         
@@ -386,8 +395,8 @@ class EventsViewModel {
     
     func applyFilters(selectedTab: Int) {
         let selectedCategories = selectedIndexCategory.isEmpty ? nil : selectedIndexCategory.map { categories[$0] }
-        let selectedCity = selectedCity == "All" ? nil : selectedCity
-        let selectedDateOption = selectedDateOption
+        let selectedCity = self.selectedCity == "All" ? nil : self.selectedCity
+        let selectedDateOption = self.selectedDateOption
         
         switch selectedTab {
         case 0: // Filtered events

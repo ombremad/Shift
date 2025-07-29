@@ -10,6 +10,7 @@ import SwiftUI
 struct CardView: View {
     
     let event: EventModel
+    let onLikeToggle: () -> Void
     @State private var showAlert = false;
     
     var body: some View {
@@ -57,7 +58,7 @@ struct CardView: View {
                             }
                             
                             Button(action: {
-                                print("Bouton cliqué sur le coeur")
+                                onLikeToggle()
                             }) {
                                 Image(systemName: event.isLiked ? "heart.fill" : "heart")
                                     .foregroundColor(.noir)
@@ -110,5 +111,5 @@ struct CardView: View {
         location: "Sample Location"
     )
     
-    CardView(event: sampleEvent)
+    CardView(event: sampleEvent, onLikeToggle: {})
 }
