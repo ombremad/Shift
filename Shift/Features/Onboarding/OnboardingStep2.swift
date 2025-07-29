@@ -71,7 +71,7 @@ import SwiftUI
                         Spacer()
                         
                         NavigationLink(destination: OnboardingStep3()) {
-                            Text("Continue")
+                            Text("Next")
                                 .font(.custom("HelveticaNeue-Bold", size: 20))
                                 .foregroundColor(.violet)
                                 .frame(width: 183, height: 56)
@@ -82,8 +82,8 @@ import SwiftUI
                         .padding(.bottom, 40)
                         
                     }
-                    .background(Image("background"))
-                    .background(Color("Violet"))
+                    .background(Image(.background))
+                    .background(Color(.violet))
                     .navigationBarBackButtonHidden(true)
                 }
                 }
