@@ -21,9 +21,9 @@ struct TabBarView: View {
                 case .articles:
                     ArticlesView()
                 case .dashboard:
-                    DashboardView()
+                        DashboardView().environment(userModel)
                 case .forum:
-                    ForumView()
+                        ForumView().environment(userModel)
                 case .events:
                     EventsView()
                 }
