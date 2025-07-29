@@ -22,12 +22,35 @@ struct EventDetailView: View {
                 // Main content
                 VStack(alignment: .leading, spacing: 15) {
                     VStack(alignment: .leading, spacing: 10) {
-                        Text(event.title)
-                            .font(.title)
-                            .font(.custom("Safiro-semiBold", size: 22))
-                            .foregroundColor(Color.noir)
-                            .multilineTextAlignment(.leading)
-                            .lineLimit(2)
+                        HStack {
+                            Text(event.title)
+                                .font(.title)
+                                .font(.custom("Safiro-semiBold", size: 22))
+                                .foregroundColor(Color.noir)
+                                .multilineTextAlignment(.leading)
+                                .lineLimit(3)
+                            
+                            HStack(spacing: 5) {
+                                ZStack {
+                                    Circle()
+                                        .frame(width: 35)
+                                        .foregroundColor(.neonGreen)
+                                    Image("share")
+                                        .resizable()
+                                        .frame(width: 13, height: 15)
+                                }
+                                
+                                ZStack {
+                                    Circle()
+                                        .frame(width: 35)
+                                        .foregroundColor(.neonGreen)
+                                    Image(systemName: event.isLiked ? "heart.fill" : "heart")
+                                        .frame(width: 15, height: 15)
+                                        .foregroundStyle(.black)
+                                }
+                            }
+                            .padding(.leading, 50)
+                        }
 
                         HStack {
                             Text(
@@ -46,12 +69,16 @@ struct EventDetailView: View {
                     .padding(.horizontal)
                     .padding(.top, 20)
 
-                    HStack {
+                    VStack(alignment: .leading, spacing: 10) {
                         Text("Participants")
                             .font(.custom("Safiro-semiBold", size: 16))
                             .foregroundColor(Color.noir)
                             .padding(.top, 25)
                             .padding(.leading)
+                        
+                        Image("")
+                            .resizable()
+                            .frame(width: 30, height: 30)
                     }
 
                     VStack(alignment: .leading, spacing: 10) {
