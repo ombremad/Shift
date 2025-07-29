@@ -20,7 +20,6 @@ struct ArticlesView: View {
                     .padding(.top, 50)
                     .padding(.bottom, 15)
                     .padding(.leading, 15)
-                    .padding(.bottom, 15)
                     
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 12){
@@ -75,7 +74,7 @@ struct ArticlesView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.background)
         }
-        .tint(.violet)
+        .tint(.noir)
     }
 }
 

@@ -18,6 +18,7 @@ class UserModel {
         city: "Montreuil",
         interests: [fieldOfInterests.uxui]
     )
+    
     private let sampleUsers: [User] = []    // TODO: insert here a few sample profiles to use in the forum
     
     func getCurrentUser() -> User {

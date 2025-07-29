@@ -43,6 +43,7 @@ struct DetailArticleView: View {
                             Image("share")
                                 .resizable()
                                 .frame(width: 13, height: 15)
+                                .foregroundStyle(.black)
                         }
                     }
                     .alert(isPresented: $showAlert) {
@@ -65,7 +66,6 @@ struct DetailArticleView: View {
                                 .frame(width: 35)
                                 .foregroundColor(.neonGreen)
                             Image(systemName: viewModel.isLiked ? "heart.fill" : "heart")
-                            //.resizable()
                                 .frame(width: 15, height: 15)
                                 .foregroundStyle(.black)
                         }

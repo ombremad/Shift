@@ -9,6 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
     var userModel = UserModel()
+    private var selectedImage: UIImage?
     
     private let darkModeLabel: UILabel = {
         let label = UILabel()
@@ -59,7 +60,7 @@ class ViewController: UIViewController {
     private let changeImageButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setTitle("Upload picture", for: .normal)
-       // button.font = UIFont(name: "Safiro-SemiBold", size: 32) ça marche pas !!!
+        button.titleLabel?.font = UIFont(name: "Safiro-SemiBold", size: 16)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .violet
         button.layer.cornerRadius = 10
@@ -81,11 +82,11 @@ class ViewController: UIViewController {
         let textField = UITextField()
         textField.placeholder = ""
         textField.borderStyle = .roundedRect
-        textField.textColor = .grisForm
         textField.backgroundColor = .blanc
-        textField.font = UIFont(name: "helveticaNeue-Courant", size: 14)
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.isEnabled = false // pour que le champs ne soit pas modifiable
+        textField.isUserInteractionEnabled = false  // pour que le champs ne soit pas modifiable
+        textField.textColor = .grisForm
+        textField.font = UIFont(name: "helveticaNeue-Courant", size: 14)
         return textField
     }()
     
@@ -101,12 +102,15 @@ class ViewController: UIViewController {
     
     private let nicknameTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Your nickname"
         textField.borderStyle = .roundedRect
         textField.textColor = .grisForm
         textField.backgroundColor = .blanc
         textField.font = UIFont(name: "helveticaNeue-Courant", size: 14)
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.attributedPlaceholder = NSAttributedString(
+               string: "Your nickname",
+               attributes: [NSAttributedString.Key.foregroundColor: UIColor.grisForm]
+           )
         return textField
     }()
     
@@ -128,12 +132,17 @@ class ViewController: UIViewController {
         textField.backgroundColor = .blanc
         textField.font = UIFont(name: "helveticaNeue-Courant", size: 14)
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.attributedPlaceholder = NSAttributedString(
+               string: "Your city",
+               attributes: [NSAttributedString.Key.foregroundColor: UIColor.grisForm]
+           )
         return textField
     }()
     
     private let saveButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setTitle("Save", for: .normal)
+        button.titleLabel?.font = UIFont(name: "Safiro-SemiBold", size: 16)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .violet
         button.layer.cornerRadius = 10
@@ -223,13 +232,18 @@ class ViewController: UIViewController {
         let currentUser = userModel.getCurrentUser()
             nameTextField.text = currentUser.name
     }
-    //pour mettre image en rond après ajout layout
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+       
+        //pour mettre image en rond après ajout layout
         userImage.layer.cornerRadius = userImage.frame.size.width / 2
+        
         saveButton.addTarget(self, action: #selector(saveButtonAction), for: .touchUpInside)
         
         darkModeToggle.addTarget(self, action: #selector(toggleChanged), for: .valueChanged)
+        
+        changeImageButton.addTarget(self, action: #selector(openGallery), for: .touchUpInside)
         
     }
     //Fonction pour récupérer les champs de textField (sauf name deja enregistré) dans le userViewModel - currentUser
@@ -237,6 +251,7 @@ class ViewController: UIViewController {
         let name = userModel.getCurrentUser().name
         let nickname = nicknameTextField.text ?? ""
         let city = cityTextField.text ?? ""
+       // let picture = userModel.getCurrentUser().picture
         let picture = userModel.getCurrentUser().picture
         let interest = userModel.getCurrentUser().interests
         
@@ -249,8 +264,40 @@ class ViewController: UIViewController {
           message.text = "Error: one of the fields is empty."
           message.textColor = .red
       }
+        //Sauvegarde la préférence dark mode/light mode
+        UserDefaults.standard.set(darkModeToggle.isOn, forKey: "isDarkMode")
     }
+    
     @objc func toggleChanged(_ sender: UISwitch) {
+        // Appliquer le dark mode à toute l'app
+               if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                  let window = windowScene.windows.first {
+                   window.overrideUserInterfaceStyle = sender.isOn ? .dark : .light
+               }
         overrideUserInterfaceStyle = sender.isOn ? .dark : .light
+    }
+    @objc private func openGallery() {
+          let picker = UIImagePickerController()
+          picker.sourceType = .photoLibrary
+          picker.delegate = self
+          present(picker, animated: true)
+      }
+}
+// MARK: - Image Picker
+extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        // Récupérer l'image
+        if let image = info[.originalImage] as? UIImage {
+            userImage.image = image
+            selectedImage = image
+        }
+        // Fermer la galerie
+        picker.dismiss(animated: true)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true)
     }
 }
