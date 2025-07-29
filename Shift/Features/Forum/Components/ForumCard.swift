@@ -10,6 +10,9 @@ import SwiftUI
 struct ForumCard: View {
     
     var post: Post
+    var backgroundColor: Color = .blanc
+    var textColor: Color = .noir
+
     
 var body: some View {
         ZStack {
