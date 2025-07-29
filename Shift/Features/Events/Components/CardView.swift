@@ -41,7 +41,7 @@ struct CardView: View {
                             Button(action: {
                                 showAlert = true
                             }) {
-                                Image(systemName: "square.and.arrow.up")
+                                Image("share")
                                     .foregroundColor(.noir)
                                     .padding(10)
                                     .background(Color.neonGreen)
@@ -59,7 +59,7 @@ struct CardView: View {
                             Button(action: {
                                 print("Bouton cliqué sur le coeur")
                             }) {
-                                Image(systemName: "heart")
+                                Image(systemName: event.isLiked ? "heart.fill" : "heart")
                                     .foregroundColor(.noir)
                                     .padding(10)
                                     .background(Color.neonGreen)

@@ -21,8 +21,9 @@ struct EventModel: Hashable {
     var location: String
     var latitude: Double?
     var longitude: Double?
+    var participantCount: Int?
     
-    init(imageName: String, isLiked: Bool, title: String, date: Date, city: String, category: String, isMyEvent: Bool, overview: String? = nil, location: String, latitude: Double? = nil, longitude: Double? = nil ) {
+    init(imageName: String, isLiked: Bool, title: String, date: Date, city: String, category: String, isMyEvent: Bool, overview: String? = nil, location: String, latitude: Double? = nil, longitude: Double? = nil, participantCount: Int? = nil ) {
         self.imageName = imageName
         self.isLiked = isLiked
         self.title = title
@@ -34,6 +35,7 @@ struct EventModel: Hashable {
         self.location = location
         self.latitude = latitude
         self.longitude = longitude
+        self.participantCount = participantCount
     }
     
     var coordinate: CLLocationCoordinate2D? {

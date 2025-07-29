@@ -75,7 +75,8 @@ class EventsViewModel {
                 overview: "Explore the latest trends and innovations in AI and Machine Learning. This conference brings together leading experts and practitioners to share insights and advancements.",
                 location: "Grand Hall",
                 latitude: 48.8566,
-                longitude: 2.3522
+                longitude: 2.3522,
+                participantCount: 145
             ),
             EventModel(
                 imageName: "event-2",
@@ -88,7 +89,8 @@ class EventsViewModel {
                 overview: "A deep dive into DevOps practices and tools for continuous integration and deployment. Learn from industry leaders about improving your development workflows.",
                 location: "Tech Center",
                 latitude: 52.5200,
-                longitude: 13.4050
+                longitude: 13.4050,
+                participantCount: 190
             ),
             EventModel(
                 imageName: "event-3",
@@ -101,7 +103,8 @@ class EventsViewModel {
                 overview: "Hands-on workshop covering the latest in mobile app development. Participants will build and deploy mobile applications using modern frameworks.",
                 location: "Innovation Hub",
                 latitude: 52.3676,
-                longitude: 4.9041
+                longitude: 4.9041,
+                participantCount: 210
             ),
             EventModel(
                 imageName: "event-4",
@@ -114,7 +117,8 @@ class EventsViewModel {
                 overview: "Masterclass on user experience design principles and best practices. This session will cover user research, prototyping, and usability testing.",
                 location: "Creative Space",
                 latitude: 38.7223,
-                longitude: -9.1393
+                longitude: -9.1393,
+                participantCount: 120
             ),
             EventModel(
                 imageName: "event-5",
@@ -127,7 +131,8 @@ class EventsViewModel {
                 overview: "Seminar on the latest threats and protection strategies in cybersecurity. Experts will discuss current trends and future challenges in the field.",
                 location: "Security Forum",
                 latitude: 40.4168,
-                longitude: -3.7038
+                longitude: -3.7038,
+                participantCount: 250
             ),
             EventModel(
                 imageName: "event-6",
@@ -140,7 +145,8 @@ class EventsViewModel {
                 overview: "Intensive bootcamp on data science techniques and tools. Participants will learn data analysis, machine learning, and data visualization.",
                 location: "Data Lab",
                 latitude: 41.9028,
-                longitude: 12.4964
+                longitude: 12.4964,
+                participantCount: 175
             ),
             EventModel(
                 imageName: "event-7",
@@ -153,7 +159,8 @@ class EventsViewModel {
                 overview: "Workshop on cloud computing and its impact on modern IT infrastructure. Topics include cloud services, deployment models, and security considerations.",
                 location: "Cloud Campus",
                 latitude: 50.8503,
-                longitude: 4.3517
+                longitude: 4.3517,
+                participantCount: 130
             ),
             EventModel(
                 imageName: "event-1",
@@ -166,7 +173,8 @@ class EventsViewModel {
                 overview: "Conference on the latest in iOS development and Apple technologies. Sessions will cover new features, tools, and best practices for iOS developers.",
                 location: "Apple Park",
                 latitude: 48.8566,
-                longitude: 2.3522
+                longitude: 2.3522,
+                participantCount: 280
             ),
             EventModel(
                 imageName: "event-2",
@@ -179,7 +187,8 @@ class EventsViewModel {
                 overview: "Workshop focused on creating engaging UI animations. Participants will learn techniques to enhance user interfaces with smooth and interactive animations.",
                 location: "Design Studio",
                 latitude: 52.5200,
-                longitude: 13.4050
+                longitude: 13.4050,
+                participantCount: 160
             ),
             EventModel(
                 imageName: "event-3",
@@ -192,7 +201,8 @@ class EventsViewModel {
                 overview: "Conference on network security and protecting enterprise networks. Topics include threat detection, prevention, and incident response strategies.",
                 location: "Security Center",
                 latitude: 52.3676,
-                longitude: 4.9041
+                longitude: 4.9041,
+                participantCount: 200
             ),
             EventModel(
                 imageName: "event-4",
@@ -205,7 +215,8 @@ class EventsViewModel {
                 overview: "Explore the applications of AI in the healthcare industry. This event will cover AI-driven diagnostics, treatment planning, and patient care innovations.",
                 location: "Health Tech",
                 latitude: 38.7223,
-                longitude: -9.1393
+                longitude: -9.1393,
+                participantCount: 150
             ),
             EventModel(
                 imageName: "event-5",
@@ -218,7 +229,8 @@ class EventsViewModel {
                 overview: "Seminar on continuous integration and delivery practices. Learn how to streamline your development pipeline and improve software delivery processes.",
                 location: "Integration Hall",
                 latitude: 40.4168,
-                longitude: -3.7038
+                longitude: -3.7038,
+                participantCount: 180
             ),
             EventModel(
                 imageName: "event-6",
@@ -231,7 +243,8 @@ class EventsViewModel {
                 overview: "Intensive bootcamp on Android app development. Participants will learn to build and deploy Android applications using the latest tools and technologies.",
                 location: "Android Arena",
                 latitude: 41.9028,
-                longitude: 12.4964
+                longitude: 12.4964,
+                participantCount: 220
             ),
             EventModel(
                 imageName: "event-7",
@@ -244,7 +257,8 @@ class EventsViewModel {
                 overview: "Workshop on conducting effective user research. This session will cover methods for gathering user insights and applying them to design decisions.",
                 location: "Research Lab",
                 latitude: 50.8503,
-                longitude: 4.3517
+                longitude: 4.3517,
+                participantCount: 110
             ),
             EventModel(
                 imageName: "event-1",
@@ -257,7 +271,8 @@ class EventsViewModel {
                 overview: "Conference on blockchain technology and its security implications. Experts will discuss the potential and challenges of blockchain in various industries.",
                 location: "Blockchain Hub",
                 latitude: 48.8566,
-                longitude: 2.3522
+                longitude: 2.3522,
+                participantCount: 290
             ),
             EventModel(
                 imageName: "event-2",
@@ -270,7 +285,8 @@ class EventsViewModel {
                 overview: "Conference on big data analytics and its business applications. Sessions will cover data-driven decision making, predictive analytics, and data management strategies.",
                 location: "Analytics Center",
                 latitude: 52.5200,
-                longitude: 13.4050
+                longitude: 13.4050,
+                participantCount: 140
             ),
             EventModel(
                 imageName: "event-3",
@@ -283,7 +299,8 @@ class EventsViewModel {
                 overview: "Workshop on building and deploying serverless architectures. Participants will learn about serverless frameworks, best practices, and use cases.",
                 location: "Serverless Space",
                 latitude: 52.3676,
-                longitude: 4.9041
+                longitude: 4.9041,
+                participantCount: 260
             ),
             EventModel(
                 imageName: "event-4",
@@ -296,7 +313,8 @@ class EventsViewModel {
                 overview: "Seminar on cross-platform development tools and techniques. Learn how to build applications that run seamlessly on multiple platforms.",
                 location: "Cross-Platform Hub",
                 latitude: 38.7223,
-                longitude: -9.1393
+                longitude: -9.1393,
+                participantCount: 170
             ),
             EventModel(
                 imageName: "event-5",
@@ -309,7 +327,8 @@ class EventsViewModel {
                 overview: "Conference on interaction design and creating intuitive user interfaces. Topics include user-centered design, usability, and interactive prototyping.",
                 location: "Interaction Lab",
                 latitude: 40.4168,
-                longitude: -3.7038
+                longitude: -3.7038,
+                participantCount: 230
             ),
             EventModel(
                 imageName: "event-6",
@@ -322,7 +341,8 @@ class EventsViewModel {
                 overview: "Workshop on ethical hacking and penetration testing techniques. Participants will learn how to identify and fix security vulnerabilities in systems.",
                 location: "Hacking Arena",
                 latitude: 41.9028,
-                longitude: 12.4964
+                longitude: 12.4964,
+                participantCount: 270
             )
         ]
 

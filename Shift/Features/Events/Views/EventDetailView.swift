@@ -30,6 +30,8 @@ struct EventDetailView: View {
                                 .multilineTextAlignment(.leading)
                                 .lineLimit(3)
                             
+                            Spacer()
+                            
                             HStack(spacing: 5) {
                                 ZStack {
                                     Circle()
@@ -49,8 +51,8 @@ struct EventDetailView: View {
                                         .foregroundStyle(.black)
                                 }
                             }
-                            .padding(.leading, 50)
                         }
+
 
                         HStack {
                             Text(
@@ -68,17 +70,55 @@ struct EventDetailView: View {
                     }
                     .padding(.horizontal)
                     .padding(.top, 20)
-
+                    
                     VStack(alignment: .leading, spacing: 10) {
                         Text("Participants")
                             .font(.custom("Safiro-semiBold", size: 16))
                             .foregroundColor(Color.noir)
-                            .padding(.top, 25)
                             .padding(.leading)
+                            .padding(.top, 25)
                         
-                        Image("")
-                            .resizable()
-                            .frame(width: 30, height: 30)
+                        HStack(spacing: 2) {
+                            ZStack {
+                                Circle()
+                                    .frame(width: 36, height: 36)
+                                    .foregroundColor(.gray)
+                                Image("anita")
+                                    .resizable()
+                                    .frame(width: 36, height: 36)
+                                    .clipShape(Circle())
+                            }
+                            
+                            ZStack {
+                                Circle()
+                                    .frame(width: 36, height: 36)
+                                    .foregroundColor(.gray)
+                                Image("sarah")
+                                    .resizable()
+                                    .frame(width: 36, height: 36)
+                                    .clipShape(Circle())
+                            }
+                            
+                            ZStack {
+                                Circle()
+                                    .frame(width: 36, height: 36)
+                                    .foregroundColor(.gray)
+                                Image("viviane")
+                                    .resizable()
+                                    .frame(width: 36, height: 36)
+                                    .clipShape(Circle())
+                            }
+                            
+                            ZStack {
+                                Circle()
+                                    .frame(width: 36, height: 36)
+                                    .foregroundColor(.violet)
+                                Text("\(event.participantCount ?? 0)")
+                                    .font(.custom("Safiro-Regular", size: 12))
+                                    .foregroundColor(.white)
+                            }
+                        }
+                        .padding(.leading)
                     }
 
                     VStack(alignment: .leading, spacing: 10) {
@@ -133,6 +173,7 @@ struct EventDetailView: View {
                             }) {
                                 Text("Participate")
                                     .frame(width: 167, height: 40)
+                                    .font(.custom("Safiro-SemiBold", size: 16))
                                     .background(.violet)
                                     .foregroundColor(.white)
                                     .cornerRadius(8)
