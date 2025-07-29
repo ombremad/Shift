@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct OnboardingStep1: View {
+    @Environment(UserModel.self) var userModel
+
     var body: some View {
         
         NavigationStack {
@@ -33,7 +35,7 @@ struct OnboardingStep1: View {
                 
                 Spacer()
                 
-                NavigationLink(destination: OnboardingStep2()) {
+                NavigationLink(destination: OnboardingStep2().environment(userModel)) {
                     Text("Next")
                         .font(.custom("HelveticaNeue-Bold", size: 20))
                         .frame(width: 183, height: 56)
@@ -56,5 +58,5 @@ struct OnboardingStep1: View {
 }
 
 #Preview {
-    OnboardingStep1()
+    OnboardingStep1().environment(UserModel())
 }

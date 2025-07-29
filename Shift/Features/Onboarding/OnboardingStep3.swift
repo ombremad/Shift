@@ -9,6 +9,8 @@ import SwiftUI
 
 struct OnboardingStep3: View {
     @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding: Bool = false
+    
+    @Environment(UserModel.self) var userModel
 
     @State private var name: String = ""
     @State private var selectedInterests: Set<FieldOfInterest> = []
@@ -22,6 +24,8 @@ struct OnboardingStep3: View {
     ]
     
     var body: some View {
+        
+        let user : User = userModel.getCurrentUser()
         
             VStack() {
                 Text("A little about you")
@@ -37,7 +41,7 @@ struct OnboardingStep3: View {
                         .foregroundColor(.blanc)
                         .multilineTextAlignment(.leading)
                     
-                    TextField("Your name", text: $name)
+                    TextField(user.name, text: $name)
                         .padding()
                         .background(Color.white)
                         .cornerRadius(10)
@@ -79,7 +83,7 @@ struct OnboardingStep3: View {
                 
                 //MARK: -  Button
                 Button(action: {
-                    
+                    userModel.setCurrentUser(name: name, nickname: user.nickname, picture: user.picture, city: user.city, interests: Array(selectedInterests))
                     hasCompletedOnboarding = true
 
                 }) {
@@ -103,5 +107,5 @@ struct OnboardingStep3: View {
 
 
 #Preview {
-    OnboardingStep3()
+    OnboardingStep3().environment(UserModel())
 }
