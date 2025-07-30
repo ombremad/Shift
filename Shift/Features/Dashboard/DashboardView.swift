@@ -93,24 +93,14 @@ struct DashboardView: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 10) {
                             ForEach(eventsViewModel.displayedEvents, id: \.id) { event in
-                                DashboardEventCard(event: event)
-                                    .padding(.trailing, 15)
+                                NavigationLink(destination: EventDetailView(event: event, viewModel: eventsViewModel)) {
+                                    DashboardEventCard(event: event)
+                                        .padding(.trailing, 15)
+                                }
                             }
                         }
                     }
                     .padding(.bottom, 25)
-
-                    
-
-
-                    
-                    
-                    
-                    
-                    
-                 
-                    
-                
                 }
                 .padding(.top)
                 .padding(.leading, 20)
