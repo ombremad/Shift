@@ -95,11 +95,14 @@ struct DashboardView: View {
                     // MARK: - Hot Topics
                     Text("Hot Topics")
                         .font(.custom("Safiro-SemiBold", size: 24))
+                        .padding(.top, 20)
+
                     HotTopicsView()
 
                     // MARK: - Events
                     Text("Popular events")
                         .font(.custom("Safiro-SemiBold", size: 24))
+                    .padding(.top, 20)
 
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 10) {

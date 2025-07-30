@@ -31,7 +31,6 @@ struct HotTopicsView: View {
             }
         }
         .padding(.vertical, 15)
-        .padding(.bottom, 40)
     }
 }
 
