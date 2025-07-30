@@ -15,20 +15,22 @@ struct ForumNewPostView: View {
     @State private var description: String = ""
     @State private var noTagAlert: Bool = false
     
+    @State var user: User
+    
     func postHeader() -> some View {
         VStack(alignment: .leading) {
             Text("New Post")
                 .font(.custom("Safiro-SemiBold", size: 36))
             HStack {
-                Image(forumViewModel.user.getCurrentUser().picture)
+                Image(user.picture)
                     .resizable()
                     .scaledToFill()
                     .frame(width: 44, height: 44)
                     .clipShape(.circle)
                 VStack(alignment: .leading) {
-                    Text(forumViewModel.user.getCurrentUser().nickname)
+                    Text(user.nickname)
                         .font(.custom("Safiro-SemiBold", size: 14))
-                    Text(forumViewModel.user.getCurrentUser().city)
+                    Text(user.city)
                         .font(.custom("Safiro-Regular", size: 12))
                 }
                 Spacer()
@@ -133,7 +135,7 @@ struct ForumNewPostView: View {
                                 if forumViewModel.getToggledTags().isEmpty {
                                     noTagAlert.toggle()
                                 } else {
-                                    forumViewModel.setNewPost(title: title, content: description, user: forumViewModel.user.getCurrentUser(), tags:                     forumViewModel.getToggledTags())
+                                    forumViewModel.setNewPost(title: title, content: description, user: user, tags: forumViewModel.getToggledTags())
                                     forumViewModel.resetToggledTags()
                                     dismiss()
                                 }
@@ -153,5 +155,6 @@ struct ForumNewPostView: View {
 }
 
 #Preview {
-    ForumNewPostView().environment(ForumViewModel())
+    ForumNewPostView(user: User(name: "Julie", nickname: "julie_la_codeuse", picture: .profile, city: "Montreuil", interests: [fieldOfInterests.uxui]
+    )).environment(ForumViewModel())
 }
