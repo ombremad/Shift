@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ForumView: View {
+    @Environment(UserModel.self) var userModel
     @State var forumViewModel = ForumViewModel()
     @State private var showSearchField : Bool = false
     @State private var searchField : String = ""
@@ -80,7 +81,7 @@ struct ForumView: View {
                 .frame(height: 40)
             VStack(spacing: 15) {
                 ForEach (forumViewModel.getHotPosts()) { post in
-                    NavigationLink(destination: ForumSingleView(currentUser: forumViewModel.user.getCurrentUser(), post: post)) {
+                    NavigationLink(destination: ForumSingleView(currentUser: userModel.getCurrentUser(), post: post)) {
                         ForumCard(post: post)
                     }
                 }
@@ -222,7 +223,7 @@ struct ForumView: View {
                         }
                     }
                     ToolbarItem(placement: .topBarTrailing) {
-                        NavigationLink(destination: ForumNewPostView().environment(forumViewModel)) {
+                        NavigationLink(destination: ForumNewPostView(user: userModel.getCurrentUser()).environment(forumViewModel)) {
                             ZStack {
                                 Circle()
                                     .fill(.neonGreen)
@@ -243,5 +244,5 @@ struct ForumView: View {
 }
 
 #Preview {
-    ForumView()
+    ForumView().environment(UserModel())
 }

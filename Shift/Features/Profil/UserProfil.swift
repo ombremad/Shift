@@ -8,7 +8,6 @@
 import UIKit
 
 class ViewController: UIViewController {
-    var userModel = UserModel()
     private var selectedImage: UIImage?
     
     private let darkModeLabel: UILabel = {
@@ -80,11 +79,10 @@ class ViewController: UIViewController {
     
     private let nameTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = ""
+        textField.placeholder = "Your name"
         textField.borderStyle = .roundedRect
         textField.backgroundColor = .blanc
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.isUserInteractionEnabled = false  // pour que le champs ne soit pas modifiable
         textField.textColor = .grisForm
         textField.font = UIFont(name: "helveticaNeue-Courant", size: 14)
         return textField
@@ -179,10 +177,10 @@ class ViewController: UIViewController {
         view.addSubview(message)
 
         NSLayoutConstraint.activate([
-                   titlePage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40),
+                   titlePage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
                    titlePage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
                    
-                   userImage.topAnchor.constraint(equalTo: titlePage.bottomAnchor, constant: 35),
+                   userImage.topAnchor.constraint(equalTo: titlePage.bottomAnchor, constant: 20),
                    userImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                    userImage.widthAnchor.constraint(equalToConstant: 92),
                    userImage.heightAnchor.constraint(equalToConstant: 92),
@@ -192,7 +190,7 @@ class ViewController: UIViewController {
                    changeImageButton.widthAnchor.constraint(equalToConstant: 167),
                    changeImageButton.heightAnchor.constraint(equalToConstant: 40),
                    
-                   darkModeStack.topAnchor.constraint(equalTo: changeImageButton.bottomAnchor, constant: 50),
+                   darkModeStack.topAnchor.constraint(equalTo: changeImageButton.bottomAnchor, constant: 30),
                    darkModeStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
                    darkModeStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
 
@@ -228,9 +226,6 @@ class ViewController: UIViewController {
                    message.topAnchor.constraint(equalTo: saveButton.bottomAnchor, constant: 10),
                    message.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                ])
-        // Pour recuperer le nom enregistrer dans UserViewModel
-        let currentUser = userModel.getCurrentUser()
-            nameTextField.text = currentUser.name
     }
 
     override func viewDidLayoutSubviews() {
@@ -246,20 +241,11 @@ class ViewController: UIViewController {
         changeImageButton.addTarget(self, action: #selector(openGallery), for: .touchUpInside)
         
     }
-    //Fonction pour récupérer les champs de textField (sauf name deja enregistré) dans le userViewModel - currentUser
+    //Fonction pour retourner un message de validation ou d'erreur sur le bouton d'action
     @objc func saveButtonAction(){
-        let name = userModel.getCurrentUser().name
-        let nickname = nicknameTextField.text ?? ""
-        let city = cityTextField.text ?? ""
-       // let picture = userModel.getCurrentUser().picture
-        let picture = userModel.getCurrentUser().picture
-        let interest = userModel.getCurrentUser().interests
-        
-        if !nickname.isEmpty && !city.isEmpty {
-            userModel.setCurrentUser(name: name, nickname: nickname, picture: picture, city: city, interests: interest)
+        if !nicknameTextField.text!.isEmpty && !cityTextField.text!.isEmpty {
             message.text = "Saved Profile!"
             message.textColor = .violet
-    print(userModel.getCurrentUser())
       } else {
           message.text = "Error: one of the fields is empty."
           message.textColor = .red

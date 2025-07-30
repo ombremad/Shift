@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TabBarView: View {
     @StateObject private var viewModel = TabBarViewModel()
+    @Environment(UserModel.self) var userModel
 
     var body: some View {
         VStack(spacing: -12) {
@@ -20,9 +21,9 @@ struct TabBarView: View {
                 case .articles:
                     ArticlesView()
                 case .dashboard:
-                    DashboardView()
+                        DashboardView().environment(userModel)
                 case .forum:
-                    ForumView()
+                        ForumView().environment(userModel)
                 case .events:
                     EventsView()
                 }
@@ -63,5 +64,5 @@ struct TabBarView: View {
 }
 
 #Preview {
-    TabBarView()
+    TabBarView().environment(UserModel())
 }

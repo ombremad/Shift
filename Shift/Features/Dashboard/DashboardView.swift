@@ -12,7 +12,8 @@ struct DashboardView: View {
     @State var forumViewModel = ForumViewModel()
     @State private var articlesViewModel = ArticlesViewModel()
     @State private var eventsViewModel = EventsViewModel()
-
+    @Environment(UserModel.self) var userModel
+    
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -27,8 +28,8 @@ struct DashboardView: View {
                             .scaledToFill()
                             .frame(width: 52, height: 52)
                             .clipShape(Circle())
-
-                        Text("Welcome Julie")
+                        
+                        Text("Welcome \(userModel.getCurrentUser().name)")
                             .font(.custom("Safiro-SemiBold", size: 32))
                     }
 
@@ -136,5 +137,5 @@ struct DashboardView: View {
 }
 
 #Preview {
-    DashboardView()
+    DashboardView().environment(UserModel())
 }

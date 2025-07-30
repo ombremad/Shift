@@ -9,19 +9,16 @@ import SwiftUI
 
 struct OnboardingStep3: View {
     @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding: Bool = false
+    
+    @Environment(UserModel.self) var userModel
 
     @State private var name: String = ""
+    @State var fieldOfInterests = fieldOfInterestModel()
     @State private var selectedInterests: Set<FieldOfInterest> = []
     
-    let fields: [FieldOfInterest] = [
-        FieldOfInterest(name: "Web / Mobile", nameShort: "Web", icon: .devices),
-        FieldOfInterest(name: "UX / UI", nameShort: "UXUI", icon: .bezierCurve),
-        FieldOfInterest(name: "Data Science & AI", nameShort: "Data", icon: .chartBar),
-        FieldOfInterest(name: "Cyber Security", nameShort: "Cyber", icon: .shieldCheck),
-        FieldOfInterest(name: "DevOps", nameShort: "DevOps", icon: .gear)
-    ]
-    
     var body: some View {
+        
+        let user : User = userModel.getCurrentUser()
         
             VStack() {
                 Text("A little about you")
@@ -50,7 +47,7 @@ struct OnboardingStep3: View {
                         .font(.custom("Safiro-Medium", size: 24))
                         .foregroundColor(.blanc)
                     
-                    ForEach(fields, id: \.id) { field in
+                    ForEach (fieldOfInterests.getFieldOfInterestList()) { field in
                         Button(action: {
                             if selectedInterests.contains(field) {
                                 selectedInterests.remove(field)
@@ -79,7 +76,7 @@ struct OnboardingStep3: View {
                 
                 //MARK: -  Button
                 Button(action: {
-                    
+                    userModel.setCurrentUser(name: name.isEmpty ? "Anonymous" : name, nickname: name.isEmpty ? "Anonymous" : name, picture: user.picture, city: user.city, interests: Array(selectedInterests))
                     hasCompletedOnboarding = true
 
                 }) {
@@ -103,5 +100,5 @@ struct OnboardingStep3: View {
 
 
 #Preview {
-    OnboardingStep3()
+    OnboardingStep3().environment(UserModel())
 }

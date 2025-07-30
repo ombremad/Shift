@@ -10,18 +10,25 @@ import SwiftUI
 @main
 struct ShiftApp: App {
     @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding: Bool = false
+    @State var userModel = UserModel()
+    
+    init() {
+#if DEBUG
+        UserDefaults.standard.removeObject(forKey: "hasCompletedOnboarding")
+#endif
+    }
     
     var body: some Scene {
         WindowGroup {
             if hasCompletedOnboarding {
-                TabBarView()
+                TabBarView().environment(userModel)
             } else {
-                OnboardingStep1()
+                OnboardingStep1().environment(userModel)
             }
         }
     }
 }
 
 #Preview{
-    TabBarView()
+    TabBarView().environment(UserModel())
 }
