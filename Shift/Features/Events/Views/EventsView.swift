@@ -34,14 +34,16 @@ struct EventsView: View {
 
                 SearchBar(searchEvent: $searchEvent, showingFilterModal: $showingFilterModal)
             
-                TabPickerView(selectedTab: $selectedTab, tabs: viewModel.tabs, viewModel: viewModel)
+                TabPickerView(selectedTab: $viewModel.selectedTab, tabs: viewModel.tabs, viewModel: viewModel)
                 .padding(.top, 28)
-                
+
                 ScrollView {
                     VStack(spacing: 15) {
-                        ForEach(viewModel.filteredEvents, id: \.title) { event in
-                            NavigationLink(destination: EventDetailView(event: event)) {
-                                CardView(event: event)
+                        ForEach(viewModel.filteredEvents, id: \.id) { event in
+                            NavigationLink(destination: EventDetailView(event: event, viewModel: viewModel)) {
+                                CardView(event: event) {
+                                    viewModel.toggleLike(for: event.id)
+                                }
                             }
                         }
                     }
