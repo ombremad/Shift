@@ -13,6 +13,8 @@ class EventsViewModel {
     var events: [EventModel] = []
     var filteredEvents: [EventModel] = []
     var selectedTab = 0
+    var displayedEvents: [EventModel] = []
+    
     var selectedIndexOption: Int = 0 {
         didSet {
             applyFilters(selectedTab: 0)
@@ -57,6 +59,7 @@ class EventsViewModel {
     
     init() {
         loadFakeData()
+        selectEventsToDisplay(count: 4)
     }
     
     private func loadFakeData() {
@@ -369,6 +372,11 @@ class EventsViewModel {
             events[index].isMyEvent.toggle()
             applyFilters(selectedTab: selectedTab)
         }
+    }
+    
+
+    func selectEventsToDisplay(count: Int) {
+        displayedEvents = Array(events.shuffled().prefix(count))
     }
 
     

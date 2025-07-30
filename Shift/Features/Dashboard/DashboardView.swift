@@ -11,6 +11,7 @@ struct DashboardView: View {
     @StateObject private var viewModel = InspirationsViewModel()
     @State var forumViewModel = ForumViewModel()
     @State private var articlesViewModel = ArticlesViewModel()
+    @State private var eventsViewModel = EventsViewModel()
     
     var body: some View {
         NavigationStack {
@@ -79,25 +80,6 @@ struct DashboardView: View {
                             }
                         }
                     }
-                   
-                     // MARK: - Hot Topics
-//                    Text("Hot Topics")
-//                        .font(.custom("Safiro-SemiBold", size: 24))
-//                    
-//                    VStack (spacing: 30){
-//                        ForEach(forumViewModel.getHotPosts()) { post in
-//                            NavigationLink(destination: ForumSingleView(currentUser: forumViewModel.user.getCurrentUser(), post: post)) {
-//                                ForumCard(
-//                                    post: post,
-//                                    backgroundColor: Color("Violet"),
-//                                    textColor: .white
-//                                )
-//                                .frame(width: 371, height: 122)
-//                            }
-//                        }
-//                    }
-//                    .padding(.bottom, 40)
-//                    .padding(.top, 15)
                     
                      // MARK: - Hot Topics
                     Text("Hot Topics")
@@ -108,10 +90,30 @@ struct DashboardView: View {
                     Text("Popular events")
                         .font(.custom("Safiro-SemiBold", size: 24))
                     
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 10) {
+                            ForEach(eventsViewModel.displayedEvents, id: \.id) { event in
+                                DashboardEventCard(event: event)
+                                    .padding(.trailing, 15)
+                            }
+                        }
+                    }
+                    .padding(.bottom, 25)
+
+                    
+
+
+                    
+                    
+                    
+                    
+                    
+                 
+                    
+                
                 }
                 .padding(.top)
                 .padding(.leading, 20)
-                
             }
             .background(Color("Background")
                 .ignoresSafeArea())
