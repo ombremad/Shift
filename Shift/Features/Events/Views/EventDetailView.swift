@@ -25,8 +25,7 @@ struct EventDetailView: View {
                     VStack(alignment: .leading, spacing: 10) {
                         HStack {
                             Text(event.title)
-                                .font(.title)
-                                .font(.custom("Safiro-semiBold", size: 22))
+                                .font(.custom("Safiro-SemiBold", size: 22))
                                 .foregroundColor(Color.noir)
                                 .multilineTextAlignment(.leading)
                                 .lineLimit(3)
@@ -66,7 +65,7 @@ struct EventDetailView: View {
                             )
                             Text(event.city)
                         }
-                        .font(.custom("Safiro-semiBold", size: 16))
+                        .font(.custom("Safiro-SemiBold", size: 16))
                         .foregroundColor(Color.noir)
                         .multilineTextAlignment(.leading)
                         .lineLimit(2)
@@ -76,7 +75,7 @@ struct EventDetailView: View {
 
                     VStack(alignment: .leading, spacing: 10) {
                         Text("Participants")
-                            .font(.custom("Safiro-semiBold", size: 16))
+                            .font(.custom("Safiro-SemiBold", size: 16))
                             .foregroundColor(Color.noir)
                             .padding(.leading)
                             .padding(.top, 25)
@@ -126,12 +125,12 @@ struct EventDetailView: View {
 
                     VStack(alignment: .leading, spacing: 10) {
                         Text("Overview")
-                            .font(.custom("Safiro-semiBold", size: 16))
+                            .font(.custom("Safiro-SemiBold", size: 16))
                             .foregroundColor(Color.noir)
                             .padding(.leading)
 
                         Text(event.overview ?? "No overview available")
-                            .font(.custom("Safiro-Regular", size: 14))
+                            .font(.custom("HelveticaNeue", size: 14))
                             .foregroundColor(Color.noir)
                             .padding(.leading)
                             .multilineTextAlignment(.leading)
@@ -140,7 +139,7 @@ struct EventDetailView: View {
 
                     VStack(alignment: .leading, spacing: 10) {
                         Text("Location")
-                            .font(.custom("Safiro-semiBold", size: 16))
+                            .font(.custom("Safiro-SemiBold", size: 16))
                             .foregroundColor(Color.noir)
                             .padding(.leading)
 
@@ -172,11 +171,7 @@ struct EventDetailView: View {
                             }
 
                             Button(action: {
-                                print(
-                                    "Participate button pressed for event with ID: \(event.id)"
-                                )
                                 viewModel.toggleParticipation(for: event.id)
-
                             }) {
                                 Text("Participate")
                                     .frame(width: 167, height: 40)
