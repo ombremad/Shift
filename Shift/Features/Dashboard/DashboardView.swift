@@ -34,7 +34,7 @@ struct DashboardView: View {
                     }
 
                     // MARK: - Profile
-                    NavigationLink(destination: ProfilView()) {
+                    NavigationLink(destination: ProfilView().environment(userModel)) {
                         Text("My profile")
                             .font(.custom("Safiro-SemiBold", size: 14))
                             .foregroundColor(.black)

@@ -9,6 +9,7 @@ import SwiftUI
 import UIKit
 
 struct ProfilView: View {
+    @Environment(UserModel.self) var userModel
     var body: some View {
         VStack{
             UserProfil()
@@ -18,8 +19,11 @@ struct ProfilView: View {
 }
 
 struct UserProfil: UIViewControllerRepresentable {
+    @Environment(UserModel.self) var userModel
     func makeUIViewController(context: Context) -> ViewController {
-        return ViewController()
+        let vc = ViewController()
+        vc.viewModel = userModel
+        return vc
     }
     
     func updateUIViewController(_ uiViewController: ViewController, context: Context) {
@@ -27,5 +31,5 @@ struct UserProfil: UIViewControllerRepresentable {
 }
 
 #Preview {
-    ProfilView()
+    ProfilView().environment(UserModel())
 }
