@@ -8,7 +8,8 @@
 import UIKit
 
 class ViewController: UIViewController {
-    private var selectedImage: UIImage?
+    
+    var viewModel: UserModel!
     
     private let darkModeLabel: UILabel = {
         let label = UILabel()
@@ -79,7 +80,7 @@ class ViewController: UIViewController {
     
     private let nameTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Your name"
+        textField.placeholder = ""
         textField.borderStyle = .roundedRect
         textField.backgroundColor = .blanc
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -226,6 +227,9 @@ class ViewController: UIViewController {
                    message.topAnchor.constraint(equalTo: saveButton.bottomAnchor, constant: 10),
                    message.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                ])
+        // Pour recuperer le nom enregistrer dans UserViewModel
+        let currentUser = viewModel.getCurrentUser()
+            nameTextField.text = currentUser.name
     }
 
     override func viewDidLayoutSubviews() {
@@ -243,7 +247,14 @@ class ViewController: UIViewController {
     }
     //Fonction pour retourner un message de validation ou d'erreur sur le bouton d'action
     @objc func saveButtonAction(){
-        if !nicknameTextField.text!.isEmpty && !cityTextField.text!.isEmpty {
+        let name = nameTextField.text ?? ""
+        let nickname = nicknameTextField.text ?? ""
+        let city = cityTextField.text ?? ""
+        let picture = viewModel.getCurrentUser().picture
+        let interest = viewModel.getCurrentUser().interests
+        
+        if !nickname.isEmpty && !city.isEmpty {
+            viewModel.setCurrentUser(name: name, nickname: nickname, picture: picture, city: city, interests: interest)
             message.text = "Saved Profile!"
             message.textColor = .violet
       } else {
@@ -277,7 +288,6 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
         // Récupérer l'image
         if let image = info[.originalImage] as? UIImage {
             userImage.image = image
-            selectedImage = image
         }
         // Fermer la galerie
         picker.dismiss(animated: true)
