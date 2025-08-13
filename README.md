@@ -7,7 +7,7 @@ The second team project during our Apple Foundation Program Advanced training le
 
 During our CBL iteration, research showed that only 24 % of the workforce in the tech field were women, and those women are paid 22 % less than men on average (in France). Women in the tech field say they have to face discrimination, gender stereotypes, but also find it hard to learn about female role models, communities, local initiatives, or even job offers.
 
-In this context, we deliberately went for an app that would feature both editorial and social components. As our most ambitious project to date (yet), we felt confident taking on a feature-rich, all-around app, with a subject that matters.
+In this context, we deliberately went for an app that would feature both editorial and social components. As our most ambitious project to date (yet), we felt confident taking on a feature-rich, all-around app.
 
 # Details
 
