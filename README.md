@@ -22,9 +22,7 @@ The app revolves around 5 key parts:
 - Events: find curated tech events dedicated to women close to your location, and get to network!
 - Dashboard: a dynamic landing page that welcomes you every time you launch the app, with the best of other sections tightly packed in a convenient place.
 
-<img width="201" height="437" alt="Inspirations preview" src="https://github.com/user-attachments/assets/ccc2fd7d-092d-4ebc-a313-fea5322c5a67" /> <img width="201" height="437" alt="Articles preview" src="https://github.com/user-attachments/assets/89cd18d7-3519-4e1d-ba86-353a43af679b" /> <img width="201" height="437" alt="Forum preview" src="https://github.com/user-attachments/assets/589f8b55-a313-4810-9cc6-30606d407bea" /> <img width="201" height="437" alt="Events preview" src="https://github.com/user-attachments/assets/df1f652a-1b5a-4584-8048-b046fae8b988" /> <img width="201" height="437" alt="Dashboard preview" src="https://github.com/user-attachments/assets/db01f961-3996-4454-87ac-ee482a03538c" />
-
-*More screenshots can be found [at the end of this README](#features).*
+*Some previews screenshots can be found [at the end of this README](#screenshots).*
 
 ## Constraints
 
@@ -62,7 +60,7 @@ We adopted Agile methods throughout, mostly a mix of Scrum + Kanban. Scrum Maste
 
 The whole project (including ideation, visual design, code and presentation) was done in July 2025. We only had a month, that also included time for the classes themselves. Code was left untouched after the end-of-project feature freeze, and is provided as-is.
 
-# Feature previews
+# Screenshots
 
 ## Onboarding, dashboard & profile settings
 <img width="201" height="437" alt="Onboarding preview 1" src="https://github.com/user-attachments/assets/e333e9a8-fdfa-4b00-8a45-22437b39981a" /> <img width="201" height="437" alt="Onboarding preview 2" src="https://github.com/user-attachments/assets/6c68fd66-fea5-4de1-bbaf-3dd6837f808f" /> <img width="201" height="437" alt="Dashboard" src="https://github.com/user-attachments/assets/db01f961-3996-4454-87ac-ee482a03538c" /> <img width="201" height="437" alt="Profile settings page" src="https://github.com/user-attachments/assets/bf3272c7-c1eb-4aa3-b211-c4ac6a8fe41b" />
