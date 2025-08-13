@@ -16,11 +16,11 @@ In this context, we deliberately went for an app that would feature both editori
 ## Features
 
 The app revolves around 5 key parts:
-- Inspirations: learn about important women in the tech field throughout history
-- Articles: know what's new in the tech industry for women, get inspired by interviews and stories...
-- Forum: join a community ready to give advice, support, mentorship, tech talk, or just to chit-chat
-- Events: find curated tech events dedicated to women close to your location, and get to network!
-- Dashboard: a dynamic landing page that welcomes you every time you launch the app, with the best of other sections tightly packed in a convenient place.
+- **Inspirations**: learn about important women in the tech field throughout history
+- **Articles**: know what's new in the tech industry for women, get inspired by interviews and stories...
+- **Forum**: join a community ready to give advice, support, mentorship, tech talk, or just to chit-chat
+- **Events**: find curated tech events dedicated to women close to your location, and get to network!
+- **Dashboard**: a dynamic landing page that welcomes you every time you launch the app, with the best of other sections tightly packed in a convenient place.
 
 *Some previews screenshots can be found [at the end of this README](#screenshots).*
 
